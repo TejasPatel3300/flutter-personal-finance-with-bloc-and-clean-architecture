@@ -18,6 +18,7 @@ class MyApp extends StatelessWidget {
         BlocProvider(create: (_) => AuthenticationBloc())
       ],
       child: MaterialApp(
+        debugShowCheckedModeBanner: false,
         title: 'Flutter Demo',
         theme: getLightTheme(),
         darkTheme: getDarkTheme(),

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:personal_finance_app/bloc/authentication/authentication_bloc.dart';
 import 'package:personal_finance_app/ui/authentication/sign_in_tab.dart';
 import 'package:personal_finance_app/ui/authentication/sign_up_tab.dart';
 
@@ -9,8 +11,8 @@ class AuthenticationScreen extends StatefulWidget {
   State<AuthenticationScreen> createState() => _AuthenticationScreenState();
 }
 
-class _AuthenticationScreenState extends State<AuthenticationScreen> with SingleTickerProviderStateMixin {
-  
+class _AuthenticationScreenState extends State<AuthenticationScreen>
+    with SingleTickerProviderStateMixin {
   TabController? _tabController;
 
   @override
@@ -25,9 +27,23 @@ class _AuthenticationScreenState extends State<AuthenticationScreen> with Single
     super.dispose();
   }
 
-  
   @override
   Widget build(BuildContext context) {
+    return BlocConsumer<AuthenticationBloc, AuthenticationState>(
+      builder: (context, state) => state.maybeWhen(
+        orElse: () => buildScreenBody(),
+      ),
+      listener: (context, state) => state.maybeWhen(
+        orElse: () => null,
+        authenticated: (userId) {
+          print('authentication state received');
+          return null;
+        },
+      ),
+    );
+  }
+
+  Scaffold buildScreenBody() {
     return Scaffold(
       appBar: AppBar(
         title: Text('Welcome'),
@@ -43,7 +59,7 @@ class _AuthenticationScreenState extends State<AuthenticationScreen> with Single
         controller: _tabController,
         children: [
           SignInTab(),
-          SignUpScreen(),
+          SignUpTab(),
         ],
       ),
     );
