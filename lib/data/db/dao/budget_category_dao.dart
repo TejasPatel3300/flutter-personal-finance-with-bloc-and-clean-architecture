@@ -1,5 +1,6 @@
 import 'package:floor/floor.dart';
-import 'package:personal_finance_app/model/dto/entities/budget_category_entity.dart';
+
+import '../../model/dto/entities/budget_category_entity.dart';
 
 @dao
 abstract class BudgetCategoryDao {

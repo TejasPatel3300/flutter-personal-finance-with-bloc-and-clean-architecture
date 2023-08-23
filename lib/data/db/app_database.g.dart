@@ -160,6 +160,16 @@ class _$UserDao extends UserDao {
   }
 
   @override
+  Future<UserEntity?> getLastAddedUser() async {
+    return _queryAdapter.query('SELECT * FROM users ORDER BY id DESC LIMIT 1',
+        mapper: (Map<String, Object?> row) => UserEntity(
+            id: row['id'] as int?,
+            fullName: row['fullName'] as String,
+            email: row['email'] as String,
+            password: row['password'] as String));
+  }
+
+  @override
   Future<UserEntity?> findUserByEmailAndPassword(
     String email,
     String password,

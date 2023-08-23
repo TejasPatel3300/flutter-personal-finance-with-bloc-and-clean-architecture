@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:personal_finance_app/data/db/database_provider.dart';
-import 'package:personal_finance_app/model/dto/entities/user_entity.dart';
-import 'package:sqflite/sqflite.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:personal_finance_app/domain/models/user.dart';
+import 'package:personal_finance_app/presentation/bloc/authentication/authentication_bloc.dart';
 
 class SignUpTab extends StatefulWidget {
   const SignUpTab({Key? key}) : super(key: key);
@@ -18,7 +18,6 @@ class _SignUpTabState extends State<SignUpTab> {
   @override
   void initState() {
     super.initState();
-    getAllUser();
   }
 
   @override
@@ -52,22 +51,14 @@ class _SignUpTabState extends State<SignUpTab> {
               SizedBox(height: 24),
               ElevatedButton(
                 onPressed: () async {
-                  // TODO: Implement sign-up logic
-                  final database = await DatabaseProvider.instance.dbInstance;
-                  final dao = database.userDao;
-                  final user = UserEntity(
+                  final user = User(
                     email: _emailController.text.trim(),
                     fullName: _nameController.text.trim(),
                     password: _passwordController.text.trim(),
                   );
-                  try {
-                    await dao.insertUser(user);
-                  } on DatabaseException catch (e) {
-                    if (e.isUniqueConstraintError()) {
-                      print('unique constraint error');
-                      e.getResultCode();
-                    }
-                  }
+                  context
+                      .read<AuthenticationBloc>()
+                      .add(AuthenticationEvent.userSignUpRequested(user: user));
                 },
                 child: Text('Sign Up'),
               ),
@@ -81,13 +72,5 @@ class _SignUpTabState extends State<SignUpTab> {
         ),
       ),
     );
-  }
-
-  void getAllUser() async {
-    final database = await DatabaseProvider.instance.dbInstance;
-    final dao = database.userDao;
-    dao.getAllUserAsStream().listen((event) {
-      print('users: $event');
-    });
   }
 }

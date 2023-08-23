@@ -5,7 +5,7 @@ import 'package:personal_finance_app/utils/typedefs.dart';
 abstract class UserRepository{
   Future<EitherUserOrFailure> getUserById({required int id});
 
-  Future<void> signUpUser({required User user});
+  Future<EitherUserOrFailure> signUpUser({required User user});
 
   Future<EitherUserOrFailure> signInUser({required String email, required String password});
 

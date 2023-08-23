@@ -666,6 +666,8 @@ mixin _$AuthenticationState {
     required TResult Function(String userId) authenticated,
     required TResult Function() unauthenticated,
     required TResult Function(String error) failure,
+    required TResult Function(User user) signedUp,
+    required TResult Function(String error) signUpFailed,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -675,6 +677,8 @@ mixin _$AuthenticationState {
     TResult? Function(String userId)? authenticated,
     TResult? Function()? unauthenticated,
     TResult? Function(String error)? failure,
+    TResult? Function(User user)? signedUp,
+    TResult? Function(String error)? signUpFailed,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -684,6 +688,8 @@ mixin _$AuthenticationState {
     TResult Function(String userId)? authenticated,
     TResult Function()? unauthenticated,
     TResult Function(String error)? failure,
+    TResult Function(User user)? signedUp,
+    TResult Function(String error)? signUpFailed,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -695,6 +701,8 @@ mixin _$AuthenticationState {
     required TResult Function(AuthenticationUnauthenticated value)
         unauthenticated,
     required TResult Function(AuthenticationFailure value) failure,
+    required TResult Function(AuthenticationSignedUp value) signedUp,
+    required TResult Function(AuthenticationSignUpFailure value) signUpFailed,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -704,6 +712,8 @@ mixin _$AuthenticationState {
     TResult? Function(AuthenticationAuthenticated value)? authenticated,
     TResult? Function(AuthenticationUnauthenticated value)? unauthenticated,
     TResult? Function(AuthenticationFailure value)? failure,
+    TResult? Function(AuthenticationSignedUp value)? signedUp,
+    TResult? Function(AuthenticationSignUpFailure value)? signUpFailed,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -713,6 +723,8 @@ mixin _$AuthenticationState {
     TResult Function(AuthenticationAuthenticated value)? authenticated,
     TResult Function(AuthenticationUnauthenticated value)? unauthenticated,
     TResult Function(AuthenticationFailure value)? failure,
+    TResult Function(AuthenticationSignedUp value)? signedUp,
+    TResult Function(AuthenticationSignUpFailure value)? signUpFailed,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -779,6 +791,8 @@ class _$AuthenticationInitial implements AuthenticationInitial {
     required TResult Function(String userId) authenticated,
     required TResult Function() unauthenticated,
     required TResult Function(String error) failure,
+    required TResult Function(User user) signedUp,
+    required TResult Function(String error) signUpFailed,
   }) {
     return initial();
   }
@@ -791,6 +805,8 @@ class _$AuthenticationInitial implements AuthenticationInitial {
     TResult? Function(String userId)? authenticated,
     TResult? Function()? unauthenticated,
     TResult? Function(String error)? failure,
+    TResult? Function(User user)? signedUp,
+    TResult? Function(String error)? signUpFailed,
   }) {
     return initial?.call();
   }
@@ -803,6 +819,8 @@ class _$AuthenticationInitial implements AuthenticationInitial {
     TResult Function(String userId)? authenticated,
     TResult Function()? unauthenticated,
     TResult Function(String error)? failure,
+    TResult Function(User user)? signedUp,
+    TResult Function(String error)? signUpFailed,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -820,6 +838,8 @@ class _$AuthenticationInitial implements AuthenticationInitial {
     required TResult Function(AuthenticationUnauthenticated value)
         unauthenticated,
     required TResult Function(AuthenticationFailure value) failure,
+    required TResult Function(AuthenticationSignedUp value) signedUp,
+    required TResult Function(AuthenticationSignUpFailure value) signUpFailed,
   }) {
     return initial(this);
   }
@@ -832,6 +852,8 @@ class _$AuthenticationInitial implements AuthenticationInitial {
     TResult? Function(AuthenticationAuthenticated value)? authenticated,
     TResult? Function(AuthenticationUnauthenticated value)? unauthenticated,
     TResult? Function(AuthenticationFailure value)? failure,
+    TResult? Function(AuthenticationSignedUp value)? signedUp,
+    TResult? Function(AuthenticationSignUpFailure value)? signUpFailed,
   }) {
     return initial?.call(this);
   }
@@ -844,6 +866,8 @@ class _$AuthenticationInitial implements AuthenticationInitial {
     TResult Function(AuthenticationAuthenticated value)? authenticated,
     TResult Function(AuthenticationUnauthenticated value)? unauthenticated,
     TResult Function(AuthenticationFailure value)? failure,
+    TResult Function(AuthenticationSignedUp value)? signedUp,
+    TResult Function(AuthenticationSignUpFailure value)? signUpFailed,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -900,6 +924,8 @@ class _$AuthenticationLoading implements AuthenticationLoading {
     required TResult Function(String userId) authenticated,
     required TResult Function() unauthenticated,
     required TResult Function(String error) failure,
+    required TResult Function(User user) signedUp,
+    required TResult Function(String error) signUpFailed,
   }) {
     return loading();
   }
@@ -912,6 +938,8 @@ class _$AuthenticationLoading implements AuthenticationLoading {
     TResult? Function(String userId)? authenticated,
     TResult? Function()? unauthenticated,
     TResult? Function(String error)? failure,
+    TResult? Function(User user)? signedUp,
+    TResult? Function(String error)? signUpFailed,
   }) {
     return loading?.call();
   }
@@ -924,6 +952,8 @@ class _$AuthenticationLoading implements AuthenticationLoading {
     TResult Function(String userId)? authenticated,
     TResult Function()? unauthenticated,
     TResult Function(String error)? failure,
+    TResult Function(User user)? signedUp,
+    TResult Function(String error)? signUpFailed,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -941,6 +971,8 @@ class _$AuthenticationLoading implements AuthenticationLoading {
     required TResult Function(AuthenticationUnauthenticated value)
         unauthenticated,
     required TResult Function(AuthenticationFailure value) failure,
+    required TResult Function(AuthenticationSignedUp value) signedUp,
+    required TResult Function(AuthenticationSignUpFailure value) signUpFailed,
   }) {
     return loading(this);
   }
@@ -953,6 +985,8 @@ class _$AuthenticationLoading implements AuthenticationLoading {
     TResult? Function(AuthenticationAuthenticated value)? authenticated,
     TResult? Function(AuthenticationUnauthenticated value)? unauthenticated,
     TResult? Function(AuthenticationFailure value)? failure,
+    TResult? Function(AuthenticationSignedUp value)? signedUp,
+    TResult? Function(AuthenticationSignUpFailure value)? signUpFailed,
   }) {
     return loading?.call(this);
   }
@@ -965,6 +999,8 @@ class _$AuthenticationLoading implements AuthenticationLoading {
     TResult Function(AuthenticationAuthenticated value)? authenticated,
     TResult Function(AuthenticationUnauthenticated value)? unauthenticated,
     TResult Function(AuthenticationFailure value)? failure,
+    TResult Function(AuthenticationSignedUp value)? signedUp,
+    TResult Function(AuthenticationSignUpFailure value)? signUpFailed,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -1051,6 +1087,8 @@ class _$AuthenticationAuthenticated implements AuthenticationAuthenticated {
     required TResult Function(String userId) authenticated,
     required TResult Function() unauthenticated,
     required TResult Function(String error) failure,
+    required TResult Function(User user) signedUp,
+    required TResult Function(String error) signUpFailed,
   }) {
     return authenticated(userId);
   }
@@ -1063,6 +1101,8 @@ class _$AuthenticationAuthenticated implements AuthenticationAuthenticated {
     TResult? Function(String userId)? authenticated,
     TResult? Function()? unauthenticated,
     TResult? Function(String error)? failure,
+    TResult? Function(User user)? signedUp,
+    TResult? Function(String error)? signUpFailed,
   }) {
     return authenticated?.call(userId);
   }
@@ -1075,6 +1115,8 @@ class _$AuthenticationAuthenticated implements AuthenticationAuthenticated {
     TResult Function(String userId)? authenticated,
     TResult Function()? unauthenticated,
     TResult Function(String error)? failure,
+    TResult Function(User user)? signedUp,
+    TResult Function(String error)? signUpFailed,
     required TResult orElse(),
   }) {
     if (authenticated != null) {
@@ -1092,6 +1134,8 @@ class _$AuthenticationAuthenticated implements AuthenticationAuthenticated {
     required TResult Function(AuthenticationUnauthenticated value)
         unauthenticated,
     required TResult Function(AuthenticationFailure value) failure,
+    required TResult Function(AuthenticationSignedUp value) signedUp,
+    required TResult Function(AuthenticationSignUpFailure value) signUpFailed,
   }) {
     return authenticated(this);
   }
@@ -1104,6 +1148,8 @@ class _$AuthenticationAuthenticated implements AuthenticationAuthenticated {
     TResult? Function(AuthenticationAuthenticated value)? authenticated,
     TResult? Function(AuthenticationUnauthenticated value)? unauthenticated,
     TResult? Function(AuthenticationFailure value)? failure,
+    TResult? Function(AuthenticationSignedUp value)? signedUp,
+    TResult? Function(AuthenticationSignUpFailure value)? signUpFailed,
   }) {
     return authenticated?.call(this);
   }
@@ -1116,6 +1162,8 @@ class _$AuthenticationAuthenticated implements AuthenticationAuthenticated {
     TResult Function(AuthenticationAuthenticated value)? authenticated,
     TResult Function(AuthenticationUnauthenticated value)? unauthenticated,
     TResult Function(AuthenticationFailure value)? failure,
+    TResult Function(AuthenticationSignedUp value)? signedUp,
+    TResult Function(AuthenticationSignUpFailure value)? signUpFailed,
     required TResult orElse(),
   }) {
     if (authenticated != null) {
@@ -1182,6 +1230,8 @@ class _$AuthenticationUnauthenticated implements AuthenticationUnauthenticated {
     required TResult Function(String userId) authenticated,
     required TResult Function() unauthenticated,
     required TResult Function(String error) failure,
+    required TResult Function(User user) signedUp,
+    required TResult Function(String error) signUpFailed,
   }) {
     return unauthenticated();
   }
@@ -1194,6 +1244,8 @@ class _$AuthenticationUnauthenticated implements AuthenticationUnauthenticated {
     TResult? Function(String userId)? authenticated,
     TResult? Function()? unauthenticated,
     TResult? Function(String error)? failure,
+    TResult? Function(User user)? signedUp,
+    TResult? Function(String error)? signUpFailed,
   }) {
     return unauthenticated?.call();
   }
@@ -1206,6 +1258,8 @@ class _$AuthenticationUnauthenticated implements AuthenticationUnauthenticated {
     TResult Function(String userId)? authenticated,
     TResult Function()? unauthenticated,
     TResult Function(String error)? failure,
+    TResult Function(User user)? signedUp,
+    TResult Function(String error)? signUpFailed,
     required TResult orElse(),
   }) {
     if (unauthenticated != null) {
@@ -1223,6 +1277,8 @@ class _$AuthenticationUnauthenticated implements AuthenticationUnauthenticated {
     required TResult Function(AuthenticationUnauthenticated value)
         unauthenticated,
     required TResult Function(AuthenticationFailure value) failure,
+    required TResult Function(AuthenticationSignedUp value) signedUp,
+    required TResult Function(AuthenticationSignUpFailure value) signUpFailed,
   }) {
     return unauthenticated(this);
   }
@@ -1235,6 +1291,8 @@ class _$AuthenticationUnauthenticated implements AuthenticationUnauthenticated {
     TResult? Function(AuthenticationAuthenticated value)? authenticated,
     TResult? Function(AuthenticationUnauthenticated value)? unauthenticated,
     TResult? Function(AuthenticationFailure value)? failure,
+    TResult? Function(AuthenticationSignedUp value)? signedUp,
+    TResult? Function(AuthenticationSignUpFailure value)? signUpFailed,
   }) {
     return unauthenticated?.call(this);
   }
@@ -1247,6 +1305,8 @@ class _$AuthenticationUnauthenticated implements AuthenticationUnauthenticated {
     TResult Function(AuthenticationAuthenticated value)? authenticated,
     TResult Function(AuthenticationUnauthenticated value)? unauthenticated,
     TResult Function(AuthenticationFailure value)? failure,
+    TResult Function(AuthenticationSignedUp value)? signedUp,
+    TResult Function(AuthenticationSignUpFailure value)? signUpFailed,
     required TResult orElse(),
   }) {
     if (unauthenticated != null) {
@@ -1331,6 +1391,8 @@ class _$AuthenticationFailure implements AuthenticationFailure {
     required TResult Function(String userId) authenticated,
     required TResult Function() unauthenticated,
     required TResult Function(String error) failure,
+    required TResult Function(User user) signedUp,
+    required TResult Function(String error) signUpFailed,
   }) {
     return failure(error);
   }
@@ -1343,6 +1405,8 @@ class _$AuthenticationFailure implements AuthenticationFailure {
     TResult? Function(String userId)? authenticated,
     TResult? Function()? unauthenticated,
     TResult? Function(String error)? failure,
+    TResult? Function(User user)? signedUp,
+    TResult? Function(String error)? signUpFailed,
   }) {
     return failure?.call(error);
   }
@@ -1355,6 +1419,8 @@ class _$AuthenticationFailure implements AuthenticationFailure {
     TResult Function(String userId)? authenticated,
     TResult Function()? unauthenticated,
     TResult Function(String error)? failure,
+    TResult Function(User user)? signedUp,
+    TResult Function(String error)? signUpFailed,
     required TResult orElse(),
   }) {
     if (failure != null) {
@@ -1372,6 +1438,8 @@ class _$AuthenticationFailure implements AuthenticationFailure {
     required TResult Function(AuthenticationUnauthenticated value)
         unauthenticated,
     required TResult Function(AuthenticationFailure value) failure,
+    required TResult Function(AuthenticationSignedUp value) signedUp,
+    required TResult Function(AuthenticationSignUpFailure value) signUpFailed,
   }) {
     return failure(this);
   }
@@ -1384,6 +1452,8 @@ class _$AuthenticationFailure implements AuthenticationFailure {
     TResult? Function(AuthenticationAuthenticated value)? authenticated,
     TResult? Function(AuthenticationUnauthenticated value)? unauthenticated,
     TResult? Function(AuthenticationFailure value)? failure,
+    TResult? Function(AuthenticationSignedUp value)? signedUp,
+    TResult? Function(AuthenticationSignUpFailure value)? signUpFailed,
   }) {
     return failure?.call(this);
   }
@@ -1396,6 +1466,8 @@ class _$AuthenticationFailure implements AuthenticationFailure {
     TResult Function(AuthenticationAuthenticated value)? authenticated,
     TResult Function(AuthenticationUnauthenticated value)? unauthenticated,
     TResult Function(AuthenticationFailure value)? failure,
+    TResult Function(AuthenticationSignedUp value)? signedUp,
+    TResult Function(AuthenticationSignUpFailure value)? signUpFailed,
     required TResult orElse(),
   }) {
     if (failure != null) {
@@ -1413,4 +1485,339 @@ abstract class AuthenticationFailure implements AuthenticationState {
   @JsonKey(ignore: true)
   _$$AuthenticationFailureCopyWith<_$AuthenticationFailure> get copyWith =>
       throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$AuthenticationSignedUpCopyWith<$Res> {
+  factory _$$AuthenticationSignedUpCopyWith(_$AuthenticationSignedUp value,
+          $Res Function(_$AuthenticationSignedUp) then) =
+      __$$AuthenticationSignedUpCopyWithImpl<$Res>;
+  @useResult
+  $Res call({User user});
+}
+
+/// @nodoc
+class __$$AuthenticationSignedUpCopyWithImpl<$Res>
+    extends _$AuthenticationStateCopyWithImpl<$Res, _$AuthenticationSignedUp>
+    implements _$$AuthenticationSignedUpCopyWith<$Res> {
+  __$$AuthenticationSignedUpCopyWithImpl(_$AuthenticationSignedUp _value,
+      $Res Function(_$AuthenticationSignedUp) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? user = null,
+  }) {
+    return _then(_$AuthenticationSignedUp(
+      null == user
+          ? _value.user
+          : user // ignore: cast_nullable_to_non_nullable
+              as User,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$AuthenticationSignedUp implements AuthenticationSignedUp {
+  const _$AuthenticationSignedUp(this.user);
+
+  @override
+  final User user;
+
+  @override
+  String toString() {
+    return 'AuthenticationState.signedUp(user: $user)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$AuthenticationSignedUp &&
+            (identical(other.user, user) || other.user == user));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, user);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$AuthenticationSignedUpCopyWith<_$AuthenticationSignedUp> get copyWith =>
+      __$$AuthenticationSignedUpCopyWithImpl<_$AuthenticationSignedUp>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() loading,
+    required TResult Function(String userId) authenticated,
+    required TResult Function() unauthenticated,
+    required TResult Function(String error) failure,
+    required TResult Function(User user) signedUp,
+    required TResult Function(String error) signUpFailed,
+  }) {
+    return signedUp(user);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function()? loading,
+    TResult? Function(String userId)? authenticated,
+    TResult? Function()? unauthenticated,
+    TResult? Function(String error)? failure,
+    TResult? Function(User user)? signedUp,
+    TResult? Function(String error)? signUpFailed,
+  }) {
+    return signedUp?.call(user);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loading,
+    TResult Function(String userId)? authenticated,
+    TResult Function()? unauthenticated,
+    TResult Function(String error)? failure,
+    TResult Function(User user)? signedUp,
+    TResult Function(String error)? signUpFailed,
+    required TResult orElse(),
+  }) {
+    if (signedUp != null) {
+      return signedUp(user);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(AuthenticationInitial value) initial,
+    required TResult Function(AuthenticationLoading value) loading,
+    required TResult Function(AuthenticationAuthenticated value) authenticated,
+    required TResult Function(AuthenticationUnauthenticated value)
+        unauthenticated,
+    required TResult Function(AuthenticationFailure value) failure,
+    required TResult Function(AuthenticationSignedUp value) signedUp,
+    required TResult Function(AuthenticationSignUpFailure value) signUpFailed,
+  }) {
+    return signedUp(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(AuthenticationInitial value)? initial,
+    TResult? Function(AuthenticationLoading value)? loading,
+    TResult? Function(AuthenticationAuthenticated value)? authenticated,
+    TResult? Function(AuthenticationUnauthenticated value)? unauthenticated,
+    TResult? Function(AuthenticationFailure value)? failure,
+    TResult? Function(AuthenticationSignedUp value)? signedUp,
+    TResult? Function(AuthenticationSignUpFailure value)? signUpFailed,
+  }) {
+    return signedUp?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(AuthenticationInitial value)? initial,
+    TResult Function(AuthenticationLoading value)? loading,
+    TResult Function(AuthenticationAuthenticated value)? authenticated,
+    TResult Function(AuthenticationUnauthenticated value)? unauthenticated,
+    TResult Function(AuthenticationFailure value)? failure,
+    TResult Function(AuthenticationSignedUp value)? signedUp,
+    TResult Function(AuthenticationSignUpFailure value)? signUpFailed,
+    required TResult orElse(),
+  }) {
+    if (signedUp != null) {
+      return signedUp(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class AuthenticationSignedUp implements AuthenticationState {
+  const factory AuthenticationSignedUp(final User user) =
+      _$AuthenticationSignedUp;
+
+  User get user;
+  @JsonKey(ignore: true)
+  _$$AuthenticationSignedUpCopyWith<_$AuthenticationSignedUp> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$AuthenticationSignUpFailureCopyWith<$Res> {
+  factory _$$AuthenticationSignUpFailureCopyWith(
+          _$AuthenticationSignUpFailure value,
+          $Res Function(_$AuthenticationSignUpFailure) then) =
+      __$$AuthenticationSignUpFailureCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String error});
+}
+
+/// @nodoc
+class __$$AuthenticationSignUpFailureCopyWithImpl<$Res>
+    extends _$AuthenticationStateCopyWithImpl<$Res,
+        _$AuthenticationSignUpFailure>
+    implements _$$AuthenticationSignUpFailureCopyWith<$Res> {
+  __$$AuthenticationSignUpFailureCopyWithImpl(
+      _$AuthenticationSignUpFailure _value,
+      $Res Function(_$AuthenticationSignUpFailure) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? error = null,
+  }) {
+    return _then(_$AuthenticationSignUpFailure(
+      null == error
+          ? _value.error
+          : error // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$AuthenticationSignUpFailure implements AuthenticationSignUpFailure {
+  const _$AuthenticationSignUpFailure(this.error);
+
+  @override
+  final String error;
+
+  @override
+  String toString() {
+    return 'AuthenticationState.signUpFailed(error: $error)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$AuthenticationSignUpFailure &&
+            (identical(other.error, error) || other.error == error));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, error);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$AuthenticationSignUpFailureCopyWith<_$AuthenticationSignUpFailure>
+      get copyWith => __$$AuthenticationSignUpFailureCopyWithImpl<
+          _$AuthenticationSignUpFailure>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() loading,
+    required TResult Function(String userId) authenticated,
+    required TResult Function() unauthenticated,
+    required TResult Function(String error) failure,
+    required TResult Function(User user) signedUp,
+    required TResult Function(String error) signUpFailed,
+  }) {
+    return signUpFailed(error);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function()? loading,
+    TResult? Function(String userId)? authenticated,
+    TResult? Function()? unauthenticated,
+    TResult? Function(String error)? failure,
+    TResult? Function(User user)? signedUp,
+    TResult? Function(String error)? signUpFailed,
+  }) {
+    return signUpFailed?.call(error);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loading,
+    TResult Function(String userId)? authenticated,
+    TResult Function()? unauthenticated,
+    TResult Function(String error)? failure,
+    TResult Function(User user)? signedUp,
+    TResult Function(String error)? signUpFailed,
+    required TResult orElse(),
+  }) {
+    if (signUpFailed != null) {
+      return signUpFailed(error);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(AuthenticationInitial value) initial,
+    required TResult Function(AuthenticationLoading value) loading,
+    required TResult Function(AuthenticationAuthenticated value) authenticated,
+    required TResult Function(AuthenticationUnauthenticated value)
+        unauthenticated,
+    required TResult Function(AuthenticationFailure value) failure,
+    required TResult Function(AuthenticationSignedUp value) signedUp,
+    required TResult Function(AuthenticationSignUpFailure value) signUpFailed,
+  }) {
+    return signUpFailed(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(AuthenticationInitial value)? initial,
+    TResult? Function(AuthenticationLoading value)? loading,
+    TResult? Function(AuthenticationAuthenticated value)? authenticated,
+    TResult? Function(AuthenticationUnauthenticated value)? unauthenticated,
+    TResult? Function(AuthenticationFailure value)? failure,
+    TResult? Function(AuthenticationSignedUp value)? signedUp,
+    TResult? Function(AuthenticationSignUpFailure value)? signUpFailed,
+  }) {
+    return signUpFailed?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(AuthenticationInitial value)? initial,
+    TResult Function(AuthenticationLoading value)? loading,
+    TResult Function(AuthenticationAuthenticated value)? authenticated,
+    TResult Function(AuthenticationUnauthenticated value)? unauthenticated,
+    TResult Function(AuthenticationFailure value)? failure,
+    TResult Function(AuthenticationSignedUp value)? signedUp,
+    TResult Function(AuthenticationSignUpFailure value)? signUpFailed,
+    required TResult orElse(),
+  }) {
+    if (signUpFailed != null) {
+      return signUpFailed(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class AuthenticationSignUpFailure implements AuthenticationState {
+  const factory AuthenticationSignUpFailure(final String error) =
+      _$AuthenticationSignUpFailure;
+
+  String get error;
+  @JsonKey(ignore: true)
+  _$$AuthenticationSignUpFailureCopyWith<_$AuthenticationSignUpFailure>
+      get copyWith => throw _privateConstructorUsedError;
 }

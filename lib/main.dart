@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:personal_finance_app/bloc/authentication/authentication_bloc.dart';
-import 'package:personal_finance_app/ui/authentication/authentication_screen.dart';
+import 'package:personal_finance_app/presentation/bloc/authentication/authentication_bloc.dart';
 import 'package:personal_finance_app/utils/theme.dart';
+
+import 'presentation/ui/authentication/authentication_screen.dart';
 
 void main() {
   runApp(const MyApp());

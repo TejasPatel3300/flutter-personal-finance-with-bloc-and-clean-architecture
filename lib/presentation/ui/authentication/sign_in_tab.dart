@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:personal_finance_app/bloc/authentication/authentication_bloc.dart';
+
+import '../../bloc/authentication/authentication_bloc.dart';
 
 class SignInTab extends StatefulWidget {
   const SignInTab({Key? key}): super(key: key);
