@@ -56,4 +56,11 @@ class _SignInTabState extends State<SignInTab> {
       ),
     );
   }
+
+  @override
+  void dispose() {
+    _emailController.dispose();
+    _passwordController.dispose();
+    super.dispose();
+  }
 }
