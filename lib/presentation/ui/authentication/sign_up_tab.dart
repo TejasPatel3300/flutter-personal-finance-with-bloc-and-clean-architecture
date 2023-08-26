@@ -24,7 +24,7 @@ class _SignUpTabState extends State<SignUpTab> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Sign Up'),
+        title: const Text('Sign Up'),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -32,23 +32,23 @@ class _SignUpTabState extends State<SignUpTab> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              SizedBox(height: 16),
+              const SizedBox(height: 16),
               TextFormField(
                 controller: _nameController,
-                decoration: InputDecoration(labelText: 'Full Name'),
+                decoration: const InputDecoration(labelText: 'Full Name'),
               ),
-              SizedBox(height: 16),
+              const SizedBox(height: 16),
               TextFormField(
                 controller: _emailController,
-                decoration: InputDecoration(labelText: 'Email'),
+                decoration: const InputDecoration(labelText: 'Email'),
               ),
-              SizedBox(height: 16),
+              const SizedBox(height: 16),
               TextFormField(
                 controller: _passwordController,
                 obscureText: true,
-                decoration: InputDecoration(labelText: 'Password'),
+                decoration: const InputDecoration(labelText: 'Password'),
               ),
-              SizedBox(height: 24),
+              const SizedBox(height: 24),
               ElevatedButton(
                 onPressed: () async {
                   final user = User(
@@ -60,12 +60,12 @@ class _SignUpTabState extends State<SignUpTab> {
                       .read<AuthenticationBloc>()
                       .add(AuthenticationEvent.userSignUpRequested(user: user));
                 },
-                child: Text('Sign Up'),
+                child: const Text('Sign Up'),
               ),
-              SizedBox(height: 16),
+              const SizedBox(height: 16),
               TextButton(
                 onPressed: () async {},
-                child: Text('Already have an account? Sign In'),
+                child: const Text('Already have an account? Sign In'),
               ),
             ],
           ),

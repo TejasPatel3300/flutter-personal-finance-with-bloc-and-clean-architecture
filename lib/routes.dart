@@ -13,11 +13,11 @@ class AppRouter {
   static Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
       case splashScreen:
-        return MaterialPageRoute(builder: (_) => SplashScreen());
+        return MaterialPageRoute(builder: (_) => const SplashScreen());
       case budgetPlanningScreen:
-        return MaterialPageRoute(builder: (_) => BudgetPlanningScreen());
+        return MaterialPageRoute(builder: (_) => const BudgetPlanningScreen());
       case authenticationScreen:
-       return MaterialPageRoute(builder: (_) => AuthenticationScreen());
+       return MaterialPageRoute(builder: (_) => const AuthenticationScreen());
       default:
         return MaterialPageRoute(
           builder: (_) => Scaffold(

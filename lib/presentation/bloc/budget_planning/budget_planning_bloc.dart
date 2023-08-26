@@ -6,7 +6,7 @@ part 'budget_planning_state.dart';
 part 'budget_planning_bloc.freezed.dart';
 
 class BudgetPlanningBloc extends Bloc<BudgetPlanningEvent, BudgetPlanningState> {
-  BudgetPlanningBloc() : super(_Initial()) {
+  BudgetPlanningBloc() : super(const _Initial()) {
     on<BudgetPlanningEvent>((event, emit) {
       // TODO: implement event handler
     });

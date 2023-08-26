@@ -19,7 +19,7 @@ class _SignInTabState extends State<SignInTab> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Sign In'),
+        title: const Text('Sign In'),
       ),
       body: Center(
         child: Padding(
@@ -29,26 +29,26 @@ class _SignInTabState extends State<SignInTab> {
             children: [
               TextFormField(
                 controller: _emailController,
-                decoration: InputDecoration(labelText: 'Email'),
+                decoration: const InputDecoration(labelText: 'Email'),
               ),
-              SizedBox(height: 16),
+              const SizedBox(height: 16),
               TextFormField(
                 controller: _passwordController,
                 obscureText: true,
-                decoration: InputDecoration(labelText: 'Password'),
+                decoration: const InputDecoration(labelText: 'Password'),
               ),
-              SizedBox(height: 24),
+              const SizedBox(height: 24),
               ElevatedButton(
                 onPressed: () {
                   context.read<AuthenticationBloc>().add(AuthenticationEvent.userLoginRequested(email: _emailController.text, password: _passwordController.text));
                 },
-                child: Text('Sign In'),
+                child: const Text('Sign In'),
               ),
-              SizedBox(height: 16),
+              const SizedBox(height: 16),
               TextButton(
                 onPressed: () {
                 },
-                child: Text('Don\'t have an account? Sign Up'),
+                child: const Text('Don\'t have an account? Sign Up'),
               ),
             ],
           ),

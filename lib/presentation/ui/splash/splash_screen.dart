@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:personal_finance_app/routes.dart';
 
 class SplashScreen extends StatefulWidget {
+  const SplashScreen({super.key});
+
   @override
   _SplashScreenState createState() => _SplashScreenState();
 }
@@ -16,7 +18,7 @@ class _SplashScreenState extends State<SplashScreen>
     super.initState();
     _animationController = AnimationController(
       vsync: this,
-      duration: Duration(seconds: 2),
+      duration: const Duration(seconds: 2),
     )..addStatusListener((status) {
         if (status == AnimationStatus.completed) {
           // Animation completed, perform your actions here
@@ -41,7 +43,7 @@ class _SplashScreenState extends State<SplashScreen>
       body: Center(
         child: FadeTransition(
           opacity: _animationController,
-          child: Text(
+          child: const Text(
             'Personal Finance App',
             style: TextStyle(
               fontSize: 24,

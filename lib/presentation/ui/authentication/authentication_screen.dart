@@ -65,10 +65,10 @@ class _AuthenticationScreenState extends State<AuthenticationScreen>
   Scaffold buildScreenBody() {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Welcome'),
+        title: const Text('Welcome'),
         bottom: TabBar(
           controller: _tabController,
-          tabs: [
+          tabs: const [
             Tab(text: 'Sign In'),
             Tab(text: 'Sign Up'),
           ],
@@ -76,7 +76,7 @@ class _AuthenticationScreenState extends State<AuthenticationScreen>
       ),
       body: TabBarView(
         controller: _tabController,
-        children: [
+        children: const [
           SignInTab(),
           SignUpTab(),
         ],

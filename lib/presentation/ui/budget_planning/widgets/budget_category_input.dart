@@ -2,8 +2,17 @@ import 'package:flutter/material.dart';
 
 class BudgetCategoryInput extends StatelessWidget {
   final String category;
+  final String hintText;
+  final TextEditingController controller;
+  final void Function(String)? onChanged;
 
-  BudgetCategoryInput({required this.category});
+  const BudgetCategoryInput({
+    super.key,
+    required this.category,
+    required this.controller,
+    required this.hintText, 
+    this.onChanged,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -12,16 +21,18 @@ class BudgetCategoryInput extends StatelessWidget {
       children: [
         Text(
           category,
-          style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+          style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
         ),
-        SizedBox(height: 8),
+        const SizedBox(height: 8),
         TextField(
+          controller: controller,
           keyboardType: TextInputType.number,
-          decoration: InputDecoration(
+          decoration: const InputDecoration(
             hintText: 'Enter budget amount',
           ),
+          onChanged: onChanged,
         ),
-        SizedBox(height: 12),
+        const SizedBox(height: 12),
       ],
     );
   }
