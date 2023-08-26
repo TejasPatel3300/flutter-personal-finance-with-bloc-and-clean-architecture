@@ -20,13 +20,10 @@ class ReusableAlertDialog extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Theme(
-      data: ThemeData(dialogBackgroundColor: Theme.of(context).canvasColor),
-      child: AlertDialog(
-        title: Text(title),
-        content: Text(content),
-        actions: _buildActions(context),
-      ),
+    return AlertDialog(
+      title: Text(title),
+      content: Text(content),
+      actions: _buildActions(context),
     );
   }
 
@@ -94,10 +91,10 @@ void showAlertWithOkButton({
         content: content,
         positiveButtonText: "OK",
         onPositivePressed: () {
+          Navigator.of(context).pop();
           if (onPositivePressed != null) {
             onPositivePressed();
           }
-          Navigator.of(context).pop();
         },
       );
     },

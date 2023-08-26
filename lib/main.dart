@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:personal_finance_app/presentation/bloc/authentication/authentication_bloc.dart';
+import 'package:personal_finance_app/presentation/bloc/budget_planning/budget_planning_bloc.dart';
 import 'package:personal_finance_app/presentation/ui/budget_planning/budget_planning_screen.dart';
+import 'package:personal_finance_app/routes.dart';
 import 'package:personal_finance_app/utils/theme.dart';
 
 void main() {
@@ -15,14 +17,16 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
-        BlocProvider(create: (_) => AuthenticationBloc())
+        BlocProvider(create: (_) => AuthenticationBloc()),
+        BlocProvider(create: (_) => BudgetPlanningBloc()),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'Flutter Demo',
         theme: getLightTheme(),
         darkTheme: getDarkTheme(),
-        home: const BudgetPlanningScreen(),
+        onGenerateRoute: AppRouter.generateRoute,
+        initialRoute: AppRouter.splashScreen,
       ),
     );
   }
