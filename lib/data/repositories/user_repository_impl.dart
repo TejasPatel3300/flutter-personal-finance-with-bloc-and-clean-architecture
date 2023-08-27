@@ -12,44 +12,44 @@ class UserRepositoryImpl implements UserRepository {
 
 
   @override
-  Future<EitherUserOrFailure> signInUser(
+  Future<EitherFailureOrUser> signInUser(
       {required String email, required String password}) async {
     try {
       final dbInstance = await DatabaseProvider.instance.dbInstance;
       final userEntity =
           await dbInstance.userDao.findUserByEmailAndPassword(email, password);
       if (userEntity != null) {
-        return Left(userEntity.toUser());
+        return Right(userEntity.toUser());
       } else {
-        return Right(Failure(message: 'Unknown Error Occured!'));
+        return Left(Failure(message: 'Unknown Error Occured!'));
       }
     } on DatabaseException catch (e) {
-      return Right(Failure(message: e.toString()));
+      return Left(Failure(message: e.toString()));
     } catch (e) {
-      return Right(Failure(message: e.toString()));
+      return Left(Failure(message: e.toString()));
     }
   }
 
   @override
-  Future<EitherUserOrFailure> signUpUser({required User user}) async {
+  Future<EitherFailureOrUser> signUpUser({required User user}) async {
     try {
       final dbInstance = await DatabaseProvider.instance.dbInstance;
       await dbInstance.userDao.insertUser(UserEntity.fromUser(user));
       final userEntity = await dbInstance.userDao.findUserByEmailAndPassword(user.email, user.password);
       if (userEntity != null) {
-        return Left(userEntity.toUser());
+        return Right(userEntity.toUser());
       } else {
-        return Right(Failure(message: 'Unknown Error Occured!'));
+        return Left(Failure(message: 'Unknown Error Occured!'));
       }
     } on DatabaseException catch (e) {
-      return Right(Failure(message: e.toString()));
+      return Left(Failure(message: e.toString()));
     } catch (e) {
-      return Right(Failure(message: e.toString()));
+      return Left(Failure(message: e.toString()));
     }
   }
 
   @override
-  Future<EitherUserOrFailure> getUserById({required int id}) async {
+  Future<EitherFailureOrUser> getUserById({required int id}) async {
     // TODO: implement getUserById
     throw UnimplementedError();
   }

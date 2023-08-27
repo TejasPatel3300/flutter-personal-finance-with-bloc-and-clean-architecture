@@ -63,9 +63,7 @@ class _$AppDatabase extends AppDatabase {
 
   UserDao? _userDaoInstance;
 
-  BudgetLimitDao? _budgetLimitDaoInstance;
-
-  BudgetCategoryDao? _budgetCategoryDaoInstance;
+  BudgetDao? _budgetDaoInstance;
 
   Future<sqflite.Database> open(
     String path,
@@ -91,11 +89,7 @@ class _$AppDatabase extends AppDatabase {
         await database.execute(
             'CREATE TABLE IF NOT EXISTS `UserEntity` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `fullName` TEXT NOT NULL, `email` TEXT NOT NULL, `password` TEXT NOT NULL)');
         await database.execute(
-            'CREATE TABLE IF NOT EXISTS `budget` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `monthlyBudget` REAL NOT NULL)');
-        await database.execute(
-            'CREATE TABLE IF NOT EXISTS `budget_limits` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `budget_id` INTEGER NOT NULL, `category_id` INTEGER NOT NULL, `limit` REAL NOT NULL)');
-        await database.execute(
-            'CREATE TABLE IF NOT EXISTS `budget_categories` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `name` TEXT NOT NULL, `limit` REAL NOT NULL)');
+            'CREATE TABLE IF NOT EXISTS `BudgetEntity` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `monthlyBudget` REAL NOT NULL, `necessitiesAllocation` REAL NOT NULL, `entertainmentAllocation` REAL NOT NULL, `investmentAllocation` REAL NOT NULL, `month` INTEGER NOT NULL, `year` INTEGER NOT NULL, `createdAt` TEXT, `updatedAt` TEXT)');
         await database.execute(
             'CREATE UNIQUE INDEX `index_UserEntity_fullName_email` ON `UserEntity` (`fullName`, `email`)');
 
@@ -111,15 +105,8 @@ class _$AppDatabase extends AppDatabase {
   }
 
   @override
-  BudgetLimitDao get budgetLimitDao {
-    return _budgetLimitDaoInstance ??=
-        _$BudgetLimitDao(database, changeListener);
-  }
-
-  @override
-  BudgetCategoryDao get budgetCategoryDao {
-    return _budgetCategoryDaoInstance ??=
-        _$BudgetCategoryDao(database, changeListener);
+  BudgetDao get budgetDao {
+    return _budgetDaoInstance ??= _$BudgetDao(database, changeListener);
   }
 }
 
@@ -190,19 +177,24 @@ class _$UserDao extends UserDao {
   }
 }
 
-class _$BudgetLimitDao extends BudgetLimitDao {
-  _$BudgetLimitDao(
+class _$BudgetDao extends BudgetDao {
+  _$BudgetDao(
     this.database,
     this.changeListener,
   )   : _queryAdapter = QueryAdapter(database),
-        _budgetLimitEntityInsertionAdapter = InsertionAdapter(
+        _budgetEntityInsertionAdapter = InsertionAdapter(
             database,
-            'budget_limits',
-            (BudgetLimitEntity item) => <String, Object?>{
+            'BudgetEntity',
+            (BudgetEntity item) => <String, Object?>{
                   'id': item.id,
-                  'budget_id': item.budgetId,
-                  'category_id': item.categoryId,
-                  'limit': item.limit
+                  'monthlyBudget': item.monthlyBudget,
+                  'necessitiesAllocation': item.necessitiesAllocation,
+                  'entertainmentAllocation': item.entertainmentAllocation,
+                  'investmentAllocation': item.investmentAllocation,
+                  'month': item.month,
+                  'year': item.year,
+                  'createdAt': item.createdAt,
+                  'updatedAt': item.updatedAt
                 });
 
   final sqflite.DatabaseExecutor database;
@@ -211,61 +203,27 @@ class _$BudgetLimitDao extends BudgetLimitDao {
 
   final QueryAdapter _queryAdapter;
 
-  final InsertionAdapter<BudgetLimitEntity> _budgetLimitEntityInsertionAdapter;
+  final InsertionAdapter<BudgetEntity> _budgetEntityInsertionAdapter;
 
   @override
-  Future<List<BudgetLimitEntity>> getBudgetLimitsByBudgetId(
-      int budgetId) async {
-    return _queryAdapter.queryList(
-        'SELECT * FROM budget_limits WHERE budget_id = ?1',
-        mapper: (Map<String, Object?> row) => BudgetLimitEntity(
-            id: row['id'] as int,
-            budgetId: row['budget_id'] as int,
-            categoryId: row['category_id'] as int,
-            limit: row['limit'] as double),
-        arguments: [budgetId]);
+  Future<BudgetEntity?> getBudget(int id) async {
+    return _queryAdapter.query('SELECT * FROM BudgetEntity WHERE id = ?1',
+        mapper: (Map<String, Object?> row) => BudgetEntity(
+            id: row['id'] as int?,
+            necessitiesAllocation: row['necessitiesAllocation'] as double,
+            entertainmentAllocation: row['entertainmentAllocation'] as double,
+            investmentAllocation: row['investmentAllocation'] as double,
+            monthlyBudget: row['monthlyBudget'] as double,
+            month: row['month'] as int,
+            year: row['year'] as int,
+            createdAt: row['createdAt'] as String?,
+            updatedAt: row['updatedAt'] as String?),
+        arguments: [id]);
   }
 
   @override
-  Future<void> insertBudgetLimit(BudgetLimitEntity budgetLimit) async {
-    await _budgetLimitEntityInsertionAdapter.insert(
-        budgetLimit, OnConflictStrategy.abort);
-  }
-}
-
-class _$BudgetCategoryDao extends BudgetCategoryDao {
-  _$BudgetCategoryDao(
-    this.database,
-    this.changeListener,
-  )   : _queryAdapter = QueryAdapter(database),
-        _budgetCategoryEntityInsertionAdapter = InsertionAdapter(
-            database,
-            'budget_categories',
-            (BudgetCategoryEntity item) => <String, Object?>{
-                  'id': item.id,
-                  'name': item.name,
-                  'limit': item.limit
-                });
-
-  final sqflite.DatabaseExecutor database;
-
-  final StreamController<String> changeListener;
-
-  final QueryAdapter _queryAdapter;
-
-  final InsertionAdapter<BudgetCategoryEntity>
-      _budgetCategoryEntityInsertionAdapter;
-
-  @override
-  Future<List<BudgetCategoryEntity>> getAllCategories() async {
-    return _queryAdapter.queryList('SELECT * FROM budget_categories',
-        mapper: (Map<String, Object?> row) => BudgetCategoryEntity(
-            row['id'] as int, row['name'] as String, row['limit'] as double));
-  }
-
-  @override
-  Future<void> insertCategory(BudgetCategoryEntity category) async {
-    await _budgetCategoryEntityInsertionAdapter.insert(
-        category, OnConflictStrategy.abort);
+  Future<void> insertBudget(BudgetEntity budget) async {
+    await _budgetEntityInsertionAdapter.insert(
+        budget, OnConflictStrategy.replace);
   }
 }

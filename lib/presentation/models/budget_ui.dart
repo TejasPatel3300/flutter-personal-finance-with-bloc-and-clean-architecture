@@ -1,32 +1,29 @@
-import 'package:floor/floor.dart';
 import 'package:personal_finance_app/domain/models/budget.dart';
 
-@Entity()
-class BudgetEntity {
-  @PrimaryKey(autoGenerate: true)
-  int? id;
+class BudgetUIModel {
+  final int? id;
   final double monthlyBudget;
   final double necessitiesAllocation;
   final double entertainmentAllocation;
   final double investmentAllocation;
-  final int month;
+    final int month;
   final int year;
   final String? createdAt;
   final String? updatedAt;
 
-  BudgetEntity({
+  BudgetUIModel({
     this.id,
+    required this.monthlyBudget,
     required this.necessitiesAllocation,
     required this.entertainmentAllocation,
     required this.investmentAllocation,
-    required this.monthlyBudget,
-    required this.month, 
-    required this.year, 
+    required this.month,
+    required this.year,
     this.createdAt,
     this.updatedAt,
   });
 
-  BudgetEntity.fromBudget(Budget budget)
+  BudgetUIModel.fromBudget(Budget budget)
       : id = budget.id,
         monthlyBudget = budget.monthlyBudget,
         necessitiesAllocation = budget.necessitiesAllocation,
@@ -43,8 +40,8 @@ class BudgetEntity {
         necessitiesAllocation: necessitiesAllocation,
         entertainmentAllocation: entertainmentAllocation,
         investmentAllocation: investmentAllocation,
-        month: month,
         year: year,
+        month: month,
         createdAt: createdAt,
         updatedAt: updatedAt,
       );

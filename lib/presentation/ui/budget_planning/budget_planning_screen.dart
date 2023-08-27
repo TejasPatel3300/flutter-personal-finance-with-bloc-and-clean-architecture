@@ -17,10 +17,10 @@ class _BudgetPlanningScreenState extends State<BudgetPlanningScreen> {
   final TextEditingController _investmentController = TextEditingController();
 
   double _totalBudget = 0;
-  double _allocatedBudget = 0;
   double _necessitiesBudget = 0;
   double _entertainmentBudget = 0;
   double _investmentBudget = 0;
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(

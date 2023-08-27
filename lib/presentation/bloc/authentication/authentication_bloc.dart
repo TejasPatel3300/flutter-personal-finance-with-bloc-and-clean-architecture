@@ -18,9 +18,6 @@ class AuthenticationBloc
     on<UserLoginRequested>(_onLoginRequest);
     on<UserSignUpRequested>(_onSignUpRequest);
     on<UserLogoutRequested>((event, emit) => null);
-    //  on<AppStarted>((event, emit) => null);
-    //  on<UserLoggedIn>((event, emit) => null);
-    //  on<UserLoggedOut>((event, emit) => null);
   }
 
   Future<void> _onLoginRequest(
@@ -28,8 +25,8 @@ class AuthenticationBloc
     final either = await authUseCase.loginUser(
         email: event.email, password: event.password);
     either.fold(
-      (user) => emit(AuthenticationState.authenticated('${user.id ?? ''}')),
       (failure) => emit(AuthenticationState.failure(failure.message)),
+      (user) => emit(AuthenticationState.authenticated('${user.id ?? ''}')),
     );
   }
 
@@ -37,8 +34,8 @@ class AuthenticationBloc
       UserSignUpRequested event, Emitter<AuthenticationState> emit) async {
     final either = await authUseCase.signUpUser(user: event.user);
     either.fold(
-          (user) => emit(AuthenticationState.signedUp(user)),
           (failure) => emit(AuthenticationState.signUpFailed(failure.message)),
+          (user) => emit(AuthenticationState.signedUp(user)),
     );
   }
 }

@@ -9,13 +9,13 @@ class AuthenticationUseCase{
 
   AuthenticationUseCase({required this.userRepository});
 
-  Future<EitherUserOrFailure> loginUser({required String email, required String password}) async {
+  Future<EitherFailureOrUser> loginUser({required String email, required String password}) async {
     final either = await userRepository.signInUser(email: email, password: password);
-    return either.fold((l) => left(l), (r) => right(r));
+    return either.fold((failure) => left(failure), (user) => right(user));
   }
 
-  Future<EitherUserOrFailure> signUpUser({required User user}) async {
+  Future<EitherFailureOrUser> signUpUser({required User user}) async {
     final either = await userRepository.signUpUser(user: user);
-    return either.fold((l) => left(l), (r) => right(r));
+    return either.fold((failure) => left(failure), (user) => right(user));
   }
 }
