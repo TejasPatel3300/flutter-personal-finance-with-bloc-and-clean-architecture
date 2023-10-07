@@ -1,16 +1,27 @@
-# personal_finance_app
+# Personal Finance App
 
-A new Flutter project.
+![App Screenshot](screenshot.png)
 
-## Getting Started
+## Description
+A simple and user-friendly personal finance manager app to help you track your income, expenses, and budget effectively.
 
-This project is a starting point for a Flutter application.
+## Features
+- Budget planning and tracking
+- Expense analysis and categorization
+- Income and expense recording
+- Visual charts for financial insights
 
-A few resources to get you started if this is your first Flutter project:
+## Installation
+1. Clone the repository.
+2. Open the app in your preferred code editor.
+3. Run the app on your local development environment.
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+## Usage
+1. Create a new budget for each month.
+2. Record your income and expenses.
+3. Monitor your spending and stay within budget.
+4. Visualize your financial data with charts.
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## License
+This project is licensed under the [MIT License](LICENSE).
+
