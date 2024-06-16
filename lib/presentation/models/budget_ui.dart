@@ -36,6 +36,7 @@ class BudgetUIModel {
 
   Budget toBudget() => Budget(
         id: id,
+        userId: 0, //todo: fix the static value for user-id in domain level budget model
         monthlyBudget: monthlyBudget,
         necessitiesAllocation: necessitiesAllocation,
         entertainmentAllocation: entertainmentAllocation,

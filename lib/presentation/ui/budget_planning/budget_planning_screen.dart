@@ -33,9 +33,9 @@ class _BudgetPlanningScreenState extends State<BudgetPlanningScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              const Text(
-                'Allocate Budget for ${DateTime.november}',
-                style: TextStyle(
+              Text(
+                'Allocate Budget for ${DateTime.now().month}',
+                style: const TextStyle(
                   fontSize: 20,
                   fontWeight: FontWeight.bold,
                 ),

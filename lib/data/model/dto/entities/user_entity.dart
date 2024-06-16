@@ -6,23 +6,20 @@ import 'package:personal_finance_app/domain/models/user.dart';
 ])
 class UserEntity {
   @PrimaryKey(autoGenerate: true)
-  int? id;
-  final String fullName;
-  final String email;
-  final String password;
+  final int? id;
+  final String? fullName;
+  final String? password;
+  final String? email;
+  final String? createdAt;
 
-  UserEntity({
-    this.id,
-    required this.fullName,
-    required this.email,
-    required this.password,
-  });
+  UserEntity({this.id, required this.fullName, required this.password, required this.email, required this.createdAt});
 
   UserEntity.fromUser(User user)
       : id = user.id,
         fullName = user.fullName,
         email = user.email,
-        password = user.password;
+        password = user.password,
+        createdAt = user.createdAt;
 
-  User toUser() => User(id: id,fullName: fullName, email: email, password: password);
+  User toUser() => User(id: id, fullName: fullName ?? '', email: email ?? '', password: password ?? '');
 }

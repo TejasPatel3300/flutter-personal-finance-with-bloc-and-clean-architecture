@@ -1,10 +1,18 @@
 import 'package:floor/floor.dart';
+import 'package:personal_finance_app/data/model/dto/entities/user_entity.dart';
 import 'package:personal_finance_app/domain/models/budget.dart';
 
-@Entity()
+@Entity(foreignKeys: [
+  ForeignKey(
+    childColumns: ['userId'],
+    parentColumns: ['id'],
+    entity: UserEntity,
+  )
+])
 class BudgetEntity {
   @PrimaryKey(autoGenerate: true)
   int? id;
+  final int userId;
   final double monthlyBudget;
   final double necessitiesAllocation;
   final double entertainmentAllocation;
@@ -16,18 +24,20 @@ class BudgetEntity {
 
   BudgetEntity({
     this.id,
+    required this.userId,
     required this.necessitiesAllocation,
     required this.entertainmentAllocation,
     required this.investmentAllocation,
     required this.monthlyBudget,
-    required this.month, 
-    required this.year, 
+    required this.month,
+    required this.year,
     this.createdAt,
     this.updatedAt,
   });
 
   BudgetEntity.fromBudget(Budget budget)
       : id = budget.id,
+        userId = budget.userId,
         monthlyBudget = budget.monthlyBudget,
         necessitiesAllocation = budget.necessitiesAllocation,
         entertainmentAllocation = budget.entertainmentAllocation,
@@ -39,6 +49,7 @@ class BudgetEntity {
 
   Budget toBudget() => Budget(
         id: id,
+        userId: userId,
         monthlyBudget: monthlyBudget,
         necessitiesAllocation: necessitiesAllocation,
         entertainmentAllocation: entertainmentAllocation,

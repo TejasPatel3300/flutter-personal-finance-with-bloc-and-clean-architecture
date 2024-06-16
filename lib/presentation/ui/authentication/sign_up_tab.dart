@@ -22,53 +22,48 @@ class _SignUpTabState extends State<SignUpTab> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Sign Up'),
-      ),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: SingleChildScrollView(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              const SizedBox(height: 16),
-              TextFormField(
-                controller: _nameController,
-                decoration: const InputDecoration(labelText: 'Full Name'),
-              ),
-              const SizedBox(height: 16),
-              TextFormField(
-                controller: _emailController,
-                decoration: const InputDecoration(labelText: 'Email'),
-              ),
-              const SizedBox(height: 16),
-              TextFormField(
-                controller: _passwordController,
-                obscureText: true,
-                decoration: const InputDecoration(labelText: 'Password'),
-              ),
-              const SizedBox(height: 24),
-              ElevatedButton(
-                onPressed: () async {
-                  final user = User(
-                    email: _emailController.text.trim(),
-                    fullName: _nameController.text.trim(),
-                    password: _passwordController.text.trim(),
-                  );
-                  context
-                      .read<AuthenticationBloc>()
-                      .add(AuthenticationEvent.userSignUpRequested(user: user));
-                },
-                child: const Text('Sign Up'),
-              ),
-              const SizedBox(height: 16),
-              TextButton(
-                onPressed: () async {},
-                child: const Text('Already have an account? Sign In'),
-              ),
-            ],
-          ),
+    return Padding(
+      padding: const EdgeInsets.all(16.0),
+      child: SingleChildScrollView(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            const SizedBox(height: 16),
+            TextFormField(
+              controller: _nameController,
+              decoration: const InputDecoration(labelText: 'Full Name'),
+            ),
+            const SizedBox(height: 16),
+            TextFormField(
+              controller: _emailController,
+              decoration: const InputDecoration(labelText: 'Email'),
+            ),
+            const SizedBox(height: 16),
+            TextFormField(
+              controller: _passwordController,
+              obscureText: true,
+              decoration: const InputDecoration(labelText: 'Password'),
+            ),
+            const SizedBox(height: 24),
+            ElevatedButton(
+              onPressed: () async {
+                final user = User(
+                  email: _emailController.text.trim(),
+                  fullName: _nameController.text.trim(),
+                  password: _passwordController.text.trim(),
+                );
+                context
+                    .read<AuthenticationBloc>()
+                    .add(AuthenticationEvent.userSignUpRequested(user: user));
+              },
+              child: const Text('Sign Up'),
+            ),
+            const SizedBox(height: 16),
+            TextButton(
+              onPressed: () async {},
+              child: const Text('Already have an account? Sign In'),
+            ),
+          ],
         ),
       ),
     );
