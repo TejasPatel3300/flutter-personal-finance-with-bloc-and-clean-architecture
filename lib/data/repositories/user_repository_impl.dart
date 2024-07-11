@@ -3,6 +3,7 @@ import 'package:personal_finance_app/data/db/database_provider.dart';
 import 'package:personal_finance_app/domain/models/user.dart';
 import 'package:personal_finance_app/domain/repositories/user_repository.dart';
 import 'package:personal_finance_app/utils/failure.dart';
+import 'package:personal_finance_app/utils/shared_pref_helper.dart';
 import 'package:personal_finance_app/utils/typedefs.dart';
 import 'package:sqflite/sqflite.dart';
 

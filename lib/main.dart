@@ -2,11 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:personal_finance_app/presentation/bloc/authentication/authentication_bloc.dart';
 import 'package:personal_finance_app/presentation/bloc/budget_planning/budget_planning_bloc.dart';
-import 'package:personal_finance_app/presentation/ui/budget_planning/budget_planning_screen.dart';
 import 'package:personal_finance_app/routes.dart';
+import 'package:personal_finance_app/utils/shared_pref_helper.dart';
 import 'package:personal_finance_app/utils/theme.dart';
 
-void main() {
+Future<void> main() async {
+  await SharedPreferencesHelper().init();
   runApp(const MyApp());
 }
 
