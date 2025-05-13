@@ -1,6 +1,6 @@
 import 'package:dartz/dartz.dart';
-import 'package:personal_finance_app/utils/failure.dart';
+import 'package:personal_finance_tracker/utils/failure.dart';
 
-import '../domain/models/user.dart';
+import 'package:personal_finance_tracker/model/user_model.dart';
 
-typedef EitherUserOrFailure = Either<User, Failure>;
+typedef EitherUserOrFailure = Either<Failure, UserDTO>;
