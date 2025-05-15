@@ -3,9 +3,9 @@ import 'package:personal_finance_tracker/data/db/db_helper.dart';
 class TransactionDao {
   final DatabaseHelper _dbHelper = DatabaseHelper();
 
-  Future<int> insertCategory(Map<String, dynamic> category) async {
+  Future<int> insertTransaction(Map<String, dynamic> transaction) async {
     final db = await _dbHelper.database;
-    return await db.insert('transactions', category);
+    return await db.insert('transactions', transaction);
   }
 
   Future<List<Map<String, dynamic>>> getAllTransactions() async {
@@ -13,16 +13,16 @@ class TransactionDao {
     return await db.query('transactions');
   }
 
-  Future<int> updateCategory(
-      int categoryId, Map<String, dynamic> category) async {
+  Future<int> updateTransaction(
+      int transactionId, Map<String, dynamic> transaction) async {
     final db = await _dbHelper.database;
-    return await db.update('transactions', category,
-        where: 'category_id = ?', whereArgs: [categoryId]);
+    return await db.update('transactions', transaction,
+        where: 'transaction_id = ?', whereArgs: [transactionId]);
   }
 
-  Future<int> deleteCategory(int categoryId) async {
+  Future<int> deleteTransaction(int transactionId) async {
     final db = await _dbHelper.database;
     return await db.delete('transactions',
-        where: 'category_id = ?', whereArgs: [categoryId]);
+        where: 'transaction_id = ?', whereArgs: [transactionId]);
   }
 }

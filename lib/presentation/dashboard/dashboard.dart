@@ -1,13 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:fl_chart/fl_chart.dart';
+import 'package:personal_finance_tracker/repository/category_repository_impl_sqlite.dart';
 
-class Dashboard extends StatelessWidget {
+class Dashboard extends StatefulWidget {
   const Dashboard({
     super.key,
     required this.pageController,
   });
   final PageController pageController;
 
+  @override
+  State<Dashboard> createState() => _DashboardState();
+}
+
+class _DashboardState extends State<Dashboard> {
+
+  @override
+  void initState() {
+    super.initState();
+    _getCategories();
+  }
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -17,13 +29,23 @@ class Dashboard extends StatelessWidget {
           children: [
             BalanceCard(),
             SizedBox(height: 16),
-            SpendingByCategoryCard(pageController: pageController),
+            SpendingByCategoryCard(pageController: widget.pageController),
             SizedBox(height: 16),
             RecentTransactionsCard(),
           ],
         ),
       ),
     );
+  }
+
+  Future<void> _getCategories() async {
+    final allCategories = await CategoryRepositoryImplSQLite().getAllCategories();
+    print(allCategories.fold(
+      (l) => l.message,
+      (r) => r.forEach(
+        (element) => print(element.name),
+      ),
+    ));
   }
 }
 

@@ -13,6 +13,11 @@ class CategoryDao {
     return await db.query('categories');
   }
 
+  Future<List<Map<String, dynamic>>> getAllCategoriesByType(String categoryType) async {
+    final db = await _dbHelper.database;
+    return await db.query('categories', where: 'type = ?', whereArgs: [categoryType]);
+  }
+
   Future<int> updateCategory(
       int categoryId, Map<String, dynamic> category) async {
     final db = await _dbHelper.database;

@@ -1,3 +1,4 @@
+import 'package:personal_finance_tracker/utils/constants.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
 
@@ -188,6 +189,12 @@ class DatabaseHelper {
         .execute('CREATE INDEX idx_categories_user ON categories(user_id);');
     await db.execute(
         'CREATE INDEX idx_transactions_recurring ON transactions(recurring_id);');
+    
+    await db.transaction((txn) async {
+      for (final category in Constants.initialCategoryList) {
+        await txn.insert(DatabaseHelper.tableCategories, category.toMap());
+      }
+    },);
   }
 
   Future<void> _onUpgrade(Database db, int oldVersion, int newVersion) async {
