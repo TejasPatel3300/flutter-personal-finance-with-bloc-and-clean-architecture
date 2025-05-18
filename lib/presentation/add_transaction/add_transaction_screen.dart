@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
+import 'package:personal_finance_tracker/bloc/transaction/transaction_bloc.dart';
+import 'package:personal_finance_tracker/domain/transaction/entity/transaction.dart';
+import 'package:personal_finance_tracker/domain/transaction/usecase/add_transaction_usecase.dart';
 
 class AddTransactionScreen extends StatefulWidget {
   const AddTransactionScreen({super.key});
@@ -69,9 +73,9 @@ class _AddTransactionScreenState extends State<AddTransactionScreen>
                 controller: _tabController,
                 children: [
                   // Expense Tab Content
-                  _buildTransactionForm(),
+                  _buildTransactionForm(transactionType: TransactionType.expense),
                   // Income Tab Content (same form, just different tab)
-                  _buildTransactionForm(),
+                  _buildTransactionForm(transactionType: TransactionType.income),
                 ],
               ),
             ),
@@ -81,7 +85,7 @@ class _AddTransactionScreenState extends State<AddTransactionScreen>
     );
   }
 
-  Widget _buildTransactionForm() {
+  Widget _buildTransactionForm({required TransactionType transactionType}) {
     return SingleChildScrollView(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -98,6 +102,7 @@ class _AddTransactionScreenState extends State<AddTransactionScreen>
           TextField(
             controller: _amountController,
             keyboardType: TextInputType.number,
+            style: TextStyle(color: Colors.grey),
             decoration: InputDecoration(
               prefixText: '\$ ',
               border: OutlineInputBorder(
@@ -250,7 +255,9 @@ class _AddTransactionScreenState extends State<AddTransactionScreen>
           SizedBox(
             width: double.infinity,
             child: ElevatedButton(
-              onPressed: () {},
+              onPressed: () {
+                _onPressSaveTransaction(transactionType);
+              },
               style: ElevatedButton.styleFrom(
                 padding: const EdgeInsets.symmetric(vertical: 16),
                 backgroundColor: const Color(0xFF4AADBB),
@@ -266,6 +273,22 @@ class _AddTransactionScreenState extends State<AddTransactionScreen>
         ],
       ),
     );
+  }
+
+  void _onPressSaveTransaction(TransactionType transactionType) {
+    final amount = _amountController.text.trim();
+    final description = _descriptionController.text.trim();
+    final notes = _notesController.text.trim();
+    final params = AddTransactionParams(
+      amount: double.tryParse(amount) ?? 0.0,
+      categoryId: 1,
+      userId: 1,
+      date: DateTime.now(),
+      description: description,
+      transactionType: transactionType,
+      notes: notes,
+    );
+    context.read<TransactionBloc>().add(TransactionAddTransactionRequested(params: params));
   }
 
   @override

@@ -53,21 +53,6 @@ class DatabaseHelper {
     ''');
 
     await db.execute('''
-      CREATE TABLE accounts (
-        account_id INTEGER PRIMARY KEY AUTOINCREMENT,
-        user_id INTEGER NOT NULL,
-        name TEXT NOT NULL,
-        type TEXT NOT NULL CHECK(type IN ('cash', 'bank', 'credit_card', 'savings', 'investment')),
-        balance DECIMAL(12,2) DEFAULT 0.00,
-        currency_code TEXT DEFAULT 'USD',
-        is_active BOOLEAN DEFAULT true,
-        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-        updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-        FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE
-      );
-    ''');
-
-    await db.execute('''
       CREATE TABLE categories (
         category_id INTEGER PRIMARY KEY AUTOINCREMENT,
         user_id INTEGER NOT NULL,
@@ -87,7 +72,6 @@ class DatabaseHelper {
       CREATE TABLE transactions (
         transaction_id INTEGER PRIMARY KEY AUTOINCREMENT,
         user_id INTEGER NOT NULL,
-        account_id INTEGER NOT NULL,
         category_id INTEGER,
         amount DECIMAL(12,2) NOT NULL,
         type TEXT NOT NULL CHECK(type IN ('income', 'expense', 'transfer')),
@@ -95,25 +79,9 @@ class DatabaseHelper {
         date TIMESTAMP NOT NULL,
         created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
         updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-        is_recurring BOOLEAN DEFAULT false,
-        recurring_id INTEGER,
-        location TEXT,
         notes TEXT,
         FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE,
-        FOREIGN KEY (account_id) REFERENCES accounts(account_id) ON DELETE CASCADE,
         FOREIGN KEY (category_id) REFERENCES categories(category_id) ON DELETE SET NULL
-      );
-    ''');
-
-    await db.execute('''
-      CREATE TABLE attachments (
-        attachment_id INTEGER PRIMARY KEY AUTOINCREMENT,
-        transaction_id INTEGER NOT NULL,
-        file_path TEXT NOT NULL,
-        file_type TEXT NOT NULL,
-        file_size INTEGER NOT NULL,
-        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-        FOREIGN KEY (transaction_id) REFERENCES transactions(transaction_id) ON DELETE CASCADE
       );
     ''');
 
@@ -133,62 +101,15 @@ class DatabaseHelper {
       );
     ''');
 
-    await db.execute('''
-      CREATE TABLE recurring_transactions (
-        recurring_id INTEGER PRIMARY KEY AUTOINCREMENT,
-        user_id INTEGER NOT NULL,
-        account_id INTEGER NOT NULL,
-        category_id INTEGER,
-        amount DECIMAL(12,2) NOT NULL,
-        type TEXT NOT NULL CHECK(type IN ('income', 'expense')),
-        description TEXT NOT NULL,
-        frequency TEXT NOT NULL CHECK(frequency IN ('daily', 'weekly', 'monthly', 'yearly')),
-        start_date DATE NOT NULL,
-        end_date DATE,
-        last_generated_date DATE,
-        is_active BOOLEAN DEFAULT true,
-        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-        updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-        FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE,
-        FOREIGN KEY (account_id) REFERENCES accounts(account_id) ON DELETE CASCADE,
-        FOREIGN KEY (category_id) REFERENCES categories(category_id) ON DELETE SET NULL
-      );
-    ''');
-
-    await db.execute('''
-      CREATE TABLE tags (
-        tag_id INTEGER PRIMARY KEY AUTOINCREMENT,
-        user_id INTEGER NOT NULL,
-        name TEXT NOT NULL,
-        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-        FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE
-      );
-    ''');
-
-    await db.execute('''
-      CREATE TABLE transaction_tags (
-        transaction_id INTEGER NOT NULL,
-        tag_id INTEGER NOT NULL,
-        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-        PRIMARY KEY (transaction_id, tag_id),
-        FOREIGN KEY (transaction_id) REFERENCES transactions(transaction_id) ON DELETE CASCADE,
-        FOREIGN KEY (tag_id) REFERENCES tags(tag_id) ON DELETE CASCADE
-      );
-    ''');
-
     // Create indexes
     await db.execute(
         'CREATE INDEX idx_transactions_user_date ON transactions(user_id, date);');
-    await db.execute(
-        'CREATE INDEX idx_transactions_account ON transactions(account_id);');
     await db.execute(
         'CREATE INDEX idx_transactions_category ON transactions(category_id);');
     await db.execute(
         'CREATE INDEX idx_budgets_user_category ON budgets(user_id, category_id);');
     await db
         .execute('CREATE INDEX idx_categories_user ON categories(user_id);');
-    await db.execute(
-        'CREATE INDEX idx_transactions_recurring ON transactions(recurring_id);');
     
     await db.transaction((txn) async {
       for (final category in Constants.initialCategoryList) {

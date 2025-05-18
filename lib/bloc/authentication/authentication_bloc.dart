@@ -3,7 +3,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:personal_finance_tracker/domain/auth/usecase/login_user_usecase.dart';
 import 'package:personal_finance_tracker/domain/auth/usecase/sign_up_usecase.dart';
 
-import '../domain/auth/entity/user.dart';
+import '../../domain/auth/entity/user.dart';
 
 part 'authentication_event.dart';
 

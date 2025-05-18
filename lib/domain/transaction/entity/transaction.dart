@@ -1,8 +1,7 @@
 
 class Transaction {
-  final int id;
+  int? id;
   final int userId;
-  final int accountId;
   final int? categoryId;
   final double amount;
   final TransactionType type;
@@ -10,15 +9,12 @@ class Transaction {
   final DateTime date;
   final DateTime createdAt;
   final DateTime updatedAt;
-  final bool isRecurring;
-  final int? recurringId;
   final String? location;
   final String? notes;
 
   Transaction({
-    required this.id,
+    this.id,
     required this.userId,
-    required this.accountId,
     this.categoryId,
     required this.amount,
     required this.type,
@@ -26,8 +22,6 @@ class Transaction {
     required this.date,
     required this.createdAt,
     required this.updatedAt,
-    this.isRecurring = false,
-    this.recurringId,
     this.location,
     this.notes,
   });
@@ -48,7 +42,6 @@ class Transaction {
     return Transaction(
       id: id,
       userId: userId,
-      accountId: accountId,
       categoryId: categoryId,
       amount: amount ?? this.amount,
       type: type,
@@ -56,8 +49,6 @@ class Transaction {
       date: date ?? this.date,
       createdAt: createdAt,
       updatedAt: DateTime.now(), // Business rule: updates timestamp
-      isRecurring: isRecurring ?? this.isRecurring,
-      recurringId: recurringId,
       location: location,
       notes: notes ?? this.notes,
     );

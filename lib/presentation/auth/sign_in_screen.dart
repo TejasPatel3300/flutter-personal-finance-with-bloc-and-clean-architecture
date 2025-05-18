@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:personal_finance_tracker/bloc/authentication_bloc.dart';
+import 'package:personal_finance_tracker/bloc/authentication/authentication_bloc.dart';
 import 'package:personal_finance_tracker/presentation/auth/sign_up_screen.dart';
 import 'package:personal_finance_tracker/presentation/home/home_screen.dart';
 import 'package:personal_finance_tracker/repository/auth_repository_impl_sqlite.dart';
@@ -16,8 +16,8 @@ class SignInScreen extends StatefulWidget {
 
 class _SignInScreenState extends State<SignInScreen> {
   final formKey = GlobalKey<FormState>();
-  final emailController = TextEditingController();
-  final passwordController = TextEditingController();
+  final emailController = TextEditingController(text: 'tejaspatel3300@gmail.com');
+  final passwordController = TextEditingController(text: 'Abcd@1234');
 
   @override
   Widget build(BuildContext context) {
