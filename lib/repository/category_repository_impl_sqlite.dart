@@ -1,8 +1,8 @@
 import 'package:dartz/dartz.dart';
 import 'package:personal_finance_tracker/data/db/dao/category_dao.dart';
+import 'package:personal_finance_tracker/data/model/category_model.dart';
 import 'package:personal_finance_tracker/domain/category/entity/category.dart';
 import 'package:personal_finance_tracker/domain/category/repository/category_repository.dart';
-import 'package:personal_finance_tracker/model/category_model.dart';
 import 'package:personal_finance_tracker/utils/failure.dart';
 import 'package:sqflite/sqflite.dart';
 

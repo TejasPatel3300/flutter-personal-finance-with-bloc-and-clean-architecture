@@ -1,4 +1,4 @@
-import 'package:personal_finance_tracker/model/category_model.dart';
+import 'package:personal_finance_tracker/data/model/category_model.dart';
 
 class Constants {
   static final initialCategoryList = [

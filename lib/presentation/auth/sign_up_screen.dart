@@ -1,12 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:personal_finance_tracker/bloc/authentication/authentication_bloc.dart';
-import 'package:personal_finance_tracker/model/user_model.dart';
 import 'package:personal_finance_tracker/presentation/auth/sign_in_screen.dart';
 import 'package:personal_finance_tracker/presentation/widgets/custom_button.dart';
 import 'package:personal_finance_tracker/utils/validators.dart';
-
-import '../../repository/auth_repository_impl_sqlite.dart';
 
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({super.key});
