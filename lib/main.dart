@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:personal_finance_tracker/bloc/authentication/authentication_bloc.dart';
+import 'package:personal_finance_tracker/bloc/cateogory/category_bloc.dart';
 import 'package:personal_finance_tracker/bloc/transaction/transaction_bloc.dart';
 import 'package:personal_finance_tracker/data/db/db_helper.dart';
 import 'package:personal_finance_tracker/init_dependencies.dart';
@@ -28,6 +29,7 @@ class MyApp extends StatelessWidget {
       providers: [
         BlocProvider(create: (context) => serviceLocator<AuthenticationBloc>()),
         BlocProvider(create: (context) => serviceLocator<TransactionBloc>()),
+        BlocProvider(create: (context) => serviceLocator<CategoryBloc>()),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,

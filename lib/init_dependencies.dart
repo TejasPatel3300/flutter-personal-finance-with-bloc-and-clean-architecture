@@ -1,14 +1,19 @@
 import 'package:get_it/get_it.dart';
 import 'package:personal_finance_tracker/bloc/authentication/authentication_bloc.dart';
+import 'package:personal_finance_tracker/bloc/cateogory/category_bloc.dart';
 import 'package:personal_finance_tracker/bloc/transaction/transaction_bloc.dart';
 import 'package:personal_finance_tracker/domain/auth/repository/auth_repository.dart';
 import 'package:personal_finance_tracker/domain/auth/usecase/login_user_usecase.dart';
 import 'package:personal_finance_tracker/domain/auth/usecase/sign_up_usecase.dart';
+import 'package:personal_finance_tracker/domain/category/repository/category_repository.dart';
+import 'package:personal_finance_tracker/domain/category/usecase/get_all_categories_usecase.dart';
+import 'package:personal_finance_tracker/domain/category/usecase/get_categories_by_type_usecase.dart';
 import 'package:personal_finance_tracker/domain/transaction/repository/transaction_repository.dart';
 import 'package:personal_finance_tracker/domain/transaction/usecase/add_transaction_usecase.dart';
 import 'package:personal_finance_tracker/domain/transaction/usecase/get_all_transactions_usecase.dart';
 import 'package:personal_finance_tracker/domain/transaction/usecase/get_transations_by_type_usecase.dart';
 import 'package:personal_finance_tracker/repository/auth_repository_impl_sqlite.dart';
+import 'package:personal_finance_tracker/repository/category_repository_impl_sqlite.dart';
 import 'package:personal_finance_tracker/repository/transaction_repository_Impl_sqlite.dart';
 
 import 'data/db/db_helper.dart';
@@ -23,6 +28,9 @@ Future<void> initDependencies() async {
 
   // transaction
   _initTransactionDependencies();
+
+  // category
+  _initCategoryDependencies();
 
 }
 
@@ -57,6 +65,23 @@ void _initTransactionDependencies() {
         addTransactionUseCase: serviceLocator(),
         getAllTransactionsUseCase: serviceLocator(),
         getTransactionsByTypeUseCase: serviceLocator(),
+      ),
+    );
+}
+
+void _initCategoryDependencies() {
+  serviceLocator
+    ..registerFactory<CategoryRepository>(() => CategoryRepositoryImplSQLite())
+    ..registerFactory<GetAllCategoriesUseCase>(
+          () => GetAllCategoriesUseCase(categoryRepository: serviceLocator()),
+    )
+    ..registerFactory<GetCategoriesByTypeUseCase>(
+          () => GetCategoriesByTypeUseCase(categoryRepository: serviceLocator()),
+    )
+    ..registerLazySingleton<CategoryBloc>(
+          () => CategoryBloc(
+        getCategoriesByTypeUseCase: serviceLocator(),
+        getAllCategoriesUseCase: serviceLocator(),
       ),
     );
 }

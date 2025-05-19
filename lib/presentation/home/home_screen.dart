@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:personal_finance_tracker/bloc/cateogory/category_bloc.dart';
 import 'package:personal_finance_tracker/presentation/add_transaction/add_transaction_screen.dart';
 import 'package:personal_finance_tracker/presentation/budget/budget.dart';
 import 'package:personal_finance_tracker/presentation/dashboard/dashboard.dart';
@@ -16,6 +18,13 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   final PageController _pageController = PageController();
   int _selectedIndex = 0;
+
+  @override
+  void initState() {
+    super.initState();
+    _initialize();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -103,5 +112,9 @@ class _MyHomePageState extends State<MyHomePage> {
       default:
         return '';
     }
+  }
+
+  void _initialize() {
+    context.read<CategoryBloc>().add(CategoryStarted());
   }
 }

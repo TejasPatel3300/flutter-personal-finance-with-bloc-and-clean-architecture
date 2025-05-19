@@ -4,10 +4,10 @@ import 'package:personal_finance_tracker/domain/category/entity/category.dart';
 import 'package:personal_finance_tracker/domain/category/repository/category_repository.dart';
 import 'package:personal_finance_tracker/utils/failure.dart';
 
-class GetCategoriesByTypeUseCase implements UseCase<List<Category>, NoParams>{
+class GetAllCategoriesUseCase implements UseCase<List<Category>, NoParams>{
   final CategoryRepository categoryRepository;
 
-  GetCategoriesByTypeUseCase({required this.categoryRepository});
+  GetAllCategoriesUseCase({required this.categoryRepository});
   @override
   Future<Either<Failure, List<Category>>> call(NoParams params) async {
     return await categoryRepository.getAllCategories();

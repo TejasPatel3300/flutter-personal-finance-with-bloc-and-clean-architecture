@@ -2,8 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 import 'package:personal_finance_tracker/bloc/transaction/transaction_bloc.dart';
+import 'package:personal_finance_tracker/domain/category/entity/category.dart';
 import 'package:personal_finance_tracker/domain/transaction/entity/transaction.dart';
 import 'package:personal_finance_tracker/domain/transaction/usecase/add_transaction_usecase.dart';
+
+import '../../bloc/cateogory/category_bloc.dart';
 
 class AddTransactionScreen extends StatefulWidget {
   const AddTransactionScreen({super.key});
@@ -20,7 +23,7 @@ class _AddTransactionScreenState extends State<AddTransactionScreen>
   final TextEditingController _dateController = TextEditingController(
     text: DateFormat('dd/MM/yyyy').format(DateTime.now()),
   );
-  String _selectedCategory = '';
+  Category? _selectedCategory;
   late TabController _tabController;
 
   @override
@@ -33,7 +36,10 @@ class _AddTransactionScreenState extends State<AddTransactionScreen>
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+        backgroundColor: Theme
+            .of(context)
+            .colorScheme
+            .inversePrimary,
         title: Text('Add Budget'),
       ),
       body: Padding(
@@ -110,7 +116,7 @@ class _AddTransactionScreenState extends State<AddTransactionScreen>
                 borderSide: const BorderSide(color: Colors.grey, width: 1),
               ),
               contentPadding:
-                  const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+              const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
             ),
           ),
           const SizedBox(height: 16),
@@ -133,7 +139,7 @@ class _AddTransactionScreenState extends State<AddTransactionScreen>
                 borderSide: const BorderSide(color: Colors.grey, width: 1),
               ),
               contentPadding:
-                  const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+              const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
             ),
           ),
           const SizedBox(height: 16),
@@ -152,37 +158,39 @@ class _AddTransactionScreenState extends State<AddTransactionScreen>
               border: Border.all(color: Colors.grey),
               borderRadius: BorderRadius.circular(8),
             ),
-            child: DropdownButtonHideUnderline(
-              child: DropdownButtonFormField<String>(
-                decoration: const InputDecoration(
-                  contentPadding: EdgeInsets.symmetric(horizontal: 16),
-                  border: InputBorder.none,
-                ),
-                hint: const Text('Select category'),
-                value: _selectedCategory.isEmpty ? null : _selectedCategory,
-                isExpanded: true,
-                icon: const Icon(Icons.keyboard_arrow_down),
-                items: [
-                  'Food',
-                  'Transportation',
-                  'Housing',
-                  'Entertainment',
-                  'Shopping',
-                  'Healthcare',
-                  'Personal Care',
-                  'Education'
-                ].map((String category) {
-                  return DropdownMenuItem<String>(
-                    value: category,
-                    child: Text(category),
+            child: BlocBuilder<CategoryBloc, CategoryState>(
+              builder: (context, state) {
+                final categories = <Category>[];
+                if (state is CategoryLoadSuccess) {
+                  categories.addAll(state.categories);
+                  return DropdownButtonHideUnderline(
+                    child: DropdownButtonFormField<Category>(
+                      decoration: const InputDecoration(
+                        contentPadding: EdgeInsets.symmetric(horizontal: 16),
+                        border: InputBorder.none,
+                      ),
+                      hint: const Text('Select category'),
+                      style: TextStyle(color: Colors.black),
+                      value: _selectedCategory,
+                      isExpanded: true,
+                      icon: const Icon(Icons.keyboard_arrow_down),
+                      items: categories.map((Category category) {
+                        return DropdownMenuItem<Category>(
+                          value: category,
+                          child: Text(category.name),
+                        );
+                      }).toList(),
+                      onChanged: (Category? value) {
+                        setState(() {
+                          _selectedCategory = value;
+                        });
+                      },
+                    ),
                   );
-                }).toList(),
-                onChanged: (String? value) {
-                  setState(() {
-                    _selectedCategory = value ?? '';
-                  });
-                },
-              ),
+                }
+                return const SizedBox();
+
+              },
             ),
           ),
           const SizedBox(height: 16),
@@ -205,7 +213,7 @@ class _AddTransactionScreenState extends State<AddTransactionScreen>
                 borderSide: const BorderSide(color: Colors.grey, width: 1),
               ),
               contentPadding:
-                  const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+              const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
               suffixIcon: IconButton(
                 icon: const Icon(Icons.calendar_today),
                 onPressed: () async {
@@ -246,7 +254,7 @@ class _AddTransactionScreenState extends State<AddTransactionScreen>
                 borderSide: const BorderSide(color: Colors.grey, width: 1),
               ),
               contentPadding:
-                  const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+              const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
             ),
           ),
           const SizedBox(height: 16),
@@ -281,7 +289,7 @@ class _AddTransactionScreenState extends State<AddTransactionScreen>
     final notes = _notesController.text.trim();
     final params = AddTransactionParams(
       amount: double.tryParse(amount) ?? 0.0,
-      categoryId: 1,
+      categoryId: _selectedCategory?.categoryId ?? 0,
       userId: 1,
       date: DateTime.now(),
       description: description,
