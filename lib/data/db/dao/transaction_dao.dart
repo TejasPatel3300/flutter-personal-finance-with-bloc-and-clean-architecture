@@ -18,6 +18,7 @@ class TransactionDao {
 
   Future<List<Map<String, dynamic>>> getAllTransactions() async {
     final db = await _dbHelper.database;
+    return await db.rawQuery('SELECT * FROM ${DatabaseHelper.viewTransactionWithCategoryName} ORDER BY date DESC');
     return await db.query('transactions');
   }
 

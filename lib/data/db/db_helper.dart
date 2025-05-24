@@ -18,6 +18,7 @@ class DatabaseHelper {
   static const String tableRecurringTransactions = 'recurring_transactions';
   static const String tableTags = 'tags';
   static const String tableTransactionTags = 'transaction_tags';
+  static const String viewTransactionWithCategoryName = 'transaction_with_category_name';
 
   Future<Database> get database async {
     if (_database != null) return _database!;
@@ -39,7 +40,7 @@ class DatabaseHelper {
 
   Future<void> _onCreate(Database db, int version) async {
     await db.execute('''
-      CREATE TABLE users (
+      CREATE TABLE $tableUsers (
         user_id INTEGER PRIMARY KEY AUTOINCREMENT,
         name TEXT NOT NULL,
         email TEXT UNIQUE,
@@ -53,7 +54,7 @@ class DatabaseHelper {
     ''');
 
     await db.execute('''
-      CREATE TABLE categories (
+      CREATE TABLE $tableCategories (
         category_id INTEGER PRIMARY KEY AUTOINCREMENT,
         user_id INTEGER NOT NULL,
         name TEXT NOT NULL,
@@ -69,7 +70,7 @@ class DatabaseHelper {
     ''');
 
     await db.execute('''
-      CREATE TABLE transactions (
+      CREATE TABLE $tableTransactions (
         transaction_id INTEGER PRIMARY KEY AUTOINCREMENT,
         user_id INTEGER NOT NULL,
         category_id INTEGER,
@@ -86,7 +87,7 @@ class DatabaseHelper {
     ''');
 
     await db.execute('''
-      CREATE TABLE budgets (
+      CREATE TABLE $tableBudgets (
         budget_id INTEGER PRIMARY KEY AUTOINCREMENT,
         user_id INTEGER NOT NULL,
         category_id INTEGER NOT NULL,
@@ -101,6 +102,24 @@ class DatabaseHelper {
       );
     ''');
 
+    await db.execute('''
+    CREATE VIEW $viewTransactionWithCategoryName AS
+SELECT 
+  t.transaction_id,
+  t.user_id,
+  t.category_id,
+  c.name AS category_name,
+  t.amount,
+  t.type,
+  t.description,
+  t.date,
+  t.created_at,
+  t.updated_at,
+  t.notes
+FROM transactions t
+LEFT JOIN categories c ON t.category_id = c.category_id;
+    ''');
+
     // Create indexes
     await db.execute(
         'CREATE INDEX idx_transactions_user_date ON transactions(user_id, date);');
@@ -110,7 +129,7 @@ class DatabaseHelper {
         'CREATE INDEX idx_budgets_user_category ON budgets(user_id, category_id);');
     await db
         .execute('CREATE INDEX idx_categories_user ON categories(user_id);');
-    
+
     await db.transaction((txn) async {
       for (final category in Constants.initialCategoryList) {
         await txn.insert(DatabaseHelper.tableCategories, category.toMap());

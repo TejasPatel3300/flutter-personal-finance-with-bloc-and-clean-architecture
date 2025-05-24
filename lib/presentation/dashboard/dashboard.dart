@@ -1,12 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:fl_chart/fl_chart.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:personal_finance_tracker/domain/transaction/entity/transaction.dart';
+import 'package:personal_finance_tracker/domain/transaction/models/transaction_with_category.dart';
+import 'package:personal_finance_tracker/presentation/all_transactions/all_transactions_screen.dart';
 import 'package:personal_finance_tracker/repository/category_repository_impl_sqlite.dart';
+
+import '../../bloc/cateogory/category_bloc.dart';
+import '../../bloc/transaction/transaction_bloc.dart';
 
 class Dashboard extends StatefulWidget {
   const Dashboard({
     super.key,
     required this.pageController,
   });
+
   final PageController pageController;
 
   @override
@@ -14,12 +22,13 @@ class Dashboard extends StatefulWidget {
 }
 
 class _DashboardState extends State<Dashboard> {
-
   @override
   void initState() {
     super.initState();
     _getCategories();
+    _getTransactions();
   }
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -46,6 +55,10 @@ class _DashboardState extends State<Dashboard> {
         (element) => print(element.name),
       ),
     ));
+  }
+
+  void _getTransactions() {
+    context.read<TransactionBloc>().add(TransactionFetchRequested());
   }
 }
 
@@ -117,8 +130,7 @@ class BalanceCard extends StatelessWidget {
                 children: [
                   CircleAvatar(
                     backgroundColor: Colors.cyan[300],
-                    child: const Icon(Icons.arrow_outward_rounded,
-                        color: Colors.white),
+                    child: const Icon(Icons.arrow_outward_rounded, color: Colors.white),
                   ),
                   const SizedBox(width: 8),
                   Column(
@@ -151,82 +163,118 @@ class RecentTransactionsCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final showRecentTransactions =
-        true; //todo: logic/condition to determine if the transaction list should be shown or no transactions widget
+    return BlocConsumer<TransactionBloc, TransactionState>(
+      listener: (context, state) {
+        // TODO: implement listener
+      },
+      builder: (context, state) {
+        if (state is TransactionSuccess) {
+          final transactions = state.currentTransactions ?? [];
+          return _buildTransactionsList(transactions, context);
+        } else if (state is TransactionLoading) {
+          final transactions = state.currentTransactions ?? [];
+          return _buildTransactionsList(transactions, context, isLoading: true);
+        }
+        return _buildTransactionsList([], context);
+      },
+    );
+  }
+
+  Widget _buildTransactionsList(List<TransactionWithCategoryName> transactions, BuildContext context,
+      {bool isLoading = false}) {
+    final shownTransactions = transactions.length > 5 ? transactions.sublist(0, 5) : transactions;
+    final showRecentTransactions = shownTransactions.isNotEmpty;
     return Container(
       decoration: BoxDecoration(
-          color: Colors.white,
-          border: Border.all(color: Colors.grey.shade300),
-          borderRadius: BorderRadius.circular(12)),
+        color: Colors.white,
+        border: Border.all(color: Colors.grey.shade300),
+        borderRadius: BorderRadius.circular(12),
+      ),
       child: Padding(
         padding: const EdgeInsets.all(20),
-        child: showRecentTransactions
-            ? ListView.builder(
-                shrinkWrap: true,
-                itemCount: 2,
-                itemBuilder: (context, index) => TransactionListItem(
-                  iconColor: Colors.green,
-                  icon: Icons.account_balance_wallet_outlined,
-                  title: 'paycheck',
-                  date: 'Apr 20, 2025',
-                  amount: '\$40,000.00',
-                  isCredit: true,
-                ),
-              )
-            : Column(
-                children: [
-                  // Header Row
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: const [
-                      Text(
-                        'Recent Transactions',
-                        style: TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.bold,
-                        ),
+        child: isLoading
+            ? Center(child: CircularProgressIndicator())
+            : showRecentTransactions
+                ? Column(
+                    children: [
+                      Row(
+                        children: [
+                          Text('Recent Transactions'),
+                          Spacer(),
+                          GestureDetector(
+                            onTap: () {
+                              Navigator.of(context).push(MaterialPageRoute(builder: (_) => AllTransactionsScreen()));
+                            },
+                            child: Row(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [Text('View All'), Icon(Icons.chevron_right)],
+                            ),
+                          ),
+                        ],
                       ),
-                      Text(
-                        'View All',
-                        style: TextStyle(
-                          color: Colors.cyan,
-                          fontWeight: FontWeight.w500,
+                      ListView.builder(
+                        shrinkWrap: true,
+                        itemCount: transactions.length,
+                        itemBuilder: (context, index) => TransactionListItem(
+                          transaction: transactions[index],
                         ),
                       ),
                     ],
-                  ),
-                  const SizedBox(height: 30),
+                  )
+                : Column(
+                    children: [
+                      // Header Row
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: const [
+                          Text(
+                            'Recent Transactions',
+                            style: TextStyle(
+                              fontSize: 16,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          Text(
+                            'View All',
+                            style: TextStyle(
+                              color: Colors.cyan,
+                              fontWeight: FontWeight.w500,
+                            ),
+                          ),
+                        ],
+                      ),
+                      const SizedBox(height: 30),
 
-                  // Center content
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: const [
-                      Icon(
-                        Icons.attach_money,
-                        size: 40,
-                        color: Colors.grey,
-                      ),
-                      SizedBox(height: 10),
-                      Text(
-                        'No recent transactions',
-                        style: TextStyle(
-                          color: Colors.grey,
-                          fontSize: 16,
-                        ),
-                      ),
-                      SizedBox(height: 6),
-                      Text(
-                        'Add your first transaction',
-                        style: TextStyle(
-                          color: Colors.cyan,
-                          fontSize: 14,
-                          fontWeight: FontWeight.w500,
-                        ),
+                      // Center content
+                      Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: const [
+                          Icon(
+                            Icons.attach_money,
+                            size: 40,
+                            color: Colors.grey,
+                          ),
+                          SizedBox(height: 10),
+                          Text(
+                            'No recent transactions',
+                            style: TextStyle(
+                              color: Colors.grey,
+                              fontSize: 16,
+                            ),
+                          ),
+                          SizedBox(height: 6),
+                          Text(
+                            'Add your first transaction',
+                            style: TextStyle(
+                              color: Colors.cyan,
+                              fontSize: 14,
+                              fontWeight: FontWeight.w500,
+                            ),
+                          ),
+                        ],
                       ),
                     ],
                   ),
-                ],
-              ),
       ),
     );
   }
@@ -234,6 +282,7 @@ class RecentTransactionsCard extends StatelessWidget {
 
 class SpendingByCategoryCard extends StatelessWidget {
   const SpendingByCategoryCard({super.key, required this.pageController});
+
   final PageController pageController;
 
   @override
@@ -365,23 +414,11 @@ class CategoryLegend extends StatelessWidget {
 }
 
 class TransactionListItem extends StatelessWidget {
-  final Color iconColor;
-  final IconData icon;
-  final String title;
-  final String date;
-  final String amount;
-  final bool isCredit;
-  final bool isHighlighted;
+  final TransactionWithCategoryName transaction;
 
   const TransactionListItem({
     super.key,
-    required this.iconColor,
-    required this.icon,
-    required this.title,
-    required this.date,
-    required this.amount,
-    required this.isCredit,
-    this.isHighlighted = false,
+    required this.transaction,
   });
 
   @override
@@ -389,7 +426,6 @@ class TransactionListItem extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.symmetric(vertical: 14),
       decoration: BoxDecoration(
-        color: isHighlighted ? Colors.grey.shade200 : Colors.transparent,
         borderRadius: BorderRadius.circular(10),
       ),
       child: Row(
@@ -398,10 +434,10 @@ class TransactionListItem extends StatelessWidget {
           Container(
             padding: const EdgeInsets.all(10),
             decoration: BoxDecoration(
-              color: iconColor,
+              color: Colors.green,
               shape: BoxShape.circle,
             ),
-            child: Icon(icon, color: Colors.white, size: 20),
+            child: Icon(Icons.account_balance_wallet_outlined, color: Colors.white, size: 20),
           ),
 
           const SizedBox(width: 12),
@@ -412,15 +448,23 @@ class TransactionListItem extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  title,
+                  transaction.description ?? '',
                   style: const TextStyle(
                     fontSize: 16,
                     fontWeight: FontWeight.w500,
                   ),
                 ),
+                Text(
+                  transaction.categoryName ?? '',
+                  style: const TextStyle(
+                    fontSize: 14,
+                    color: Colors.grey,
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
                 const SizedBox(height: 4),
                 Text(
-                  date,
+                  transaction.date.toString(),
                   style: const TextStyle(
                     fontSize: 13,
                     color: Colors.grey,
@@ -432,11 +476,11 @@ class TransactionListItem extends StatelessWidget {
 
           // Amount
           Text(
-            "${isCredit ? '+ ' : '- '}$amount",
+            "${transaction.type == TransactionType.income ? '+ ' : '- '}${transaction.amount}",
             style: TextStyle(
               fontSize: 15,
               fontWeight: FontWeight.w600,
-              color: isCredit ? Colors.green : Colors.black87,
+              color: transaction.type == TransactionType.income ? Colors.green : Colors.black87,
             ),
           ),
         ],

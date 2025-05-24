@@ -212,8 +212,7 @@ class _AddTransactionScreenState extends State<AddTransactionScreen>
                 borderRadius: BorderRadius.circular(8),
                 borderSide: const BorderSide(color: Colors.grey, width: 1),
               ),
-              contentPadding:
-              const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+              contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
               suffixIcon: IconButton(
                 icon: const Icon(Icons.calendar_today),
                 onPressed: () async {
