@@ -1,3 +1,4 @@
+// dart format width=80
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
@@ -9,131 +10,93 @@ part of 'transaction_bloc.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// dart format off
 T _$identity<T>(T value) => value;
-
-final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
 mixin _$TransactionEvent {
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(AddTransactionParams params)
-        addTransactionRequested,
-    required TResult Function() fetchTransactionRequested,
-    required TResult Function(Transaction transaction)
-        updateTransactionRequested,
-    required TResult Function(Transaction transaction)
-        deleteTransactionRequested,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(AddTransactionParams params)? addTransactionRequested,
-    TResult? Function()? fetchTransactionRequested,
-    TResult? Function(Transaction transaction)? updateTransactionRequested,
-    TResult? Function(Transaction transaction)? deleteTransactionRequested,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(AddTransactionParams params)? addTransactionRequested,
-    TResult Function()? fetchTransactionRequested,
-    TResult Function(Transaction transaction)? updateTransactionRequested,
-    TResult Function(Transaction transaction)? deleteTransactionRequested,
-    required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(TransactionAddTransactionRequested value)
-        addTransactionRequested,
-    required TResult Function(TransactionFetchRequested value)
-        fetchTransactionRequested,
-    required TResult Function(TransactionUpdateRequested value)
-        updateTransactionRequested,
-    required TResult Function(TransactionDeleteRequested value)
-        deleteTransactionRequested,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(TransactionAddTransactionRequested value)?
-        addTransactionRequested,
-    TResult? Function(TransactionFetchRequested value)?
-        fetchTransactionRequested,
-    TResult? Function(TransactionUpdateRequested value)?
-        updateTransactionRequested,
-    TResult? Function(TransactionDeleteRequested value)?
-        deleteTransactionRequested,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(TransactionAddTransactionRequested value)?
-        addTransactionRequested,
-    TResult Function(TransactionFetchRequested value)?
-        fetchTransactionRequested,
-    TResult Function(TransactionUpdateRequested value)?
-        updateTransactionRequested,
-    TResult Function(TransactionDeleteRequested value)?
-        deleteTransactionRequested,
-    required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is TransactionEvent);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  String toString() {
+    return 'TransactionEvent()';
+  }
 }
 
 /// @nodoc
-abstract class $TransactionEventCopyWith<$Res> {
-  factory $TransactionEventCopyWith(
-          TransactionEvent value, $Res Function(TransactionEvent) then) =
-      _$TransactionEventCopyWithImpl<$Res, TransactionEvent>;
+class $TransactionEventCopyWith<$Res> {
+  $TransactionEventCopyWith(
+      TransactionEvent _, $Res Function(TransactionEvent) __);
 }
 
 /// @nodoc
-class _$TransactionEventCopyWithImpl<$Res, $Val extends TransactionEvent>
-    implements $TransactionEventCopyWith<$Res> {
-  _$TransactionEventCopyWithImpl(this._value, this._then);
 
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
+class TransactionAddTransactionRequested implements TransactionEvent {
+  const TransactionAddTransactionRequested({required this.params});
+
+  final AddTransactionParams params;
 
   /// Create a copy of TransactionEvent
   /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $TransactionAddTransactionRequestedCopyWith<
+          TransactionAddTransactionRequested>
+      get copyWith => _$TransactionAddTransactionRequestedCopyWithImpl<
+          TransactionAddTransactionRequested>(this, _$identity);
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is TransactionAddTransactionRequested &&
+            (identical(other.params, params) || other.params == params));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, params);
+
+  @override
+  String toString() {
+    return 'TransactionEvent.addTransactionRequested(params: $params)';
+  }
 }
 
 /// @nodoc
-abstract class _$$TransactionAddTransactionRequestedImplCopyWith<$Res> {
-  factory _$$TransactionAddTransactionRequestedImplCopyWith(
-          _$TransactionAddTransactionRequestedImpl value,
-          $Res Function(_$TransactionAddTransactionRequestedImpl) then) =
-      __$$TransactionAddTransactionRequestedImplCopyWithImpl<$Res>;
+abstract mixin class $TransactionAddTransactionRequestedCopyWith<$Res>
+    implements $TransactionEventCopyWith<$Res> {
+  factory $TransactionAddTransactionRequestedCopyWith(
+          TransactionAddTransactionRequested value,
+          $Res Function(TransactionAddTransactionRequested) _then) =
+      _$TransactionAddTransactionRequestedCopyWithImpl;
   @useResult
   $Res call({AddTransactionParams params});
 }
 
 /// @nodoc
-class __$$TransactionAddTransactionRequestedImplCopyWithImpl<$Res>
-    extends _$TransactionEventCopyWithImpl<$Res,
-        _$TransactionAddTransactionRequestedImpl>
-    implements _$$TransactionAddTransactionRequestedImplCopyWith<$Res> {
-  __$$TransactionAddTransactionRequestedImplCopyWithImpl(
-      _$TransactionAddTransactionRequestedImpl _value,
-      $Res Function(_$TransactionAddTransactionRequestedImpl) _then)
-      : super(_value, _then);
+class _$TransactionAddTransactionRequestedCopyWithImpl<$Res>
+    implements $TransactionAddTransactionRequestedCopyWith<$Res> {
+  _$TransactionAddTransactionRequestedCopyWithImpl(this._self, this._then);
+
+  final TransactionAddTransactionRequested _self;
+  final $Res Function(TransactionAddTransactionRequested) _then;
 
   /// Create a copy of TransactionEvent
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
-  @override
   $Res call({
     Object? params = null,
   }) {
-    return _then(_$TransactionAddTransactionRequestedImpl(
+    return _then(TransactionAddTransactionRequested(
       params: null == params
-          ? _value.params
+          ? _self.params
           : params // ignore: cast_nullable_to_non_nullable
               as AddTransactionParams,
     ));
@@ -142,484 +105,86 @@ class __$$TransactionAddTransactionRequestedImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$TransactionAddTransactionRequestedImpl
-    implements TransactionAddTransactionRequested {
-  const _$TransactionAddTransactionRequestedImpl({required this.params});
-
-  @override
-  final AddTransactionParams params;
-
-  @override
-  String toString() {
-    return 'TransactionEvent.addTransactionRequested(params: $params)';
-  }
+class TransactionFetchRequested implements TransactionEvent {
+  const TransactionFetchRequested();
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$TransactionAddTransactionRequestedImpl &&
-            (identical(other.params, params) || other.params == params));
-  }
-
-  @override
-  int get hashCode => Object.hash(runtimeType, params);
-
-  /// Create a copy of TransactionEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$TransactionAddTransactionRequestedImplCopyWith<
-          _$TransactionAddTransactionRequestedImpl>
-      get copyWith => __$$TransactionAddTransactionRequestedImplCopyWithImpl<
-          _$TransactionAddTransactionRequestedImpl>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(AddTransactionParams params)
-        addTransactionRequested,
-    required TResult Function() fetchTransactionRequested,
-    required TResult Function(Transaction transaction)
-        updateTransactionRequested,
-    required TResult Function(Transaction transaction)
-        deleteTransactionRequested,
-  }) {
-    return addTransactionRequested(params);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(AddTransactionParams params)? addTransactionRequested,
-    TResult? Function()? fetchTransactionRequested,
-    TResult? Function(Transaction transaction)? updateTransactionRequested,
-    TResult? Function(Transaction transaction)? deleteTransactionRequested,
-  }) {
-    return addTransactionRequested?.call(params);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(AddTransactionParams params)? addTransactionRequested,
-    TResult Function()? fetchTransactionRequested,
-    TResult Function(Transaction transaction)? updateTransactionRequested,
-    TResult Function(Transaction transaction)? deleteTransactionRequested,
-    required TResult orElse(),
-  }) {
-    if (addTransactionRequested != null) {
-      return addTransactionRequested(params);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(TransactionAddTransactionRequested value)
-        addTransactionRequested,
-    required TResult Function(TransactionFetchRequested value)
-        fetchTransactionRequested,
-    required TResult Function(TransactionUpdateRequested value)
-        updateTransactionRequested,
-    required TResult Function(TransactionDeleteRequested value)
-        deleteTransactionRequested,
-  }) {
-    return addTransactionRequested(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(TransactionAddTransactionRequested value)?
-        addTransactionRequested,
-    TResult? Function(TransactionFetchRequested value)?
-        fetchTransactionRequested,
-    TResult? Function(TransactionUpdateRequested value)?
-        updateTransactionRequested,
-    TResult? Function(TransactionDeleteRequested value)?
-        deleteTransactionRequested,
-  }) {
-    return addTransactionRequested?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(TransactionAddTransactionRequested value)?
-        addTransactionRequested,
-    TResult Function(TransactionFetchRequested value)?
-        fetchTransactionRequested,
-    TResult Function(TransactionUpdateRequested value)?
-        updateTransactionRequested,
-    TResult Function(TransactionDeleteRequested value)?
-        deleteTransactionRequested,
-    required TResult orElse(),
-  }) {
-    if (addTransactionRequested != null) {
-      return addTransactionRequested(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class TransactionAddTransactionRequested implements TransactionEvent {
-  const factory TransactionAddTransactionRequested(
-          {required final AddTransactionParams params}) =
-      _$TransactionAddTransactionRequestedImpl;
-
-  AddTransactionParams get params;
-
-  /// Create a copy of TransactionEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$TransactionAddTransactionRequestedImplCopyWith<
-          _$TransactionAddTransactionRequestedImpl>
-      get copyWith => throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class _$$TransactionFetchRequestedImplCopyWith<$Res> {
-  factory _$$TransactionFetchRequestedImplCopyWith(
-          _$TransactionFetchRequestedImpl value,
-          $Res Function(_$TransactionFetchRequestedImpl) then) =
-      __$$TransactionFetchRequestedImplCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$TransactionFetchRequestedImplCopyWithImpl<$Res>
-    extends _$TransactionEventCopyWithImpl<$Res,
-        _$TransactionFetchRequestedImpl>
-    implements _$$TransactionFetchRequestedImplCopyWith<$Res> {
-  __$$TransactionFetchRequestedImplCopyWithImpl(
-      _$TransactionFetchRequestedImpl _value,
-      $Res Function(_$TransactionFetchRequestedImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of TransactionEvent
-  /// with the given fields replaced by the non-null parameter values.
-}
-
-/// @nodoc
-
-class _$TransactionFetchRequestedImpl implements TransactionFetchRequested {
-  const _$TransactionFetchRequestedImpl();
-
-  @override
-  String toString() {
-    return 'TransactionEvent.fetchTransactionRequested()';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$TransactionFetchRequestedImpl);
+            other is TransactionFetchRequested);
   }
 
   @override
   int get hashCode => runtimeType.hashCode;
 
   @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(AddTransactionParams params)
-        addTransactionRequested,
-    required TResult Function() fetchTransactionRequested,
-    required TResult Function(Transaction transaction)
-        updateTransactionRequested,
-    required TResult Function(Transaction transaction)
-        deleteTransactionRequested,
-  }) {
-    return fetchTransactionRequested();
+  String toString() {
+    return 'TransactionEvent.fetchTransactionRequested()';
   }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(AddTransactionParams params)? addTransactionRequested,
-    TResult? Function()? fetchTransactionRequested,
-    TResult? Function(Transaction transaction)? updateTransactionRequested,
-    TResult? Function(Transaction transaction)? deleteTransactionRequested,
-  }) {
-    return fetchTransactionRequested?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(AddTransactionParams params)? addTransactionRequested,
-    TResult Function()? fetchTransactionRequested,
-    TResult Function(Transaction transaction)? updateTransactionRequested,
-    TResult Function(Transaction transaction)? deleteTransactionRequested,
-    required TResult orElse(),
-  }) {
-    if (fetchTransactionRequested != null) {
-      return fetchTransactionRequested();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(TransactionAddTransactionRequested value)
-        addTransactionRequested,
-    required TResult Function(TransactionFetchRequested value)
-        fetchTransactionRequested,
-    required TResult Function(TransactionUpdateRequested value)
-        updateTransactionRequested,
-    required TResult Function(TransactionDeleteRequested value)
-        deleteTransactionRequested,
-  }) {
-    return fetchTransactionRequested(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(TransactionAddTransactionRequested value)?
-        addTransactionRequested,
-    TResult? Function(TransactionFetchRequested value)?
-        fetchTransactionRequested,
-    TResult? Function(TransactionUpdateRequested value)?
-        updateTransactionRequested,
-    TResult? Function(TransactionDeleteRequested value)?
-        deleteTransactionRequested,
-  }) {
-    return fetchTransactionRequested?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(TransactionAddTransactionRequested value)?
-        addTransactionRequested,
-    TResult Function(TransactionFetchRequested value)?
-        fetchTransactionRequested,
-    TResult Function(TransactionUpdateRequested value)?
-        updateTransactionRequested,
-    TResult Function(TransactionDeleteRequested value)?
-        deleteTransactionRequested,
-    required TResult orElse(),
-  }) {
-    if (fetchTransactionRequested != null) {
-      return fetchTransactionRequested(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class TransactionFetchRequested implements TransactionEvent {
-  const factory TransactionFetchRequested() = _$TransactionFetchRequestedImpl;
 }
 
 /// @nodoc
-abstract class _$$TransactionUpdateRequestedImplCopyWith<$Res> {
-  factory _$$TransactionUpdateRequestedImplCopyWith(
-          _$TransactionUpdateRequestedImpl value,
-          $Res Function(_$TransactionUpdateRequestedImpl) then) =
-      __$$TransactionUpdateRequestedImplCopyWithImpl<$Res>;
-  @useResult
-  $Res call({Transaction transaction});
-}
 
-/// @nodoc
-class __$$TransactionUpdateRequestedImplCopyWithImpl<$Res>
-    extends _$TransactionEventCopyWithImpl<$Res,
-        _$TransactionUpdateRequestedImpl>
-    implements _$$TransactionUpdateRequestedImplCopyWith<$Res> {
-  __$$TransactionUpdateRequestedImplCopyWithImpl(
-      _$TransactionUpdateRequestedImpl _value,
-      $Res Function(_$TransactionUpdateRequestedImpl) _then)
-      : super(_value, _then);
+class TransactionUpdateRequested implements TransactionEvent {
+  const TransactionUpdateRequested({required this.transaction});
+
+  final Transaction transaction;
 
   /// Create a copy of TransactionEvent
   /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @pragma('vm:prefer-inline')
+  $TransactionUpdateRequestedCopyWith<TransactionUpdateRequested>
+      get copyWith =>
+          _$TransactionUpdateRequestedCopyWithImpl<TransactionUpdateRequested>(
+              this, _$identity);
+
   @override
-  $Res call({
-    Object? transaction = null,
-  }) {
-    return _then(_$TransactionUpdateRequestedImpl(
-      transaction: null == transaction
-          ? _value.transaction
-          : transaction // ignore: cast_nullable_to_non_nullable
-              as Transaction,
-    ));
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is TransactionUpdateRequested &&
+            (identical(other.transaction, transaction) ||
+                other.transaction == transaction));
   }
-}
-
-/// @nodoc
-
-class _$TransactionUpdateRequestedImpl implements TransactionUpdateRequested {
-  const _$TransactionUpdateRequestedImpl({required this.transaction});
 
   @override
-  final Transaction transaction;
+  int get hashCode => Object.hash(runtimeType, transaction);
 
   @override
   String toString() {
     return 'TransactionEvent.updateTransactionRequested(transaction: $transaction)';
   }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$TransactionUpdateRequestedImpl &&
-            (identical(other.transaction, transaction) ||
-                other.transaction == transaction));
-  }
-
-  @override
-  int get hashCode => Object.hash(runtimeType, transaction);
-
-  /// Create a copy of TransactionEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$TransactionUpdateRequestedImplCopyWith<_$TransactionUpdateRequestedImpl>
-      get copyWith => __$$TransactionUpdateRequestedImplCopyWithImpl<
-          _$TransactionUpdateRequestedImpl>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(AddTransactionParams params)
-        addTransactionRequested,
-    required TResult Function() fetchTransactionRequested,
-    required TResult Function(Transaction transaction)
-        updateTransactionRequested,
-    required TResult Function(Transaction transaction)
-        deleteTransactionRequested,
-  }) {
-    return updateTransactionRequested(transaction);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(AddTransactionParams params)? addTransactionRequested,
-    TResult? Function()? fetchTransactionRequested,
-    TResult? Function(Transaction transaction)? updateTransactionRequested,
-    TResult? Function(Transaction transaction)? deleteTransactionRequested,
-  }) {
-    return updateTransactionRequested?.call(transaction);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(AddTransactionParams params)? addTransactionRequested,
-    TResult Function()? fetchTransactionRequested,
-    TResult Function(Transaction transaction)? updateTransactionRequested,
-    TResult Function(Transaction transaction)? deleteTransactionRequested,
-    required TResult orElse(),
-  }) {
-    if (updateTransactionRequested != null) {
-      return updateTransactionRequested(transaction);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(TransactionAddTransactionRequested value)
-        addTransactionRequested,
-    required TResult Function(TransactionFetchRequested value)
-        fetchTransactionRequested,
-    required TResult Function(TransactionUpdateRequested value)
-        updateTransactionRequested,
-    required TResult Function(TransactionDeleteRequested value)
-        deleteTransactionRequested,
-  }) {
-    return updateTransactionRequested(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(TransactionAddTransactionRequested value)?
-        addTransactionRequested,
-    TResult? Function(TransactionFetchRequested value)?
-        fetchTransactionRequested,
-    TResult? Function(TransactionUpdateRequested value)?
-        updateTransactionRequested,
-    TResult? Function(TransactionDeleteRequested value)?
-        deleteTransactionRequested,
-  }) {
-    return updateTransactionRequested?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(TransactionAddTransactionRequested value)?
-        addTransactionRequested,
-    TResult Function(TransactionFetchRequested value)?
-        fetchTransactionRequested,
-    TResult Function(TransactionUpdateRequested value)?
-        updateTransactionRequested,
-    TResult Function(TransactionDeleteRequested value)?
-        deleteTransactionRequested,
-    required TResult orElse(),
-  }) {
-    if (updateTransactionRequested != null) {
-      return updateTransactionRequested(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class TransactionUpdateRequested implements TransactionEvent {
-  const factory TransactionUpdateRequested(
-          {required final Transaction transaction}) =
-      _$TransactionUpdateRequestedImpl;
-
-  Transaction get transaction;
-
-  /// Create a copy of TransactionEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$TransactionUpdateRequestedImplCopyWith<_$TransactionUpdateRequestedImpl>
-      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$TransactionDeleteRequestedImplCopyWith<$Res> {
-  factory _$$TransactionDeleteRequestedImplCopyWith(
-          _$TransactionDeleteRequestedImpl value,
-          $Res Function(_$TransactionDeleteRequestedImpl) then) =
-      __$$TransactionDeleteRequestedImplCopyWithImpl<$Res>;
+abstract mixin class $TransactionUpdateRequestedCopyWith<$Res>
+    implements $TransactionEventCopyWith<$Res> {
+  factory $TransactionUpdateRequestedCopyWith(TransactionUpdateRequested value,
+          $Res Function(TransactionUpdateRequested) _then) =
+      _$TransactionUpdateRequestedCopyWithImpl;
   @useResult
   $Res call({Transaction transaction});
 }
 
 /// @nodoc
-class __$$TransactionDeleteRequestedImplCopyWithImpl<$Res>
-    extends _$TransactionEventCopyWithImpl<$Res,
-        _$TransactionDeleteRequestedImpl>
-    implements _$$TransactionDeleteRequestedImplCopyWith<$Res> {
-  __$$TransactionDeleteRequestedImplCopyWithImpl(
-      _$TransactionDeleteRequestedImpl _value,
-      $Res Function(_$TransactionDeleteRequestedImpl) _then)
-      : super(_value, _then);
+class _$TransactionUpdateRequestedCopyWithImpl<$Res>
+    implements $TransactionUpdateRequestedCopyWith<$Res> {
+  _$TransactionUpdateRequestedCopyWithImpl(this._self, this._then);
+
+  final TransactionUpdateRequested _self;
+  final $Res Function(TransactionUpdateRequested) _then;
 
   /// Create a copy of TransactionEvent
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
-  @override
   $Res call({
     Object? transaction = null,
   }) {
-    return _then(_$TransactionDeleteRequestedImpl(
+    return _then(TransactionUpdateRequested(
       transaction: null == transaction
-          ? _value.transaction
+          ? _self.transaction
           : transaction // ignore: cast_nullable_to_non_nullable
               as Transaction,
     ));
@@ -628,22 +193,25 @@ class __$$TransactionDeleteRequestedImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$TransactionDeleteRequestedImpl implements TransactionDeleteRequested {
-  const _$TransactionDeleteRequestedImpl({required this.transaction});
+class TransactionDeleteRequested implements TransactionEvent {
+  const TransactionDeleteRequested({required this.transaction});
 
-  @override
   final Transaction transaction;
 
-  @override
-  String toString() {
-    return 'TransactionEvent.deleteTransactionRequested(transaction: $transaction)';
-  }
+  /// Create a copy of TransactionEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $TransactionDeleteRequestedCopyWith<TransactionDeleteRequested>
+      get copyWith =>
+          _$TransactionDeleteRequestedCopyWithImpl<TransactionDeleteRequested>(
+              this, _$identity);
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$TransactionDeleteRequestedImpl &&
+            other is TransactionDeleteRequested &&
             (identical(other.transaction, transaction) ||
                 other.transaction == transaction));
   }
@@ -651,252 +219,92 @@ class _$TransactionDeleteRequestedImpl implements TransactionDeleteRequested {
   @override
   int get hashCode => Object.hash(runtimeType, transaction);
 
-  /// Create a copy of TransactionEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  @pragma('vm:prefer-inline')
-  _$$TransactionDeleteRequestedImplCopyWith<_$TransactionDeleteRequestedImpl>
-      get copyWith => __$$TransactionDeleteRequestedImplCopyWithImpl<
-          _$TransactionDeleteRequestedImpl>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(AddTransactionParams params)
-        addTransactionRequested,
-    required TResult Function() fetchTransactionRequested,
-    required TResult Function(Transaction transaction)
-        updateTransactionRequested,
-    required TResult Function(Transaction transaction)
-        deleteTransactionRequested,
-  }) {
-    return deleteTransactionRequested(transaction);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(AddTransactionParams params)? addTransactionRequested,
-    TResult? Function()? fetchTransactionRequested,
-    TResult? Function(Transaction transaction)? updateTransactionRequested,
-    TResult? Function(Transaction transaction)? deleteTransactionRequested,
-  }) {
-    return deleteTransactionRequested?.call(transaction);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(AddTransactionParams params)? addTransactionRequested,
-    TResult Function()? fetchTransactionRequested,
-    TResult Function(Transaction transaction)? updateTransactionRequested,
-    TResult Function(Transaction transaction)? deleteTransactionRequested,
-    required TResult orElse(),
-  }) {
-    if (deleteTransactionRequested != null) {
-      return deleteTransactionRequested(transaction);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(TransactionAddTransactionRequested value)
-        addTransactionRequested,
-    required TResult Function(TransactionFetchRequested value)
-        fetchTransactionRequested,
-    required TResult Function(TransactionUpdateRequested value)
-        updateTransactionRequested,
-    required TResult Function(TransactionDeleteRequested value)
-        deleteTransactionRequested,
-  }) {
-    return deleteTransactionRequested(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(TransactionAddTransactionRequested value)?
-        addTransactionRequested,
-    TResult? Function(TransactionFetchRequested value)?
-        fetchTransactionRequested,
-    TResult? Function(TransactionUpdateRequested value)?
-        updateTransactionRequested,
-    TResult? Function(TransactionDeleteRequested value)?
-        deleteTransactionRequested,
-  }) {
-    return deleteTransactionRequested?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(TransactionAddTransactionRequested value)?
-        addTransactionRequested,
-    TResult Function(TransactionFetchRequested value)?
-        fetchTransactionRequested,
-    TResult Function(TransactionUpdateRequested value)?
-        updateTransactionRequested,
-    TResult Function(TransactionDeleteRequested value)?
-        deleteTransactionRequested,
-    required TResult orElse(),
-  }) {
-    if (deleteTransactionRequested != null) {
-      return deleteTransactionRequested(this);
-    }
-    return orElse();
+  String toString() {
+    return 'TransactionEvent.deleteTransactionRequested(transaction: $transaction)';
   }
 }
 
-abstract class TransactionDeleteRequested implements TransactionEvent {
-  const factory TransactionDeleteRequested(
-          {required final Transaction transaction}) =
-      _$TransactionDeleteRequestedImpl;
+/// @nodoc
+abstract mixin class $TransactionDeleteRequestedCopyWith<$Res>
+    implements $TransactionEventCopyWith<$Res> {
+  factory $TransactionDeleteRequestedCopyWith(TransactionDeleteRequested value,
+          $Res Function(TransactionDeleteRequested) _then) =
+      _$TransactionDeleteRequestedCopyWithImpl;
+  @useResult
+  $Res call({Transaction transaction});
+}
 
-  Transaction get transaction;
+/// @nodoc
+class _$TransactionDeleteRequestedCopyWithImpl<$Res>
+    implements $TransactionDeleteRequestedCopyWith<$Res> {
+  _$TransactionDeleteRequestedCopyWithImpl(this._self, this._then);
+
+  final TransactionDeleteRequested _self;
+  final $Res Function(TransactionDeleteRequested) _then;
 
   /// Create a copy of TransactionEvent
   /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$TransactionDeleteRequestedImplCopyWith<_$TransactionDeleteRequestedImpl>
-      get copyWith => throw _privateConstructorUsedError;
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? transaction = null,
+  }) {
+    return _then(TransactionDeleteRequested(
+      transaction: null == transaction
+          ? _self.transaction
+          : transaction // ignore: cast_nullable_to_non_nullable
+              as Transaction,
+    ));
+  }
 }
 
 /// @nodoc
 mixin _$TransactionState {
-  List<TransactionWithCategoryName>? get currentTransactions =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(
-            List<TransactionWithCategoryName>? currentTransactions)
-        initial,
-    required TResult Function(
-            List<TransactionWithCategoryName>? currentTransactions)
-        loading,
-    required TResult Function(Failure failure,
-            List<TransactionWithCategoryName>? currentTransactions)
-        failure,
-    required TResult Function(
-            List<TransactionWithCategoryName>? currentTransactions)
-        success,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(List<TransactionWithCategoryName>? currentTransactions)?
-        initial,
-    TResult? Function(List<TransactionWithCategoryName>? currentTransactions)?
-        loading,
-    TResult? Function(Failure failure,
-            List<TransactionWithCategoryName>? currentTransactions)?
-        failure,
-    TResult? Function(List<TransactionWithCategoryName>? currentTransactions)?
-        success,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(List<TransactionWithCategoryName>? currentTransactions)?
-        initial,
-    TResult Function(List<TransactionWithCategoryName>? currentTransactions)?
-        loading,
-    TResult Function(Failure failure,
-            List<TransactionWithCategoryName>? currentTransactions)?
-        failure,
-    TResult Function(List<TransactionWithCategoryName>? currentTransactions)?
-        success,
-    required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(TransactionInitial value) initial,
-    required TResult Function(TransactionLoading value) loading,
-    required TResult Function(TransactionFailure value) failure,
-    required TResult Function(TransactionSuccess value) success,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(TransactionInitial value)? initial,
-    TResult? Function(TransactionLoading value)? loading,
-    TResult? Function(TransactionFailure value)? failure,
-    TResult? Function(TransactionSuccess value)? success,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(TransactionInitial value)? initial,
-    TResult Function(TransactionLoading value)? loading,
-    TResult Function(TransactionFailure value)? failure,
-    TResult Function(TransactionSuccess value)? success,
-    required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
+  List<TransactionWithCategoryName>? get currentTransactions;
 
   /// Create a copy of TransactionState
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  $TransactionStateCopyWith<TransactionState> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $TransactionStateCopyWith<$Res> {
-  factory $TransactionStateCopyWith(
-          TransactionState value, $Res Function(TransactionState) then) =
-      _$TransactionStateCopyWithImpl<$Res, TransactionState>;
-  @useResult
-  $Res call({List<TransactionWithCategoryName>? currentTransactions});
-}
-
-/// @nodoc
-class _$TransactionStateCopyWithImpl<$Res, $Val extends TransactionState>
-    implements $TransactionStateCopyWith<$Res> {
-  _$TransactionStateCopyWithImpl(this._value, this._then);
-
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
-
-  /// Create a copy of TransactionState
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
+  $TransactionStateCopyWith<TransactionState> get copyWith =>
+      _$TransactionStateCopyWithImpl<TransactionState>(
+          this as TransactionState, _$identity);
+
   @override
-  $Res call({
-    Object? currentTransactions = freezed,
-  }) {
-    return _then(_value.copyWith(
-      currentTransactions: freezed == currentTransactions
-          ? _value.currentTransactions
-          : currentTransactions // ignore: cast_nullable_to_non_nullable
-              as List<TransactionWithCategoryName>?,
-    ) as $Val);
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is TransactionState &&
+            const DeepCollectionEquality()
+                .equals(other.currentTransactions, currentTransactions));
+  }
+
+  @override
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(currentTransactions));
+
+  @override
+  String toString() {
+    return 'TransactionState(currentTransactions: $currentTransactions)';
   }
 }
 
 /// @nodoc
-abstract class _$$TransactionInitialImplCopyWith<$Res>
-    implements $TransactionStateCopyWith<$Res> {
-  factory _$$TransactionInitialImplCopyWith(_$TransactionInitialImpl value,
-          $Res Function(_$TransactionInitialImpl) then) =
-      __$$TransactionInitialImplCopyWithImpl<$Res>;
-  @override
+abstract mixin class $TransactionStateCopyWith<$Res> {
+  factory $TransactionStateCopyWith(
+          TransactionState value, $Res Function(TransactionState) _then) =
+      _$TransactionStateCopyWithImpl;
   @useResult
   $Res call({List<TransactionWithCategoryName>? currentTransactions});
 }
 
 /// @nodoc
-class __$$TransactionInitialImplCopyWithImpl<$Res>
-    extends _$TransactionStateCopyWithImpl<$Res, _$TransactionInitialImpl>
-    implements _$$TransactionInitialImplCopyWith<$Res> {
-  __$$TransactionInitialImplCopyWithImpl(_$TransactionInitialImpl _value,
-      $Res Function(_$TransactionInitialImpl) _then)
-      : super(_value, _then);
+class _$TransactionStateCopyWithImpl<$Res>
+    implements $TransactionStateCopyWith<$Res> {
+  _$TransactionStateCopyWithImpl(this._self, this._then);
+
+  final TransactionState _self;
+  final $Res Function(TransactionState) _then;
 
   /// Create a copy of TransactionState
   /// with the given fields replaced by the non-null parameter values.
@@ -905,9 +313,9 @@ class __$$TransactionInitialImplCopyWithImpl<$Res>
   $Res call({
     Object? currentTransactions = freezed,
   }) {
-    return _then(_$TransactionInitialImpl(
+    return _then(_self.copyWith(
       currentTransactions: freezed == currentTransactions
-          ? _value._currentTransactions
+          ? _self.currentTransactions
           : currentTransactions // ignore: cast_nullable_to_non_nullable
               as List<TransactionWithCategoryName>?,
     ));
@@ -916,8 +324,8 @@ class __$$TransactionInitialImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$TransactionInitialImpl implements TransactionInitial {
-  const _$TransactionInitialImpl(
+class TransactionInitial implements TransactionState {
+  const TransactionInitial(
       {final List<TransactionWithCategoryName>? currentTransactions})
       : _currentTransactions = currentTransactions;
 
@@ -931,172 +339,63 @@ class _$TransactionInitialImpl implements TransactionInitial {
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(value);
   }
+
+  /// Create a copy of TransactionState
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $TransactionInitialCopyWith<TransactionInitial> get copyWith =>
+      _$TransactionInitialCopyWithImpl<TransactionInitial>(this, _$identity);
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is TransactionInitial &&
+            const DeepCollectionEquality()
+                .equals(other._currentTransactions, _currentTransactions));
+  }
+
+  @override
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(_currentTransactions));
 
   @override
   String toString() {
     return 'TransactionState.initial(currentTransactions: $currentTransactions)';
   }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$TransactionInitialImpl &&
-            const DeepCollectionEquality()
-                .equals(other._currentTransactions, _currentTransactions));
-  }
-
-  @override
-  int get hashCode => Object.hash(
-      runtimeType, const DeepCollectionEquality().hash(_currentTransactions));
-
-  /// Create a copy of TransactionState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$TransactionInitialImplCopyWith<_$TransactionInitialImpl> get copyWith =>
-      __$$TransactionInitialImplCopyWithImpl<_$TransactionInitialImpl>(
-          this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(
-            List<TransactionWithCategoryName>? currentTransactions)
-        initial,
-    required TResult Function(
-            List<TransactionWithCategoryName>? currentTransactions)
-        loading,
-    required TResult Function(Failure failure,
-            List<TransactionWithCategoryName>? currentTransactions)
-        failure,
-    required TResult Function(
-            List<TransactionWithCategoryName>? currentTransactions)
-        success,
-  }) {
-    return initial(currentTransactions);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(List<TransactionWithCategoryName>? currentTransactions)?
-        initial,
-    TResult? Function(List<TransactionWithCategoryName>? currentTransactions)?
-        loading,
-    TResult? Function(Failure failure,
-            List<TransactionWithCategoryName>? currentTransactions)?
-        failure,
-    TResult? Function(List<TransactionWithCategoryName>? currentTransactions)?
-        success,
-  }) {
-    return initial?.call(currentTransactions);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(List<TransactionWithCategoryName>? currentTransactions)?
-        initial,
-    TResult Function(List<TransactionWithCategoryName>? currentTransactions)?
-        loading,
-    TResult Function(Failure failure,
-            List<TransactionWithCategoryName>? currentTransactions)?
-        failure,
-    TResult Function(List<TransactionWithCategoryName>? currentTransactions)?
-        success,
-    required TResult orElse(),
-  }) {
-    if (initial != null) {
-      return initial(currentTransactions);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(TransactionInitial value) initial,
-    required TResult Function(TransactionLoading value) loading,
-    required TResult Function(TransactionFailure value) failure,
-    required TResult Function(TransactionSuccess value) success,
-  }) {
-    return initial(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(TransactionInitial value)? initial,
-    TResult? Function(TransactionLoading value)? loading,
-    TResult? Function(TransactionFailure value)? failure,
-    TResult? Function(TransactionSuccess value)? success,
-  }) {
-    return initial?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(TransactionInitial value)? initial,
-    TResult Function(TransactionLoading value)? loading,
-    TResult Function(TransactionFailure value)? failure,
-    TResult Function(TransactionSuccess value)? success,
-    required TResult orElse(),
-  }) {
-    if (initial != null) {
-      return initial(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class TransactionInitial implements TransactionState {
-  const factory TransactionInitial(
-          {final List<TransactionWithCategoryName>? currentTransactions}) =
-      _$TransactionInitialImpl;
-
-  @override
-  List<TransactionWithCategoryName>? get currentTransactions;
-
-  /// Create a copy of TransactionState
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$TransactionInitialImplCopyWith<_$TransactionInitialImpl> get copyWith =>
-      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$TransactionLoadingImplCopyWith<$Res>
+abstract mixin class $TransactionInitialCopyWith<$Res>
     implements $TransactionStateCopyWith<$Res> {
-  factory _$$TransactionLoadingImplCopyWith(_$TransactionLoadingImpl value,
-          $Res Function(_$TransactionLoadingImpl) then) =
-      __$$TransactionLoadingImplCopyWithImpl<$Res>;
+  factory $TransactionInitialCopyWith(
+          TransactionInitial value, $Res Function(TransactionInitial) _then) =
+      _$TransactionInitialCopyWithImpl;
   @override
   @useResult
   $Res call({List<TransactionWithCategoryName>? currentTransactions});
 }
 
 /// @nodoc
-class __$$TransactionLoadingImplCopyWithImpl<$Res>
-    extends _$TransactionStateCopyWithImpl<$Res, _$TransactionLoadingImpl>
-    implements _$$TransactionLoadingImplCopyWith<$Res> {
-  __$$TransactionLoadingImplCopyWithImpl(_$TransactionLoadingImpl _value,
-      $Res Function(_$TransactionLoadingImpl) _then)
-      : super(_value, _then);
+class _$TransactionInitialCopyWithImpl<$Res>
+    implements $TransactionInitialCopyWith<$Res> {
+  _$TransactionInitialCopyWithImpl(this._self, this._then);
+
+  final TransactionInitial _self;
+  final $Res Function(TransactionInitial) _then;
 
   /// Create a copy of TransactionState
   /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
   @override
+  @pragma('vm:prefer-inline')
   $Res call({
     Object? currentTransactions = freezed,
   }) {
-    return _then(_$TransactionLoadingImpl(
+    return _then(TransactionInitial(
       currentTransactions: freezed == currentTransactions
-          ? _value._currentTransactions
+          ? _self._currentTransactions
           : currentTransactions // ignore: cast_nullable_to_non_nullable
               as List<TransactionWithCategoryName>?,
     ));
@@ -1105,8 +404,8 @@ class __$$TransactionLoadingImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$TransactionLoadingImpl implements TransactionLoading {
-  const _$TransactionLoadingImpl(
+class TransactionLoading implements TransactionState {
+  const TransactionLoading(
       {final List<TransactionWithCategoryName>? currentTransactions})
       : _currentTransactions = currentTransactions;
 
@@ -1121,16 +420,19 @@ class _$TransactionLoadingImpl implements TransactionLoading {
     return EqualUnmodifiableListView(value);
   }
 
+  /// Create a copy of TransactionState
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  String toString() {
-    return 'TransactionState.loading(currentTransactions: $currentTransactions)';
-  }
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $TransactionLoadingCopyWith<TransactionLoading> get copyWith =>
+      _$TransactionLoadingCopyWithImpl<TransactionLoading>(this, _$identity);
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$TransactionLoadingImpl &&
+            other is TransactionLoading &&
             const DeepCollectionEquality()
                 .equals(other._currentTransactions, _currentTransactions));
   }
@@ -1139,160 +441,41 @@ class _$TransactionLoadingImpl implements TransactionLoading {
   int get hashCode => Object.hash(
       runtimeType, const DeepCollectionEquality().hash(_currentTransactions));
 
-  /// Create a copy of TransactionState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  @pragma('vm:prefer-inline')
-  _$$TransactionLoadingImplCopyWith<_$TransactionLoadingImpl> get copyWith =>
-      __$$TransactionLoadingImplCopyWithImpl<_$TransactionLoadingImpl>(
-          this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(
-            List<TransactionWithCategoryName>? currentTransactions)
-        initial,
-    required TResult Function(
-            List<TransactionWithCategoryName>? currentTransactions)
-        loading,
-    required TResult Function(Failure failure,
-            List<TransactionWithCategoryName>? currentTransactions)
-        failure,
-    required TResult Function(
-            List<TransactionWithCategoryName>? currentTransactions)
-        success,
-  }) {
-    return loading(currentTransactions);
+  String toString() {
+    return 'TransactionState.loading(currentTransactions: $currentTransactions)';
   }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(List<TransactionWithCategoryName>? currentTransactions)?
-        initial,
-    TResult? Function(List<TransactionWithCategoryName>? currentTransactions)?
-        loading,
-    TResult? Function(Failure failure,
-            List<TransactionWithCategoryName>? currentTransactions)?
-        failure,
-    TResult? Function(List<TransactionWithCategoryName>? currentTransactions)?
-        success,
-  }) {
-    return loading?.call(currentTransactions);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(List<TransactionWithCategoryName>? currentTransactions)?
-        initial,
-    TResult Function(List<TransactionWithCategoryName>? currentTransactions)?
-        loading,
-    TResult Function(Failure failure,
-            List<TransactionWithCategoryName>? currentTransactions)?
-        failure,
-    TResult Function(List<TransactionWithCategoryName>? currentTransactions)?
-        success,
-    required TResult orElse(),
-  }) {
-    if (loading != null) {
-      return loading(currentTransactions);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(TransactionInitial value) initial,
-    required TResult Function(TransactionLoading value) loading,
-    required TResult Function(TransactionFailure value) failure,
-    required TResult Function(TransactionSuccess value) success,
-  }) {
-    return loading(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(TransactionInitial value)? initial,
-    TResult? Function(TransactionLoading value)? loading,
-    TResult? Function(TransactionFailure value)? failure,
-    TResult? Function(TransactionSuccess value)? success,
-  }) {
-    return loading?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(TransactionInitial value)? initial,
-    TResult Function(TransactionLoading value)? loading,
-    TResult Function(TransactionFailure value)? failure,
-    TResult Function(TransactionSuccess value)? success,
-    required TResult orElse(),
-  }) {
-    if (loading != null) {
-      return loading(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class TransactionLoading implements TransactionState {
-  const factory TransactionLoading(
-          {final List<TransactionWithCategoryName>? currentTransactions}) =
-      _$TransactionLoadingImpl;
-
-  @override
-  List<TransactionWithCategoryName>? get currentTransactions;
-
-  /// Create a copy of TransactionState
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$TransactionLoadingImplCopyWith<_$TransactionLoadingImpl> get copyWith =>
-      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$TransactionFailureImplCopyWith<$Res>
+abstract mixin class $TransactionLoadingCopyWith<$Res>
     implements $TransactionStateCopyWith<$Res> {
-  factory _$$TransactionFailureImplCopyWith(_$TransactionFailureImpl value,
-          $Res Function(_$TransactionFailureImpl) then) =
-      __$$TransactionFailureImplCopyWithImpl<$Res>;
+  factory $TransactionLoadingCopyWith(
+          TransactionLoading value, $Res Function(TransactionLoading) _then) =
+      _$TransactionLoadingCopyWithImpl;
   @override
   @useResult
-  $Res call(
-      {Failure failure,
-      List<TransactionWithCategoryName>? currentTransactions});
+  $Res call({List<TransactionWithCategoryName>? currentTransactions});
 }
 
 /// @nodoc
-class __$$TransactionFailureImplCopyWithImpl<$Res>
-    extends _$TransactionStateCopyWithImpl<$Res, _$TransactionFailureImpl>
-    implements _$$TransactionFailureImplCopyWith<$Res> {
-  __$$TransactionFailureImplCopyWithImpl(_$TransactionFailureImpl _value,
-      $Res Function(_$TransactionFailureImpl) _then)
-      : super(_value, _then);
+class _$TransactionLoadingCopyWithImpl<$Res>
+    implements $TransactionLoadingCopyWith<$Res> {
+  _$TransactionLoadingCopyWithImpl(this._self, this._then);
+
+  final TransactionLoading _self;
+  final $Res Function(TransactionLoading) _then;
 
   /// Create a copy of TransactionState
   /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
   @override
+  @pragma('vm:prefer-inline')
   $Res call({
-    Object? failure = null,
     Object? currentTransactions = freezed,
   }) {
-    return _then(_$TransactionFailureImpl(
-      failure: null == failure
-          ? _value.failure
-          : failure // ignore: cast_nullable_to_non_nullable
-              as Failure,
+    return _then(TransactionLoading(
       currentTransactions: freezed == currentTransactions
-          ? _value._currentTransactions
+          ? _self._currentTransactions
           : currentTransactions // ignore: cast_nullable_to_non_nullable
               as List<TransactionWithCategoryName>?,
     ));
@@ -1301,13 +484,12 @@ class __$$TransactionFailureImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$TransactionFailureImpl implements TransactionFailure {
-  const _$TransactionFailureImpl(
+class TransactionFailure implements TransactionState {
+  const TransactionFailure(
       {required this.failure,
       final List<TransactionWithCategoryName>? currentTransactions})
       : _currentTransactions = currentTransactions;
 
-  @override
   final Failure failure;
   final List<TransactionWithCategoryName>? _currentTransactions;
   @override
@@ -1320,16 +502,19 @@ class _$TransactionFailureImpl implements TransactionFailure {
     return EqualUnmodifiableListView(value);
   }
 
+  /// Create a copy of TransactionState
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  String toString() {
-    return 'TransactionState.failure(failure: $failure, currentTransactions: $currentTransactions)';
-  }
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $TransactionFailureCopyWith<TransactionFailure> get copyWith =>
+      _$TransactionFailureCopyWithImpl<TransactionFailure>(this, _$identity);
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$TransactionFailureImpl &&
+            other is TransactionFailure &&
             (identical(other.failure, failure) || other.failure == failure) &&
             const DeepCollectionEquality()
                 .equals(other._currentTransactions, _currentTransactions));
@@ -1339,155 +524,48 @@ class _$TransactionFailureImpl implements TransactionFailure {
   int get hashCode => Object.hash(runtimeType, failure,
       const DeepCollectionEquality().hash(_currentTransactions));
 
-  /// Create a copy of TransactionState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  @pragma('vm:prefer-inline')
-  _$$TransactionFailureImplCopyWith<_$TransactionFailureImpl> get copyWith =>
-      __$$TransactionFailureImplCopyWithImpl<_$TransactionFailureImpl>(
-          this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(
-            List<TransactionWithCategoryName>? currentTransactions)
-        initial,
-    required TResult Function(
-            List<TransactionWithCategoryName>? currentTransactions)
-        loading,
-    required TResult Function(Failure failure,
-            List<TransactionWithCategoryName>? currentTransactions)
-        failure,
-    required TResult Function(
-            List<TransactionWithCategoryName>? currentTransactions)
-        success,
-  }) {
-    return failure(this.failure, currentTransactions);
+  String toString() {
+    return 'TransactionState.failure(failure: $failure, currentTransactions: $currentTransactions)';
   }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(List<TransactionWithCategoryName>? currentTransactions)?
-        initial,
-    TResult? Function(List<TransactionWithCategoryName>? currentTransactions)?
-        loading,
-    TResult? Function(Failure failure,
-            List<TransactionWithCategoryName>? currentTransactions)?
-        failure,
-    TResult? Function(List<TransactionWithCategoryName>? currentTransactions)?
-        success,
-  }) {
-    return failure?.call(this.failure, currentTransactions);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(List<TransactionWithCategoryName>? currentTransactions)?
-        initial,
-    TResult Function(List<TransactionWithCategoryName>? currentTransactions)?
-        loading,
-    TResult Function(Failure failure,
-            List<TransactionWithCategoryName>? currentTransactions)?
-        failure,
-    TResult Function(List<TransactionWithCategoryName>? currentTransactions)?
-        success,
-    required TResult orElse(),
-  }) {
-    if (failure != null) {
-      return failure(this.failure, currentTransactions);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(TransactionInitial value) initial,
-    required TResult Function(TransactionLoading value) loading,
-    required TResult Function(TransactionFailure value) failure,
-    required TResult Function(TransactionSuccess value) success,
-  }) {
-    return failure(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(TransactionInitial value)? initial,
-    TResult? Function(TransactionLoading value)? loading,
-    TResult? Function(TransactionFailure value)? failure,
-    TResult? Function(TransactionSuccess value)? success,
-  }) {
-    return failure?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(TransactionInitial value)? initial,
-    TResult Function(TransactionLoading value)? loading,
-    TResult Function(TransactionFailure value)? failure,
-    TResult Function(TransactionSuccess value)? success,
-    required TResult orElse(),
-  }) {
-    if (failure != null) {
-      return failure(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class TransactionFailure implements TransactionState {
-  const factory TransactionFailure(
-          {required final Failure failure,
-          final List<TransactionWithCategoryName>? currentTransactions}) =
-      _$TransactionFailureImpl;
-
-  Failure get failure;
-  @override
-  List<TransactionWithCategoryName>? get currentTransactions;
-
-  /// Create a copy of TransactionState
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$TransactionFailureImplCopyWith<_$TransactionFailureImpl> get copyWith =>
-      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$TransactionSuccessImplCopyWith<$Res>
+abstract mixin class $TransactionFailureCopyWith<$Res>
     implements $TransactionStateCopyWith<$Res> {
-  factory _$$TransactionSuccessImplCopyWith(_$TransactionSuccessImpl value,
-          $Res Function(_$TransactionSuccessImpl) then) =
-      __$$TransactionSuccessImplCopyWithImpl<$Res>;
+  factory $TransactionFailureCopyWith(
+          TransactionFailure value, $Res Function(TransactionFailure) _then) =
+      _$TransactionFailureCopyWithImpl;
   @override
   @useResult
-  $Res call({List<TransactionWithCategoryName>? currentTransactions});
+  $Res call(
+      {Failure failure,
+      List<TransactionWithCategoryName>? currentTransactions});
 }
 
 /// @nodoc
-class __$$TransactionSuccessImplCopyWithImpl<$Res>
-    extends _$TransactionStateCopyWithImpl<$Res, _$TransactionSuccessImpl>
-    implements _$$TransactionSuccessImplCopyWith<$Res> {
-  __$$TransactionSuccessImplCopyWithImpl(_$TransactionSuccessImpl _value,
-      $Res Function(_$TransactionSuccessImpl) _then)
-      : super(_value, _then);
+class _$TransactionFailureCopyWithImpl<$Res>
+    implements $TransactionFailureCopyWith<$Res> {
+  _$TransactionFailureCopyWithImpl(this._self, this._then);
+
+  final TransactionFailure _self;
+  final $Res Function(TransactionFailure) _then;
 
   /// Create a copy of TransactionState
   /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
   @override
+  @pragma('vm:prefer-inline')
   $Res call({
+    Object? failure = null,
     Object? currentTransactions = freezed,
   }) {
-    return _then(_$TransactionSuccessImpl(
+    return _then(TransactionFailure(
+      failure: null == failure
+          ? _self.failure
+          : failure // ignore: cast_nullable_to_non_nullable
+              as Failure,
       currentTransactions: freezed == currentTransactions
-          ? _value._currentTransactions
+          ? _self._currentTransactions
           : currentTransactions // ignore: cast_nullable_to_non_nullable
               as List<TransactionWithCategoryName>?,
     ));
@@ -1496,8 +574,8 @@ class __$$TransactionSuccessImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$TransactionSuccessImpl implements TransactionSuccess {
-  const _$TransactionSuccessImpl(
+class TransactionSuccess implements TransactionState {
+  const TransactionSuccess(
       {final List<TransactionWithCategoryName>? currentTransactions})
       : _currentTransactions = currentTransactions;
 
@@ -1512,16 +590,19 @@ class _$TransactionSuccessImpl implements TransactionSuccess {
     return EqualUnmodifiableListView(value);
   }
 
+  /// Create a copy of TransactionState
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  String toString() {
-    return 'TransactionState.success(currentTransactions: $currentTransactions)';
-  }
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $TransactionSuccessCopyWith<TransactionSuccess> get copyWith =>
+      _$TransactionSuccessCopyWithImpl<TransactionSuccess>(this, _$identity);
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$TransactionSuccessImpl &&
+            other is TransactionSuccess &&
             const DeepCollectionEquality()
                 .equals(other._currentTransactions, _currentTransactions));
   }
@@ -1530,120 +611,45 @@ class _$TransactionSuccessImpl implements TransactionSuccess {
   int get hashCode => Object.hash(
       runtimeType, const DeepCollectionEquality().hash(_currentTransactions));
 
+  @override
+  String toString() {
+    return 'TransactionState.success(currentTransactions: $currentTransactions)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $TransactionSuccessCopyWith<$Res>
+    implements $TransactionStateCopyWith<$Res> {
+  factory $TransactionSuccessCopyWith(
+          TransactionSuccess value, $Res Function(TransactionSuccess) _then) =
+      _$TransactionSuccessCopyWithImpl;
+  @override
+  @useResult
+  $Res call({List<TransactionWithCategoryName>? currentTransactions});
+}
+
+/// @nodoc
+class _$TransactionSuccessCopyWithImpl<$Res>
+    implements $TransactionSuccessCopyWith<$Res> {
+  _$TransactionSuccessCopyWithImpl(this._self, this._then);
+
+  final TransactionSuccess _self;
+  final $Res Function(TransactionSuccess) _then;
+
   /// Create a copy of TransactionState
   /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$TransactionSuccessImplCopyWith<_$TransactionSuccessImpl> get copyWith =>
-      __$$TransactionSuccessImplCopyWithImpl<_$TransactionSuccessImpl>(
-          this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(
-            List<TransactionWithCategoryName>? currentTransactions)
-        initial,
-    required TResult Function(
-            List<TransactionWithCategoryName>? currentTransactions)
-        loading,
-    required TResult Function(Failure failure,
-            List<TransactionWithCategoryName>? currentTransactions)
-        failure,
-    required TResult Function(
-            List<TransactionWithCategoryName>? currentTransactions)
-        success,
+  $Res call({
+    Object? currentTransactions = freezed,
   }) {
-    return success(currentTransactions);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(List<TransactionWithCategoryName>? currentTransactions)?
-        initial,
-    TResult? Function(List<TransactionWithCategoryName>? currentTransactions)?
-        loading,
-    TResult? Function(Failure failure,
-            List<TransactionWithCategoryName>? currentTransactions)?
-        failure,
-    TResult? Function(List<TransactionWithCategoryName>? currentTransactions)?
-        success,
-  }) {
-    return success?.call(currentTransactions);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(List<TransactionWithCategoryName>? currentTransactions)?
-        initial,
-    TResult Function(List<TransactionWithCategoryName>? currentTransactions)?
-        loading,
-    TResult Function(Failure failure,
-            List<TransactionWithCategoryName>? currentTransactions)?
-        failure,
-    TResult Function(List<TransactionWithCategoryName>? currentTransactions)?
-        success,
-    required TResult orElse(),
-  }) {
-    if (success != null) {
-      return success(currentTransactions);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(TransactionInitial value) initial,
-    required TResult Function(TransactionLoading value) loading,
-    required TResult Function(TransactionFailure value) failure,
-    required TResult Function(TransactionSuccess value) success,
-  }) {
-    return success(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(TransactionInitial value)? initial,
-    TResult? Function(TransactionLoading value)? loading,
-    TResult? Function(TransactionFailure value)? failure,
-    TResult? Function(TransactionSuccess value)? success,
-  }) {
-    return success?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(TransactionInitial value)? initial,
-    TResult Function(TransactionLoading value)? loading,
-    TResult Function(TransactionFailure value)? failure,
-    TResult Function(TransactionSuccess value)? success,
-    required TResult orElse(),
-  }) {
-    if (success != null) {
-      return success(this);
-    }
-    return orElse();
+    return _then(TransactionSuccess(
+      currentTransactions: freezed == currentTransactions
+          ? _self._currentTransactions
+          : currentTransactions // ignore: cast_nullable_to_non_nullable
+              as List<TransactionWithCategoryName>?,
+    ));
   }
 }
 
-abstract class TransactionSuccess implements TransactionState {
-  const factory TransactionSuccess(
-          {final List<TransactionWithCategoryName>? currentTransactions}) =
-      _$TransactionSuccessImpl;
-
-  @override
-  List<TransactionWithCategoryName>? get currentTransactions;
-
-  /// Create a copy of TransactionState
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$TransactionSuccessImplCopyWith<_$TransactionSuccessImpl> get copyWith =>
-      throw _privateConstructorUsedError;
-}
+// dart format on
