@@ -26,23 +26,19 @@ class SearchAndFilterBloc extends Bloc<SearchAndFilterEvent, SearchAndFilterStat
     final currentTransactions = state.currentTransactionsList;
     try {
       emit(SearchAndFilterState.loading(currentTransactions));
-      final type = event.type;
-      final category = event.category;
-      final searchQuery = event.searchString;
-      final shouldCheckType = event.type?.isNotEmpty ?? false;
-      final shouldCheckCategory = event.category?.isNotEmpty ?? false;
-      final shouldCheckSearchQuery = event.searchString?.isNotEmpty ?? false;
+      List<TransactionWithCategoryName> result = _allTransactions.where((transaction) {
+        final matchesType =
+            (event.type?.isNotEmpty ?? false) ? transaction.type.name.toLowerCase() == event.type!.toLowerCase() : true;
 
-      List<TransactionWithCategoryName> result = [..._allTransactions];
-      if (shouldCheckType) {
-        result = result.where((transaction) => transaction.type.name.toLowerCase() == type?.toLowerCase()).toList();
-      }
-      if (shouldCheckCategory) {
-        result = result.where((transaction) => transaction.categoryName == category).toList();
-      }
-      if (shouldCheckSearchQuery) {
-        result = result.where((transaction) => transaction.description?.contains(searchQuery ?? '') ?? false).toList();
-      }
+        final matchesCategory =
+            (event.category?.isNotEmpty ?? false) ? transaction.categoryName == event.category : true;
+
+        final matchesSearch = (event.searchString?.isNotEmpty ?? false)
+            ? (transaction.description?.toLowerCase().contains(event.searchString!.toLowerCase()) ?? false)
+            : true;
+
+        return matchesType && matchesCategory && matchesSearch;
+      }).toList();
       emit(SearchAndFilterState.success(result));
     } on Exception catch (e, stackTrace) {
       if (kDebugMode) {
