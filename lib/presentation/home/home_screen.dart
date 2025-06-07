@@ -4,7 +4,7 @@ import 'package:personal_finance_tracker/bloc/cateogory/category_bloc.dart';
 import 'package:personal_finance_tracker/presentation/add_transaction/add_transaction_screen.dart';
 import 'package:personal_finance_tracker/presentation/budget/budget.dart';
 import 'package:personal_finance_tracker/presentation/dashboard/dashboard.dart';
-import 'package:personal_finance_tracker/presentation/report/report.dart';
+import 'package:personal_finance_tracker/presentation/report/report_screen.dart';
 import 'package:personal_finance_tracker/presentation/settings/settings.dart';
 
 class MyHomePage extends StatefulWidget {
@@ -91,7 +91,7 @@ class _MyHomePageState extends State<MyHomePage> {
           children: [
             Dashboard(pageController: _pageController),
             Budget(pageController: _pageController),
-            Report(pageController: _pageController),
+            ReportScreen(pageController: _pageController),
             Settings(pageController: _pageController),
           ],
         ),

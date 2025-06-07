@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:personal_finance_tracker/bloc/report/report_summary/report_bloc.dart';
 import 'package:personal_finance_tracker/domain/transaction/entity/transaction.dart';
 import 'package:personal_finance_tracker/domain/transaction/models/transaction_with_category.dart';
 import 'package:personal_finance_tracker/presentation/all_transactions/all_transactions_screen.dart';
+import 'package:personal_finance_tracker/presentation/dashboard/widgets/report_card.dart';
 import 'package:personal_finance_tracker/repository/category_repository_impl_sqlite.dart';
 
 import '../../bloc/cateogory/category_bloc.dart';
@@ -50,10 +52,11 @@ class _DashboardState extends State<Dashboard> {
   Future<void> _getCategories() async {
     final allCategories = await CategoryRepositoryImplSQLite().getAllCategories();
     print(allCategories.fold(
-      (l) => l.message,
-      (r) => r.forEach(
-        (element) => print(element.name),
-      ),
+          (l) => l.message,
+          (r) =>
+          r.forEach(
+                (element) => print(element.name),
+          ),
     ));
   }
 
@@ -195,183 +198,88 @@ class RecentTransactionsCard extends StatelessWidget {
         child: isLoading
             ? Center(child: CircularProgressIndicator())
             : showRecentTransactions
-                ? Column(
-                    children: [
-                      Row(
-                        children: [
-                          Text('Recent Transactions'),
-                          Spacer(),
+            ? Column(
+          children: [
+            Row(
+              children: [
+                Text('Recent Transactions'),
+                Spacer(),
                           GestureDetector(
                             onTap: () {
                               Navigator.of(context).push(MaterialPageRoute(builder: (_) => AllTransactionsScreen()));
                             },
-                            child: Row(
-                              mainAxisSize: MainAxisSize.min,
-                              children: [Text('View All'), Icon(Icons.chevron_right)],
+                            child: Hero(
+                              tag: 'allTransactions',
+                              child: Row(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [Text('View All'), Icon(Icons.chevron_right)],
+                              ),
                             ),
                           ),
                         ],
-                      ),
-                      ListView.builder(
-                        shrinkWrap: true,
-                        itemCount: transactions.length,
-                        itemBuilder: (context, index) => TransactionListItem(
-                          transaction: transactions[index],
-                        ),
-                      ),
-                    ],
-                  )
-                : Column(
-                    children: [
-                      // Header Row
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: const [
-                          Text(
-                            'Recent Transactions',
-                            style: TextStyle(
-                              fontSize: 16,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                          Text(
-                            'View All',
-                            style: TextStyle(
-                              color: Colors.cyan,
-                              fontWeight: FontWeight.w500,
-                            ),
-                          ),
-                        ],
-                      ),
-                      const SizedBox(height: 30),
-
-                      // Center content
-                      Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: const [
-                          Icon(
-                            Icons.attach_money,
-                            size: 40,
-                            color: Colors.grey,
-                          ),
-                          SizedBox(height: 10),
-                          Text(
-                            'No recent transactions',
-                            style: TextStyle(
-                              color: Colors.grey,
-                              fontSize: 16,
-                            ),
-                          ),
-                          SizedBox(height: 6),
-                          Text(
-                            'Add your first transaction',
-                            style: TextStyle(
-                              color: Colors.cyan,
-                              fontSize: 14,
-                              fontWeight: FontWeight.w500,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ],
+            ),
+            ListView.builder(
+              shrinkWrap: true,
+              itemCount: transactions.length,
+              itemBuilder: (context, index) =>
+                  TransactionListItem(
+                    transaction: transactions[index],
                   ),
-      ),
-    );
-  }
-}
-
-class SpendingByCategoryCard extends StatelessWidget {
-  const SpendingByCategoryCard({super.key, required this.pageController});
-
-  final PageController pageController;
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(12),
-        color: Colors.white,
-      ),
-      child: Padding(
-        padding: const EdgeInsets.all(20),
-        child: Column(
+            ),
+          ],
+        )
+            : Column(
           children: [
-            // Header
+            // Header Row
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
+              children: const [
                 Text(
-                  'Spending by Category',
+                  'Recent Transactions',
                   style: TextStyle(
                     fontSize: 16,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-                GestureDetector(
-                  onTap: () => pageController.jumpToPage(2),
-                  child: Text(
-                    'View All',
-                    style: TextStyle(
-                      color: Colors.cyan,
-                      fontWeight: FontWeight.w500,
-                    ),
+                Text(
+                  'View All',
+                  style: TextStyle(
+                    color: Colors.cyan,
+                    fontWeight: FontWeight.w500,
                   ),
                 ),
               ],
             ),
-            const SizedBox(height: 20),
+            const SizedBox(height: 30),
 
-            // Chart + Labels
+            // Center content
             Column(
-              children: [
-                // Pie Chart
-                SizedBox(
-                  height: 120,
-                  width: 120,
-                  child: PieChart(
-                    PieChartData(
-                      centerSpaceRadius: 30,
-                      sectionsSpace: 2,
-                      startDegreeOffset: 270,
-                      sections: [
-                        PieChartSectionData(
-                          value: 10000,
-                          color: Colors.blue,
-                          radius: 25,
-                          showTitle: false,
-                        ),
-                        PieChartSectionData(
-                          value: 200,
-                          color: Colors.teal,
-                          radius: 25,
-                          showTitle: false,
-                        ),
-                      ],
-                    ),
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: const [
+                Icon(
+                  Icons.attach_money,
+                  size: 40,
+                  color: Colors.grey,
+                ),
+                SizedBox(height: 10),
+                Text(
+                  'No recent transactions',
+                  style: TextStyle(
+                    color: Colors.grey,
+                    fontSize: 16,
                   ),
                 ),
-
-                const SizedBox(width: 30),
-
-                // Legend
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: const [
-                    CategoryLegend(
-                      color: Colors.blue,
-                      title: 'Housing',
-                      amount: '\$10,000.00',
-                    ),
-                    SizedBox(height: 12),
-                    CategoryLegend(
-                      color: Colors.teal,
-                      title: 'Healthcare',
-                      amount: '\$200.00',
-                    ),
-                  ],
+                SizedBox(height: 6),
+                Text(
+                  'Add your first transaction',
+                  style: TextStyle(
+                    color: Colors.cyan,
+                    fontSize: 14,
+                    fontWeight: FontWeight.w500,
+                  ),
                 ),
               ],
-            )
+            ),
           ],
         ),
       ),
@@ -379,7 +287,6 @@ class SpendingByCategoryCard extends StatelessWidget {
   }
 }
 
-// Sub-component: Legend Row
 class CategoryLegend extends StatelessWidget {
   final Color color;
   final String title;

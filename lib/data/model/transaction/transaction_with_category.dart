@@ -6,6 +6,7 @@ class TransactionWithCategoryNameDTO {
   final int userId;
   final int? categoryId;
   final String? categoryName; // Only this additional field
+  final String? color; // Only this additional field
   final double amount;
   final String type;
   final String? description;
@@ -19,6 +20,7 @@ class TransactionWithCategoryNameDTO {
     required this.userId,
     this.categoryId,
     this.categoryName,
+    this.color,
     required this.amount,
     required this.type,
     this.description,
@@ -35,6 +37,7 @@ class TransactionWithCategoryNameDTO {
       userId: json['user_id'],
       categoryId: json['category_id'],
       categoryName: json['category_name'], // coming from the joined view
+      color: json['color'], // coming from the joined view
       amount: (json['amount'] as num).toDouble(),
       type: json['type'],
       description: json['description'],
@@ -52,6 +55,7 @@ class TransactionWithCategoryNameDTO {
       'user_id': userId,
       'category_id': categoryId,
       'category_name': categoryName,
+      'color': color,
       'amount': amount,
       'type': type,
       'description': description,
@@ -69,6 +73,7 @@ class TransactionWithCategoryNameDTO {
       amount: amount,
       type: _mapTypeToEnum(type),
       categoryName: categoryName,
+      color: color,
       description: description,
       date: date,
       notes: notes,

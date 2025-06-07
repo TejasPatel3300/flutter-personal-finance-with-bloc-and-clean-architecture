@@ -9,6 +9,7 @@ class TransactionWithCategoryName {
   final DateTime date;
   final String? notes;
   final String? categoryName;
+  final String? color;
 
 
   TransactionWithCategoryName({
@@ -20,5 +21,6 @@ class TransactionWithCategoryName {
     required this.date,
     this.notes,
     this.categoryName,
+    this.color,
   });
 }

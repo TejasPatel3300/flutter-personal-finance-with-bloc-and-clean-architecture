@@ -42,51 +42,60 @@ class _AddTransactionScreenState extends State<AddTransactionScreen>
             .inversePrimary,
         title: Text('Add Budget'),
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            // Transaction Type Selector using TabBar
-            Container(
-              padding: const EdgeInsets.all(2),
-              decoration: BoxDecoration(
-                color: Colors.grey.shade200,
-                borderRadius: BorderRadius.circular(10),
-              ),
-              child: TabBar(
-                controller: _tabController,
-                labelStyle: const TextStyle(fontWeight: FontWeight.w600),
-                indicator: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(10),
+      body: BlocConsumer<TransactionBloc, TransactionState>(
+        listener: (context, state) {
+          if (state is TransactionSuccess) {
+            Navigator.pop(context);
+          }
+        },
+        builder: (context, state) {
+          return Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                // Transaction Type Selector using TabBar
+                Container(
+                  padding: const EdgeInsets.all(2),
+                  decoration: BoxDecoration(
+                    color: Colors.grey.shade200,
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  child: TabBar(
+                    controller: _tabController,
+                    labelStyle: const TextStyle(fontWeight: FontWeight.w600),
+                    indicator: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    indicatorSize: TabBarIndicatorSize.tab,
+                    dividerColor: Colors.transparent,
+                    labelColor: Colors.black,
+                    unselectedLabelColor: Colors.grey,
+                    tabs: const [
+                      Tab(text: "Expense"),
+                      Tab(text: "Income"),
+                    ],
+                  ),
                 ),
-                indicatorSize: TabBarIndicatorSize.tab,
-                dividerColor: Colors.transparent,
-                labelColor: Colors.black,
-                unselectedLabelColor: Colors.grey,
-                tabs: const [
-                  Tab(text: "Expense"),
-                  Tab(text: "Income"),
-                ],
-              ),
-            ),
-            const SizedBox(height: 16),
+                const SizedBox(height: 16),
 
-            // TabBarView for form content
-            Expanded(
-              child: TabBarView(
-                controller: _tabController,
-                children: [
-                  // Expense Tab Content
-                  _buildTransactionForm(transactionType: TransactionType.expense),
-                  // Income Tab Content (same form, just different tab)
-                  _buildTransactionForm(transactionType: TransactionType.income),
-                ],
-              ),
+                // TabBarView for form content
+                Expanded(
+                  child: TabBarView(
+                    controller: _tabController,
+                    children: [
+                      // Expense Tab Content
+                      _buildTransactionForm(transactionType: TransactionType.expense),
+                      // Income Tab Content (same form, just different tab)
+                      _buildTransactionForm(transactionType: TransactionType.income),
+                    ],
+                  ),
+                ),
+              ],
             ),
-          ],
-        ),
+          );
+        },
       ),
     );
   }
@@ -189,7 +198,6 @@ class _AddTransactionScreenState extends State<AddTransactionScreen>
                   );
                 }
                 return const SizedBox();
-
               },
             ),
           ),

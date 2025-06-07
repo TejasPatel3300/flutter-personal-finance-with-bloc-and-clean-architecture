@@ -10,7 +10,7 @@ import 'package:personal_finance_tracker/presentation/auth/sign_up_screen.dart';
 import 'package:personal_finance_tracker/presentation/budget/budget.dart';
 import 'package:personal_finance_tracker/presentation/dashboard/dashboard.dart';
 import 'package:personal_finance_tracker/presentation/home/home_screen.dart';
-import 'package:personal_finance_tracker/presentation/report/report.dart';
+import 'package:personal_finance_tracker/presentation/report/report_screen.dart';
 import 'package:personal_finance_tracker/presentation/settings/settings.dart';
 import 'package:personal_finance_tracker/utils/theme.dart';
 

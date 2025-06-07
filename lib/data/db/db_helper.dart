@@ -109,6 +109,7 @@ SELECT
   t.user_id,
   t.category_id,
   c.name AS category_name,
+  c.color AS color,
   t.amount,
   t.type,
   t.description,
