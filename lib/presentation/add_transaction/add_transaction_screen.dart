@@ -24,6 +24,7 @@ class _AddTransactionScreenState extends State<AddTransactionScreen>
     text: DateFormat('dd/MM/yyyy').format(DateTime.now()),
   );
   Category? _selectedCategory;
+  DateTime? _transactionDateTime;
   late TabController _tabController;
 
   @override
@@ -232,6 +233,7 @@ class _AddTransactionScreenState extends State<AddTransactionScreen>
                   );
                   if (picked != null) {
                     setState(() {
+                      _transactionDateTime = picked;
                       _dateController.text =
                           DateFormat('dd/MM/yyyy').format(picked);
                     });
@@ -298,7 +300,7 @@ class _AddTransactionScreenState extends State<AddTransactionScreen>
       amount: double.tryParse(amount) ?? 0.0,
       categoryId: _selectedCategory?.categoryId ?? 0,
       userId: 1,
-      date: DateTime.now(),
+      date: _transactionDateTime ?? DateTime.now(),
       description: description,
       transactionType: transactionType,
       notes: notes,

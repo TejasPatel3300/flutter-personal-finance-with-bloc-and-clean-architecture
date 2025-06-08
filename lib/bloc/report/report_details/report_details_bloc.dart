@@ -40,10 +40,12 @@ class ReportDetailsBloc extends Bloc<ReportDetailsEvent, ReportDetailsState> {
                 element.date.month == event.monthStartDate.month && element.date.year == event.monthStartDate.year,
           )
           .toList();
-
-      final groupedByDate =
-          groupBy<TransactionWithCategoryName, DateTime>(transactionsForMonth, (transaction) => transaction.date);
-
+      final expenseTransactions =
+          transactionsForMonth.where((transaction) => transaction.type == TransactionType.expense).toList();
+      final groupedByDate = groupBy<TransactionWithCategoryName, DateTime>(
+        expenseTransactions,
+        (transaction) => DateTime(transaction.date.year, transaction.date.month, transaction.date.day),
+      );
 
       for (final transaction in transactionsForMonth) {
         if (transaction.type == TransactionType.expense) {
@@ -64,7 +66,7 @@ class ReportDetailsBloc extends Bloc<ReportDetailsEvent, ReportDetailsState> {
       );
 
       final groupedByCategory = groupBy<TransactionWithCategoryName, String>(
-          transactionsForMonth, (transaction) => transaction.categoryName ?? '');
+          expenseTransactions, (transaction) => transaction.categoryName ?? '');
       groupedByCategory.forEach(
         (category, transactions) {
           final spendingByCategory = SpendingByCategory(

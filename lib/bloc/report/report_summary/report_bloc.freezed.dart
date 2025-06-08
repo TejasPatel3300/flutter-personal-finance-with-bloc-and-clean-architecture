@@ -151,7 +151,7 @@ class _$ReportEventUpdateCopyWithImpl<$Res>
 
 /// @nodoc
 mixin _$ReportState {
-  Map<String?, List<TransactionWithCategoryName>> get data;
+  List<SpendingByCategory> get data;
 
   /// Create a copy of ReportState
   /// with the given fields replaced by the non-null parameter values.
@@ -184,7 +184,7 @@ abstract mixin class $ReportStateCopyWith<$Res> {
           ReportState value, $Res Function(ReportState) _then) =
       _$ReportStateCopyWithImpl;
   @useResult
-  $Res call({Map<String?, List<TransactionWithCategoryName>> data});
+  $Res call({List<SpendingByCategory> data});
 }
 
 /// @nodoc
@@ -205,7 +205,7 @@ class _$ReportStateCopyWithImpl<$Res> implements $ReportStateCopyWith<$Res> {
       data: null == data
           ? _self.data
           : data // ignore: cast_nullable_to_non_nullable
-              as Map<String?, List<TransactionWithCategoryName>>,
+              as List<SpendingByCategory>,
     ));
   }
 }
@@ -213,16 +213,15 @@ class _$ReportStateCopyWithImpl<$Res> implements $ReportStateCopyWith<$Res> {
 /// @nodoc
 
 class ReportInitial implements ReportState {
-  const ReportInitial(
-      {required final Map<String?, List<TransactionWithCategoryName>> data})
+  const ReportInitial({required final List<SpendingByCategory> data})
       : _data = data;
 
-  final Map<String?, List<TransactionWithCategoryName>> _data;
+  final List<SpendingByCategory> _data;
   @override
-  Map<String?, List<TransactionWithCategoryName>> get data {
-    if (_data is EqualUnmodifiableMapView) return _data;
+  List<SpendingByCategory> get data {
+    if (_data is EqualUnmodifiableListView) return _data;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableMapView(_data);
+    return EqualUnmodifiableListView(_data);
   }
 
   /// Create a copy of ReportState
@@ -259,7 +258,7 @@ abstract mixin class $ReportInitialCopyWith<$Res>
       _$ReportInitialCopyWithImpl;
   @override
   @useResult
-  $Res call({Map<String?, List<TransactionWithCategoryName>> data});
+  $Res call({List<SpendingByCategory> data});
 }
 
 /// @nodoc
@@ -281,7 +280,7 @@ class _$ReportInitialCopyWithImpl<$Res>
       data: null == data
           ? _self._data
           : data // ignore: cast_nullable_to_non_nullable
-              as Map<String?, List<TransactionWithCategoryName>>,
+              as List<SpendingByCategory>,
     ));
   }
 }
@@ -289,16 +288,15 @@ class _$ReportInitialCopyWithImpl<$Res>
 /// @nodoc
 
 class ReportLoading implements ReportState {
-  const ReportLoading(
-      {required final Map<String?, List<TransactionWithCategoryName>> data})
+  const ReportLoading({required final List<SpendingByCategory> data})
       : _data = data;
 
-  final Map<String?, List<TransactionWithCategoryName>> _data;
+  final List<SpendingByCategory> _data;
   @override
-  Map<String?, List<TransactionWithCategoryName>> get data {
-    if (_data is EqualUnmodifiableMapView) return _data;
+  List<SpendingByCategory> get data {
+    if (_data is EqualUnmodifiableListView) return _data;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableMapView(_data);
+    return EqualUnmodifiableListView(_data);
   }
 
   /// Create a copy of ReportState
@@ -335,7 +333,7 @@ abstract mixin class $ReportLoadingCopyWith<$Res>
       _$ReportLoadingCopyWithImpl;
   @override
   @useResult
-  $Res call({Map<String?, List<TransactionWithCategoryName>> data});
+  $Res call({List<SpendingByCategory> data});
 }
 
 /// @nodoc
@@ -357,7 +355,7 @@ class _$ReportLoadingCopyWithImpl<$Res>
       data: null == data
           ? _self._data
           : data // ignore: cast_nullable_to_non_nullable
-              as Map<String?, List<TransactionWithCategoryName>>,
+              as List<SpendingByCategory>,
     ));
   }
 }
@@ -365,16 +363,15 @@ class _$ReportLoadingCopyWithImpl<$Res>
 /// @nodoc
 
 class ReportSuccess implements ReportState {
-  const ReportSuccess(
-      {required final Map<String?, List<TransactionWithCategoryName>> data})
+  const ReportSuccess({required final List<SpendingByCategory> data})
       : _data = data;
 
-  final Map<String?, List<TransactionWithCategoryName>> _data;
+  final List<SpendingByCategory> _data;
   @override
-  Map<String?, List<TransactionWithCategoryName>> get data {
-    if (_data is EqualUnmodifiableMapView) return _data;
+  List<SpendingByCategory> get data {
+    if (_data is EqualUnmodifiableListView) return _data;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableMapView(_data);
+    return EqualUnmodifiableListView(_data);
   }
 
   /// Create a copy of ReportState
@@ -411,7 +408,7 @@ abstract mixin class $ReportSuccessCopyWith<$Res>
       _$ReportSuccessCopyWithImpl;
   @override
   @useResult
-  $Res call({Map<String?, List<TransactionWithCategoryName>> data});
+  $Res call({List<SpendingByCategory> data});
 }
 
 /// @nodoc
@@ -433,7 +430,7 @@ class _$ReportSuccessCopyWithImpl<$Res>
       data: null == data
           ? _self._data
           : data // ignore: cast_nullable_to_non_nullable
-              as Map<String?, List<TransactionWithCategoryName>>,
+              as List<SpendingByCategory>,
     ));
   }
 }
@@ -441,16 +438,15 @@ class _$ReportSuccessCopyWithImpl<$Res>
 /// @nodoc
 
 class ReportError implements ReportState {
-  const ReportError(
-      {required final Map<String?, List<TransactionWithCategoryName>> data})
+  const ReportError({required final List<SpendingByCategory> data})
       : _data = data;
 
-  final Map<String?, List<TransactionWithCategoryName>> _data;
+  final List<SpendingByCategory> _data;
   @override
-  Map<String?, List<TransactionWithCategoryName>> get data {
-    if (_data is EqualUnmodifiableMapView) return _data;
+  List<SpendingByCategory> get data {
+    if (_data is EqualUnmodifiableListView) return _data;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableMapView(_data);
+    return EqualUnmodifiableListView(_data);
   }
 
   /// Create a copy of ReportState
@@ -487,7 +483,7 @@ abstract mixin class $ReportErrorCopyWith<$Res>
       _$ReportErrorCopyWithImpl;
   @override
   @useResult
-  $Res call({Map<String?, List<TransactionWithCategoryName>> data});
+  $Res call({List<SpendingByCategory> data});
 }
 
 /// @nodoc
@@ -508,7 +504,7 @@ class _$ReportErrorCopyWithImpl<$Res> implements $ReportErrorCopyWith<$Res> {
       data: null == data
           ? _self._data
           : data // ignore: cast_nullable_to_non_nullable
-              as Map<String?, List<TransactionWithCategoryName>>,
+              as List<SpendingByCategory>,
     ));
   }
 }

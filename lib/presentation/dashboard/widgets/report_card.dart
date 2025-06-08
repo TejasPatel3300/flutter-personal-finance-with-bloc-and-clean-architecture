@@ -39,7 +39,7 @@ class SpendingChartContent extends StatelessWidget {
       },
       child: BlocBuilder<ReportBloc, ReportState>(
         builder: (context, state) {
-          final groupedExpenseTransactions = state.data;
+          final listOfCategoryWiseSpending = state.data;
           return Container(
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(12),
@@ -88,15 +88,12 @@ class SpendingChartContent extends StatelessWidget {
                             startDegreeOffset: 270,
                             sections: [
                               ...List.generate(
-                                groupedExpenseTransactions.length,
+                                listOfCategoryWiseSpending.length,
                                 (index) {
-                                  final categoryName = groupedExpenseTransactions.keys.elementAt(index);
-                                  final transactionsForCategory = groupedExpenseTransactions[categoryName] ?? [];
-                                  final totalAmountForCategory = transactionsForCategory.fold(
-                                      0.0, (previousValue, element) => previousValue + element.amount);
-                                  final color = transactionsForCategory.isNotEmpty
-                                      ? HexColor.fromHex(transactionsForCategory.first.color ?? '')
-                                      : Colors.green.shade50;
+                                  final categoryWiseSpendingItem = listOfCategoryWiseSpending[index];
+                                  final categoryName = categoryWiseSpendingItem.categoryName;
+                                  final totalAmountForCategory = categoryWiseSpendingItem.totalSpendingForCategory;
+                                  final color = HexColor.fromHex(categoryWiseSpendingItem.categoryColor);
                                   return PieChartSectionData(
                                     value: totalAmountForCategory,
                                     color: color,
@@ -117,15 +114,12 @@ class SpendingChartContent extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           ...List.generate(
-                            groupedExpenseTransactions.length,
+                            listOfCategoryWiseSpending.length,
                             (index) {
-                              final categoryName = groupedExpenseTransactions.keys.elementAt(index);
-                              final transactionsForCategory = groupedExpenseTransactions[categoryName] ?? [];
-                              final totalAmountForCategory = transactionsForCategory.fold(
-                                  0.0, (previousValue, element) => previousValue + element.amount);
-                              final color = transactionsForCategory.isNotEmpty
-                                  ? HexColor.fromHex(transactionsForCategory.first.color ?? '')
-                                  : Colors.green.shade50;
+                              final categoryWiseSpendingItem = listOfCategoryWiseSpending[index];
+                              final categoryName = categoryWiseSpendingItem.categoryName;
+                              final totalAmountForCategory = categoryWiseSpendingItem.totalSpendingForCategory;
+                              final color = HexColor.fromHex(categoryWiseSpendingItem.categoryColor);
                               return Padding(
                                 padding: const EdgeInsets.only(bottom: 12),
                                 child: CategoryLegend(

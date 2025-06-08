@@ -1,8 +1,11 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:intl/intl.dart';
 import 'package:personal_finance_tracker/bloc/report/report_details/report_details_bloc.dart';
 import 'package:personal_finance_tracker/bloc/transaction/transaction_bloc.dart';
+import 'package:personal_finance_tracker/presentation/model/monthly_report.dart';
+import 'package:personal_finance_tracker/utils/extensions.dart';
 
 class ReportScreen extends StatelessWidget {
   const ReportScreen({
@@ -36,14 +39,14 @@ class ReportScreenContent extends StatefulWidget {
 }
 
 class _ReportScreenContentState extends State<ReportScreenContent> with SingleTickerProviderStateMixin {
-  int selectedTab = 0;
+  int selectedTab = 1;
 
   TabController? _tabController;
 
   @override
   void initState() {
     super.initState();
-    _tabController = TabController(length: 2, vsync: this);
+    _tabController = TabController(length: 2, vsync: this, initialIndex: selectedTab);
   }
 
   @override
@@ -55,59 +58,93 @@ class _ReportScreenContentState extends State<ReportScreenContent> with SingleTi
             .read<ReportDetailsBloc>()
             .add(ReportDetailsEvent.update(updatedTransactions: state.currentTransactions ?? []));
       },
-      child: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          children: [
-            MonthlyReportHeader(
-              monthYear: "April 2025",
-              income: 40000,
-              expenses: 10200,
-              savings: 29800,
-            ),
-            // TabBar
-            Container(
-              padding: EdgeInsets.all(2),
-              decoration: BoxDecoration(
-                color: Colors.grey.shade200,
-                borderRadius: BorderRadius.circular(10),
-              ),
-              child: TabBar(
-                controller: _tabController,
-                labelStyle: const TextStyle(fontWeight: FontWeight.w600),
-                indicator: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(10),
+      child: BlocBuilder<ReportDetailsBloc, ReportDetailsState>(
+        builder: (context, state) {
+          final income = state.report.income;
+          final expense = state.report.expense;
+          final currentMonthStartDate = state.report.startDateOfMonth;
+          final monthYear = DateFormat('MMMM yyyy').format(currentMonthStartDate);
+          return Stack(
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: Column(
+                  children: [
+                    MonthlyReportHeader(
+                      monthYear: monthYear,
+                      income: income,
+                      expenses: expense,
+                      savings: income - expense,
+                      onPressedPrevious: () {
+                        int month = currentMonthStartDate.month;
+                        int year = currentMonthStartDate.year;
+                        if (month == DateTime.january) {
+                          month = DateTime.december;
+                          year = year - 1;
+                        } else {
+                          month = month - 1;
+                        }
+                        currentMonthStartDate.month == 1;
+                        final monthStartDate = DateTime(year, month, 1);
+                        context.read<ReportDetailsBloc>().add(ReportDetailsEvent.fetch(monthStartDate: monthStartDate));
+                      },
+                      onPressedNext: () {
+                        int month = currentMonthStartDate.month;
+                        int year = currentMonthStartDate.year;
+                        if (month == DateTime.december) {
+                          month = DateTime.january;
+                          year = year + 1;
+                        } else {
+                          month = month + 1;
+                        }
+                        currentMonthStartDate.month == 1;
+                        final monthStartDate = DateTime(year, month, 1);
+                        context.read<ReportDetailsBloc>().add(ReportDetailsEvent.fetch(monthStartDate: monthStartDate));
+                      },
+                    ),
+                    // TabBar
+                    Container(
+                      padding: EdgeInsets.all(2),
+                      decoration: BoxDecoration(
+                        color: Colors.grey.shade200,
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      child: TabBar(
+                        controller: _tabController,
+                        labelStyle: const TextStyle(fontWeight: FontWeight.w600),
+                        indicator: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        indicatorSize: TabBarIndicatorSize.tab,
+                        dividerColor: Colors.transparent,
+                        labelColor: Colors.black,
+                        unselectedLabelColor: Colors.grey,
+                        tabs: const [
+                          Tab(text: "Overview"),
+                          Tab(text: "Categories"),
+                        ],
+                      ),
+                    ),
+                    const SizedBox(height: 12),
+                    Flexible(
+                      child: TabBarView(
+                        controller: _tabController,
+                        children: [
+                          DailySpendingChart(dailySpending: state.report.dailySpendingOverview.reversed.toList()),
+                          SpendingByCategoryChart(categorySpending: state.report.categorySpendingOverview),
+                        ],
+                      ),
+                    ),
+                  ],
                 ),
-                indicatorSize: TabBarIndicatorSize.tab,
-                dividerColor: Colors.transparent,
-                labelColor: Colors.black,
-                unselectedLabelColor: Colors.grey,
-                tabs: const [
-                  Tab(text: "Overview"),
-                  Tab(text: "Categories"),
-                ],
               ),
-            ),
-            const SizedBox(height: 12),
-            Flexible(
-              child: BlocConsumer<ReportDetailsBloc, ReportDetailsState>(
-                listener: (context, state) {
-                  // TODO: implement listener
-                },
-                builder: (context, state) {
-                  return TabBarView(
-                    controller: _tabController,
-                    children: [
-                      DailySpendingChart(),
-                      SpendingByCategoryChart(),
-                    ],
-                  );
-                },
-              ),
-            ),
-          ],
-        ),
+              if (state is ReportDetailsLoading) ...[
+                Align(child: CircularProgressIndicator())
+              ]
+            ],
+          );
+        },
       ),
     );
   }
@@ -118,6 +155,8 @@ class MonthlyReportHeader extends StatelessWidget {
   final double income;
   final double expenses;
   final double savings;
+  final VoidCallback onPressedPrevious;
+  final VoidCallback onPressedNext;
 
   const MonthlyReportHeader({
     super.key,
@@ -125,6 +164,8 @@ class MonthlyReportHeader extends StatelessWidget {
     required this.income,
     required this.expenses,
     required this.savings,
+    required this.onPressedPrevious,
+    required this.onPressedNext,
   });
 
   @override
@@ -137,7 +178,7 @@ class MonthlyReportHeader extends StatelessWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            const Icon(Icons.chevron_left, size: 28),
+            GestureDetector(onTap: onPressedPrevious, child: const Icon(Icons.chevron_left, size: 28)),
             Text(
               monthYear,
               style: const TextStyle(
@@ -145,7 +186,7 @@ class MonthlyReportHeader extends StatelessWidget {
                 fontWeight: FontWeight.bold,
               ),
             ),
-            const Icon(Icons.chevron_right, size: 28),
+            GestureDetector(onTap: onPressedNext, child: const Icon(Icons.chevron_right, size: 28)),
           ],
         ),
         const SizedBox(height: 20),
@@ -197,17 +238,9 @@ class MonthlyReportHeader extends StatelessWidget {
 }
 
 class SpendingByCategoryChart extends StatelessWidget {
-  final List<_CategoryData> data = const [
-    _CategoryData('Housing', 11000, Colors.green),
-    _CategoryData('Transportation', 2500, Colors.blue),
-    _CategoryData('Education', 2400, Colors.brown),
-    _CategoryData('Shopping', 2000, Colors.pink),
-    _CategoryData('Healthcare', 1000, Colors.lightBlueAccent),
-    _CategoryData('Entertainment', 200, Colors.purple),
-    _CategoryData('Food & Dining', 100, Colors.redAccent),
-  ];
+  final List<SpendingByCategory> categorySpending;
 
-  const SpendingByCategoryChart({super.key});
+  const SpendingByCategoryChart({super.key, required this.categorySpending});
 
   @override
   Widget build(BuildContext context) {
@@ -238,6 +271,8 @@ class SpendingByCategoryChart extends StatelessWidget {
                   AspectRatio(
                     aspectRatio: 1.3,
                     child: PieChart(
+                      duration: Duration(seconds: 2),
+                      curve: Curves.easeIn,
                       PieChartData(
                         sections: _buildPieSections(),
                         centerSpaceRadius: 40,
@@ -262,20 +297,22 @@ class SpendingByCategoryChart extends StatelessWidget {
   }
 
   List<PieChartSectionData> _buildPieSections() {
-    return data.map((d) {
-      return PieChartSectionData(
-        color: d.color,
-        value: d.amount,
-        title: '',
-        radius: 50,
-        showTitle: false,
-      );
-    }).toList();
+    return categorySpending
+        .map(
+          (e) => PieChartSectionData(
+            color: HexColor.fromHex(e.categoryColor),
+            value: e.totalSpendingForCategory,
+            title: e.categoryName,
+            radius: 50,
+            showTitle: false,
+          ),
+        )
+        .toList();
   }
 
   Widget _buildLegend() {
     return Column(
-      children: data.map((d) {
+      children: categorySpending.map((d) {
         return Padding(
           padding: const EdgeInsets.symmetric(vertical: 4),
           child: Row(
@@ -284,19 +321,19 @@ class SpendingByCategoryChart extends StatelessWidget {
                 width: 12,
                 height: 12,
                 decoration: BoxDecoration(
-                  color: d.color,
+                  color: HexColor.fromHex(d.categoryColor),
                   shape: BoxShape.circle,
                 ),
               ),
               const SizedBox(width: 8),
               Expanded(
                 child: Text(
-                  d.category,
+                  d.categoryName,
                   style: const TextStyle(fontSize: 14),
                 ),
               ),
               Text(
-                "\$${d.amount.toStringAsFixed(2)}",
+                "\$${d.totalSpendingForCategory.toStringAsFixed(2)}",
                 style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w500),
               ),
             ],
@@ -307,25 +344,10 @@ class SpendingByCategoryChart extends StatelessWidget {
   }
 }
 
-class _CategoryData {
-  final String category;
-  final double amount;
-  final Color color;
-
-  const _CategoryData(this.category, this.amount, this.color);
-}
-
 class DailySpendingChart extends StatelessWidget {
-  final List<_DailySpendingData> data = const [
-    _DailySpendingData(3, 0),
-    _DailySpendingData(5, 150),
-    _DailySpendingData(9, 40),
-    _DailySpendingData(18, 60),
-    _DailySpendingData(19, 20),
-    _DailySpendingData(26, 50),
-  ];
+  final List<DailySpending> dailySpending;
 
-  const DailySpendingChart({super.key});
+  const DailySpendingChart({super.key, required this.dailySpending});
 
   @override
   Widget build(BuildContext context) {
@@ -375,12 +397,12 @@ class DailySpendingChart extends StatelessWidget {
                   ),
                 ),
                 borderData: FlBorderData(border: Border(bottom: BorderSide(color: Colors.grey))),
-                barGroups: data.map((d) {
+                barGroups: dailySpending.map((d) {
                   return BarChartGroupData(
-                    x: d.day,
+                    x: d.date.day,
                     barRods: [
                       BarChartRodData(
-                        toY: d.amount,
+                        toY: d.totalSpendingForDay,
                         color: Colors.lightBlue,
                         width: 10,
                         borderRadius: BorderRadius.circular(4),
@@ -389,7 +411,7 @@ class DailySpendingChart extends StatelessWidget {
                   );
                 }).toList(),
                 gridData: FlGridData(show: false),
-                maxY: 200,
+                // maxY: ,
               ),
             ),
           ),
@@ -397,11 +419,4 @@ class DailySpendingChart extends StatelessWidget {
       ),
     );
   }
-}
-
-class _DailySpendingData {
-  final int day;
-  final double amount;
-
-  const _DailySpendingData(this.day, this.amount);
 }
