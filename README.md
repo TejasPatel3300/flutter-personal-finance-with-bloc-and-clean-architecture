@@ -1,13 +1,13 @@
 # Personal Finance App
 
 <p align="middle">
-<img src = "screenshots/dashboard.webp"  width = 200 height= 500>
+<img src = "screenshots/dashboard.webp"  width = 200 height= 444>
 
-<img src = "screenshots/reports.webp"  width = 200 height= 500>
+<img src = "screenshots/reports.webp"  width = 200 height= 444>
 
-<img src = "screenshots/transactions.webp"  width = 200 height= 500>
+<img src = "screenshots/transactions.webp"  width = 200 height= 444>
 
-<img src = "screenshots/add_transaction.webp"  width = 200 height= 500>
+<img src = "screenshots/add_transaction.webp"  width = 200 height= 444>
 
 </p>
 
