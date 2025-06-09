@@ -1,11 +1,12 @@
 part of 'authentication_bloc.dart';
 
-@freezed
-class AuthenticationEvent with _$AuthenticationEvent {
-  const AuthenticationEvent._();
-
+@Freezed(copyWith: true)
+abstract class AuthenticationEvent with _$AuthenticationEvent {
   factory AuthenticationEvent.appStarted() = AppStarted;
-  factory AuthenticationEvent.userLoggedIn(String userId) = UserLoggedIn;
-  factory AuthenticationEvent.userLoggedOut() = UserLoggedOut;
+  factory AuthenticationEvent.userLoginRequested(
+      {required String email, required String password}) = UserLoginRequested;
+  factory AuthenticationEvent.userSignUpRequested({required String email, required String password, required String name}) =
+      UserSignUpRequested;
+  factory AuthenticationEvent.userLogoutRequested({required String id}) =
+      UserLogoutRequested;
 }
-
