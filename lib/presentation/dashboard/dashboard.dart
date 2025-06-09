@@ -7,6 +7,8 @@ import 'package:personal_finance_tracker/domain/transaction/models/transaction_w
 import 'package:personal_finance_tracker/presentation/all_transactions/all_transactions_screen.dart';
 import 'package:personal_finance_tracker/presentation/dashboard/widgets/report_card.dart';
 import 'package:personal_finance_tracker/repository/category_repository_impl_sqlite.dart';
+import 'package:personal_finance_tracker/utils/datetime_utils.dart';
+import 'package:personal_finance_tracker/utils/extensions.dart';
 
 import '../../bloc/cateogory/category_bloc.dart';
 import '../../bloc/transaction/transaction_bloc.dart';
@@ -330,6 +332,7 @@ class TransactionListItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final iconBGColor = HexColor.fromHex(transaction.color ?? '#000000');
     return Container(
       padding: const EdgeInsets.symmetric(vertical: 14),
       decoration: BoxDecoration(
@@ -341,7 +344,7 @@ class TransactionListItem extends StatelessWidget {
           Container(
             padding: const EdgeInsets.all(10),
             decoration: BoxDecoration(
-              color: Colors.green,
+              color: iconBGColor,
               shape: BoxShape.circle,
             ),
             child: Icon(Icons.account_balance_wallet_outlined, color: Colors.white, size: 20),
@@ -371,7 +374,7 @@ class TransactionListItem extends StatelessWidget {
                 ),
                 const SizedBox(height: 4),
                 Text(
-                  transaction.date.toString(),
+                  DateTimeUtils.instance.getDateMMMddyyyy(transaction.date),
                   style: const TextStyle(
                     fontSize: 13,
                     color: Colors.grey,
@@ -387,7 +390,11 @@ class TransactionListItem extends StatelessWidget {
             style: TextStyle(
               fontSize: 15,
               fontWeight: FontWeight.w600,
-              color: transaction.type == TransactionType.income ? Colors.green : Colors.black87,
+              color: transaction.type == TransactionType.income
+                  ? Colors.green
+                  : transaction.type == TransactionType.expense
+                      ? Colors.red
+                      : Colors.black,
             ),
           ),
         ],

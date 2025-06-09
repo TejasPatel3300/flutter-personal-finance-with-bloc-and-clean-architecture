@@ -41,7 +41,7 @@ class _AddTransactionScreenState extends State<AddTransactionScreen>
             .of(context)
             .colorScheme
             .inversePrimary,
-        title: Text('Add Budget'),
+        title: Text('Add Transaction'),
       ),
       body: BlocConsumer<TransactionBloc, TransactionState>(
         listener: (context, state) {
@@ -118,9 +118,12 @@ class _AddTransactionScreenState extends State<AddTransactionScreen>
           TextField(
             controller: _amountController,
             keyboardType: TextInputType.number,
-            style: TextStyle(color: Colors.grey),
+            style: TextStyle(color: Colors.black),
             decoration: InputDecoration(
-              prefixText: '\$ ',
+              prefixText: '₹ ',
+              hintText: 'Enter Transaction Amount...',
+              hintStyle: TextStyle(color: Colors.grey),
+              prefixStyle: TextStyle(color: Colors.grey),
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(8),
                 borderSide: const BorderSide(color: Colors.grey, width: 1),
@@ -142,8 +145,10 @@ class _AddTransactionScreenState extends State<AddTransactionScreen>
           const SizedBox(height: 8),
           TextField(
             controller: _descriptionController,
+            style: TextStyle(color: Colors.black),
             decoration: InputDecoration(
               hintText: 'Enter description',
+              hintStyle: TextStyle(color: Colors.grey),
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(8),
                 borderSide: const BorderSide(color: Colors.grey, width: 1),
@@ -163,44 +168,38 @@ class _AddTransactionScreenState extends State<AddTransactionScreen>
             ),
           ),
           const SizedBox(height: 8),
-          Container(
-            decoration: BoxDecoration(
-              border: Border.all(color: Colors.grey),
-              borderRadius: BorderRadius.circular(8),
-            ),
-            child: BlocBuilder<CategoryBloc, CategoryState>(
-              builder: (context, state) {
-                final categories = <Category>[];
-                if (state is CategoryLoadSuccess) {
-                  categories.addAll(state.categories);
-                  return DropdownButtonHideUnderline(
-                    child: DropdownButtonFormField<Category>(
-                      decoration: const InputDecoration(
-                        contentPadding: EdgeInsets.symmetric(horizontal: 16),
-                        border: InputBorder.none,
-                      ),
-                      hint: const Text('Select category'),
-                      style: TextStyle(color: Colors.black),
-                      value: _selectedCategory,
-                      isExpanded: true,
-                      icon: const Icon(Icons.keyboard_arrow_down),
-                      items: categories.map((Category category) {
-                        return DropdownMenuItem<Category>(
-                          value: category,
-                          child: Text(category.name),
-                        );
-                      }).toList(),
-                      onChanged: (Category? value) {
-                        setState(() {
-                          _selectedCategory = value;
-                        });
-                      },
+          BlocBuilder<CategoryBloc, CategoryState>(
+            builder: (context, state) {
+              final categories = <Category>[];
+              if (state is CategoryLoadSuccess) {
+                categories.addAll(state.categories);
+                return DropdownButtonHideUnderline(
+                  child: DropdownButtonFormField<Category>(
+                    decoration: const InputDecoration(
+                      contentPadding: EdgeInsets.symmetric(horizontal: 16),
+                      border: InputBorder.none,
                     ),
-                  );
-                }
-                return const SizedBox();
-              },
-            ),
+                    hint: const Text('Select Category'),
+                    style: TextStyle(color: Colors.black),
+                    value: _selectedCategory,
+                    isExpanded: true,
+                    icon: const Icon(Icons.keyboard_arrow_down),
+                    items: categories.map((Category category) {
+                      return DropdownMenuItem<Category>(
+                        value: category,
+                        child: Text(category.name),
+                      );
+                    }).toList(),
+                    onChanged: (Category? value) {
+                      setState(() {
+                        _selectedCategory = value;
+                      });
+                    },
+                  ),
+                );
+              }
+              return const SizedBox();
+            },
           ),
           const SizedBox(height: 16),
 
@@ -216,6 +215,7 @@ class _AddTransactionScreenState extends State<AddTransactionScreen>
           TextField(
             controller: _dateController,
             readOnly: true,
+            style: TextStyle(color: Colors.black),
             decoration: InputDecoration(
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(8),
@@ -256,8 +256,10 @@ class _AddTransactionScreenState extends State<AddTransactionScreen>
           TextField(
             controller: _notesController,
             maxLines: 4,
+            style: TextStyle(color: Colors.black),
             decoration: InputDecoration(
-              hintText: 'Add notes',
+              hintText: 'Add Notes',
+              hintStyle: TextStyle(color: Colors.grey),
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(8),
                 borderSide: const BorderSide(color: Colors.grey, width: 1),

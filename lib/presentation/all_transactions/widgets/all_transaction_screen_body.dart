@@ -48,8 +48,10 @@ class _AllTransactionScreenBodyState extends State<AllTransactionScreenBody> {
               children: [
                 TextField(
                   controller: _searchController,
-                  style: TextStyle(color: Colors.grey),
+                  style: TextStyle(color: Colors.black),
                   decoration: InputDecoration(
+                    hintText: 'Search...',
+                    hintStyle: TextStyle(color: Colors.grey),
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(8),
                       borderSide: const BorderSide(color: Colors.grey, width: 1),

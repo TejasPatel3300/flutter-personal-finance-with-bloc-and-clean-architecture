@@ -225,7 +225,7 @@ class MonthlyReportHeader extends StatelessWidget {
         Text(label, style: const TextStyle(fontSize: 14, color: Colors.black54)),
         const SizedBox(height: 6),
         Text(
-          "\$${value.toStringAsFixed(2)}",
+          "₹${value.toStringAsFixed(2)}",
           style: TextStyle(
             fontSize: 16,
             fontWeight: FontWeight.w600,
@@ -333,7 +333,7 @@ class SpendingByCategoryChart extends StatelessWidget {
                 ),
               ),
               Text(
-                "\$${d.totalSpendingForCategory.toStringAsFixed(2)}",
+                "₹${d.totalSpendingForCategory.toStringAsFixed(2)}",
                 style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w500),
               ),
             ],

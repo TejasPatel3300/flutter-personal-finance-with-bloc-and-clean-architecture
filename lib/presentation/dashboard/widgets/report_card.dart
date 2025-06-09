@@ -125,7 +125,7 @@ class SpendingChartContent extends StatelessWidget {
                                 child: CategoryLegend(
                                   color: color,
                                   title: '$categoryName',
-                                  amount: '\$$totalAmountForCategory',
+                                  amount: '₹$totalAmountForCategory',
                                 ),
                               );
                             },
