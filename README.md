@@ -1,6 +1,15 @@
 # Personal Finance App
 
-![App Screenshot](screenshot.png)
+<p align="middle">
+<img src = "screenshots/dashboard.webp"  width = 200 height= 444>
+
+<img src = "screenshots/reports.webp"  width = 200 height= 444>
+
+<img src = "screenshots/transactions.webp"  width = 200 height= 444>
+
+<img src = "screenshots/add_transaction.webp"  width = 200 height= 444>
+
+</p>
 
 ## Description
 A simple and user-friendly personal finance manager app to help you track your income, expenses, and budget effectively.
